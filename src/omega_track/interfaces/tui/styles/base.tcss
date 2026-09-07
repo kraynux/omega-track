@@ -1,0 +1,311 @@
+/* Regles communes aux 4 profils de rendu. Portees verbatim depuis
+   CHECK/DEEP/FOLD (D-007, D-008 : meme catalogue de themes, memes
+   conventions visuelles pour toute la suite omega-).
+
+   Boutons : patron porte tel quel. Le contour rond vit EXCLUSIVEMENT sur
+   ".omega-btn-frame" (un Container), jamais sur le Button lui-meme
+   ("border: none" partout) : remplir le fond d'un widget au survol/focus
+   peint TOUJOURS tout son rectangle, y compris l'anneau de bordure round
+   — separer decoration (frame, jamais recolore) et interactivite (Button,
+   fond $accent au survol/focus) evite ce bug tout en gardant un focus
+   colore selon le theme. ".omega-actions"/".omega-confirm-buttons" ne
+   portent PAS de contour a eux : le bouton est deja entoure par son
+   propre frame, un deuxieme cadre autour du groupe est redondant. */
+
+Screen {
+    background: $background;
+    color: $foreground;
+    /* Ascenseur toujours visible et contraste, quel que soit le theme
+       (retour utilisateur : "il manque l'ascenseur, on ne voit pas le
+       bas du menu Reglages") - Textual affiche une scrollbar par
+       defaut des que le contenu depasse, mais avec des couleurs par
+       defaut peu contrastees sur certains themes/terminaux. */
+    scrollbar-color: $accent;
+    scrollbar-color-hover: $accent;
+    scrollbar-color-active: $accent;
+    scrollbar-background: $panel;
+    scrollbar-size: 1 1;
+}
+
+.omega-title {
+    text-style: bold;
+    color: $primary;
+    border: round $accent;
+    padding: 0 1;
+    width: auto;
+    margin: 1 0;
+}
+
+.omega-subtitle {
+    color: $secondary;
+    padding: 0 0 1 0;
+}
+
+.omega-hint {
+    color: $foreground 60%;
+    padding: 0 0 1 0;
+}
+
+.omega-hidden {
+    display: none;
+}
+
+.omega-panel {
+    padding: 1 2;
+    height: 1fr;
+    overflow-y: auto;
+}
+
+.omega-form-panel {
+    padding: 1 2;
+    height: 1fr;
+    align-horizontal: center;
+    overflow-y: auto;
+}
+
+.omega-form-panel > Select,
+.omega-form-panel > Input {
+    width: 70;
+    margin-bottom: 1;
+}
+
+.omega-form-panel .omega-title,
+.omega-form-panel .omega-subtitle,
+.omega-form-panel .omega-hint {
+    width: 70;
+}
+
+.omega-form-panel .omega-title {
+    content-align: center middle;
+}
+
+.omega-form-panel > .omega-actions {
+    width: 70;
+    align: center middle;
+    height: auto;
+}
+
+.omega-home-root {
+    align: center middle;
+    height: 1fr;
+    overflow-y: auto;
+}
+
+.omega-splash-middle {
+    width: 1fr;
+}
+
+.omega-splash-hero {
+    color: $accent;
+    text-align: left;
+    width: auto;
+}
+
+.omega-splash-prompt {
+    color: $secondary;
+    width: auto;
+    margin-top: 1;
+    text-style: italic;
+}
+
+.omega-home-wordmark {
+    width: auto;
+    text-align: left;
+    padding-bottom: 1;
+}
+
+.omega-home-menu {
+    background: $panel;
+    border: round $accent;
+    border-title-align: center;
+    border-title-color: $background;
+    border-title-background: $accent;
+    border-title-style: bold;
+    padding: 1 4;
+    width: auto;
+    height: auto;
+}
+
+.omega-actions {
+    align: left middle;
+    height: auto;
+    width: auto;
+    margin-top: 1;
+    overflow-x: auto;
+}
+
+.omega-btn-frame {
+    border: round $accent;
+    padding: 0;
+    width: auto;
+    height: auto;
+}
+
+.omega-actions > Input {
+    /* Meme cause que ".omega-select-compact" ci-dessous : Input a
+       "width: 100%" dans le CSS natif de Textual, ce qui est indefini
+       dans un conteneur ".omega-actions" (lui-meme "width: auto") -
+       Textual retombe alors sur une largeur de conteneur trop etroite
+       tout en gardant la largeur native dans son "virtual_size",
+       provoquant un ascenseur horizontal qui masque le bouton de
+       validation a droite (retour utilisateur : rangees "Definir" et
+       "Purge" de l'ecran Reglages). Mesure empirique (Pilot, tailles
+       80x24 et 100x30) : sans cette regle, la rangee "Definir"
+       affichait virtual_size.width=60 pour une largeur visible de 24
+       seulement. */
+    width: 24;
+    height: 3;
+}
+
+.omega-select-compact {
+    /* Le CSS natif de Select fixe "width: 1fr" - hors d'un formulaire
+       dedie (".omega-form-panel > Select" le contraint deja a 70), ca
+       etire le Select sur toute la largeur restante et deforme la
+       rangee entiere (bug signale par l'utilisateur : le select
+       d'export de l'ecran Historique prenait tout l'ecran). A appliquer
+       explicitement a tout Select place dans une rangee de filtres/
+       actions plutot qu'un formulaire (voir history.py). */
+    width: 22;
+    height: 3;
+}
+
+.omega-home-menu .omega-btn-frame {
+    width: 32;
+    height: 3;
+    margin-bottom: 1;
+}
+
+.omega-actions Button,
+.omega-confirm-buttons Button,
+.omega-home-menu Button {
+    background: $surface;
+    border: none;
+    color: $foreground;
+    min-width: 10;
+}
+
+.omega-home-menu Button {
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+}
+
+.omega-actions Button.-primary,
+.omega-confirm-buttons Button.-primary {
+    background: $surface;
+    border: none;
+    color: $primary;
+}
+
+.omega-actions Button.-error,
+.omega-confirm-buttons Button.-error {
+    background: $surface;
+    border: none;
+    color: $error;
+}
+
+.omega-actions Button:hover,
+.omega-confirm-buttons Button:hover,
+.omega-home-menu Button:hover,
+.omega-actions Button:focus,
+.omega-confirm-buttons Button:focus,
+.omega-home-menu Button:focus {
+    background: $accent;
+    color: $background;
+    text-style: bold;
+}
+
+.omega-actions Button.-error:hover,
+.omega-confirm-buttons Button.-error:hover,
+.omega-actions Button.-error:focus,
+.omega-confirm-buttons Button.-error:focus {
+    background: $error;
+    color: $background;
+    text-style: bold;
+}
+
+.omega-confirm-box {
+    width: 60;
+    height: auto;
+    border: round $accent;
+    padding: 1 2;
+    align: center middle;
+}
+
+.omega-confirm-title {
+    text-style: bold;
+    color: $error;
+    width: 60;
+    content-align: center middle;
+    margin-bottom: 1;
+}
+
+.omega-confirm-buttons {
+    width: 60;
+    height: auto;
+    align: center middle;
+}
+
+.omega-progress-panel {
+    /* height: auto (pas 1fr) : le panneau ne doit occuper que l'espace
+       de son propre contenu, pas tout l'ecran - sinon le bouton Annuler
+       (screens/progress.py, frere de ce panneau) se retrouve pousse
+       tout en bas de l'ecran au lieu de rester juste sous le journal
+       (bug signale par l'utilisateur). Le centrage vertical global de
+       l'ensemble panneau+bouton est fait par le Middle() qui les
+       englobe tous les deux dans progress.py. */
+    align: center middle;
+    width: 1fr;
+    height: auto;
+}
+
+.omega-progress-panel > Static {
+    width: auto;
+}
+
+.omega-progress-panel LoadingIndicator {
+    width: auto;
+    height: 3;
+}
+
+.omega-progress-log {
+    width: 80%;
+    max-width: 120;
+    height: 12;
+    margin-top: 1;
+    border: round $accent;
+    background: $surface;
+    color: $foreground 80%;
+}
+
+.omega-modal {
+    width: 80%;
+    max-width: 100;
+    border: round $primary;
+    padding: 1 2;
+    background: $surface;
+}
+
+.omega-module-badge {
+    text-style: bold;
+    padding: 0 1;
+    margin: 0 0 1 0;
+}
+
+.omega-status-completed { background: $success; color: $background; }
+.omega-status-partial { background: $warning; color: $background; }
+.omega-status-failed { background: $error; color: $background; }
+.omega-status-skipped { background: $panel; color: $foreground; }
+.omega-status-cancelled { background: $panel; color: $foreground; }
+
+DataTable {
+    height: 1fr;
+}
+
+TabbedContent {
+    height: 1fr;
+}
+
+#geoip-status-table {
+    height: 6;
+}

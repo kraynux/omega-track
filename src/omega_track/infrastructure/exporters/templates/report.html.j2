@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OMEGA-TRACK — Rapport {{ header.target }}</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>
+  // Mermaid.js a ses propres couleurs par defaut (texte fonce, pense pour
+  // un fond clair) totalement independantes de la palette du reste de la
+  // page - sur un theme d'export sombre, le texte des noeuds/etiquettes
+  // devenait illisible (retour utilisateur Phase 12 : "les dessins...
+  // police claire donc on voit pas"). `theme: "base"` + `themeVariables`
+  // derivees de la meme Palette forcent un rendu coherent et lisible
+  // quel que soit le theme choisi, plutot que de compter sur les
+  // couleurs par defaut de mermaid.js.
+  window.addEventListener("DOMContentLoaded", () => mermaid.initialize({
+    startOnLoad: true,
+    theme: "base",
+    themeVariables: {
+      background: "{{ palette.panel }}",
+      primaryColor: "{{ palette.surface }}",
+      primaryTextColor: "{{ palette.foreground }}",
+      primaryBorderColor: "{{ palette.accent }}",
+      lineColor: "{{ palette.accent }}",
+      secondaryColor: "{{ palette.panel }}",
+      tertiaryColor: "{{ palette.panel }}",
+      edgeLabelBackground: "{{ palette.panel }}",
+      textColor: "{{ palette.foreground }}",
+      nodeTextColor: "{{ palette.foreground }}",
+    },
+  }));
+</script>
+<style>
+  /* Couleurs pilotees par le theme d'export choisi (voir
+     infrastructure/exporters/html_theme_resolver.py, omega_lib.theme.
+     policies::EXPORT_PALETTES, 9 jetons generiques - meme catalogue que
+     le theme TUI, D-007/D-008), independant du theme d'interface actif
+     au moment de l'observation.
+
+     Mise en page "fenetre terminal" (bandeau avec 3 points colores,
+     corps encadre) portee depuis le template HTML reel d'omega-fire
+     (domain/reports/templates/_base.html.j2) - retour utilisateur Phase
+     12 ("les themes d'export sont pas complets... base toi sur
+     omega-fire, type terminal"). Omega-fire a son propre catalogue local
+     de ~44 variables semantiques (specifique a son domaine - identite de
+     backend pare-feu, statuts de capacite) : TRACK n'a pas ce besoin,
+     seuls les 9 jetons generiques de la Palette partagee par toute la
+     suite sont utilises ici, pas un systeme de variables etendu propre a
+     TRACK - la structure visuelle est portee, pas le catalogue de
+     couleurs local d'omega-fire. Les 9 jetons sont TOUS reellement
+     utilises (le premier jet n'exploitait ni success/warning/error). */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: ui-monospace, "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+    line-height: 1.6;
+    color: {{ palette.foreground }};
+    background: {{ palette.background }};
+    padding: 2rem 1.5rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .container {
+    max-width: 1200px;
+    width: 100%;
+    background: {{ palette.surface }};
+    border-radius: 6px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    border: 1px solid {{ palette.panel }};
+    overflow: hidden;
+  }
+  .terminal-header {
+    background: {{ palette.panel }};
+    padding: 0.6rem 1rem;
+    border-bottom: 1px solid {{ palette.panel }};
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .terminal-dots { display: flex; gap: 6px; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-close { background: {{ palette.error }}; }
+  .dot-min { background: {{ palette.warning }}; }
+  .dot-max { background: {{ palette.success }}; }
+  .terminal-title {
+    font-size: 0.75rem;
+    color: {{ palette.secondary }};
+    margin-left: auto;
+    margin-right: auto;
+    letter-spacing: 0.5px;
+  }
+  .terminal-body { padding: 2rem 2.2rem; }
+  h1 {
+    font-size: 1.4rem;
+    color: {{ palette.foreground }};
+    border-bottom: 3px solid {{ palette.accent }};
+    padding-bottom: 10px;
+    margin: 0 0 20px;
+  }
+  h1::before { content: "$ "; color: {{ palette.accent }}; }
+  h2 {
+    font-size: 1.1rem;
+    color: {{ palette.foreground }};
+    border-left: 4px solid {{ palette.accent }};
+    padding-left: 10px;
+    margin: 30px 0 15px;
+  }
+  ul.meta { list-style: none; margin: 0 0 20px; }
+  ul.meta li { background: {{ palette.panel }}; padding: 8px 12px; border-radius: 4px; margin-bottom: 6px; }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .stat { background: {{ palette.panel }}; padding: 12px; border-radius: 4px; text-align: center; }
+  .stat-value { font-size: 1.6rem; font-weight: bold; }
+  .stat-value.confidence-verified, .stat-value.confidence-corroborated { color: {{ palette.success }}; }
+  .stat-value.confidence-declared { color: {{ palette.accent }}; }
+  .stat-value.confidence-inferred { color: {{ palette.warning }}; }
+  .stat-value.confidence-unknown { color: {{ palette.error }}; }
+  .box {
+    background: {{ palette.panel }};
+    border: 1px solid {{ palette.accent }};
+    border-radius: 8px;
+    padding: 8px 20px 20px;
+    margin-bottom: 20px;
+  }
+  table { border-collapse: collapse; width: 100%; }
+  th, td { text-align: left; padding: 0.4rem 0.6rem; border-bottom: 1px solid {{ palette.surface }}; }
+  th { color: {{ palette.secondary }}; font-weight: 600; }
+  summary { cursor: pointer; font-weight: bold; color: {{ palette.foreground }}; padding: 4px 0; }
+  .badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    background: {{ palette.surface }};
+    color: {{ palette.secondary }};
+  }
+  .badge.paid { background: {{ palette.warning }}; color: {{ palette.background }}; }
+  .badge.confidence-verified, .badge.confidence-corroborated { background: {{ palette.success }}; color: {{ palette.background }}; }
+  .badge.confidence-declared { background: {{ palette.accent }}; color: {{ palette.background }}; }
+  .badge.confidence-inferred { background: {{ palette.warning }}; color: {{ palette.background }}; }
+  .badge.confidence-unknown { background: {{ palette.error }}; color: {{ palette.background }}; }
+  pre.mermaid { background: {{ palette.surface }}; padding: 10px; border-radius: 6px; overflow-x: auto; }
+  .footer-note {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px dashed {{ palette.panel }};
+    color: {{ palette.secondary }};
+    font-size: 0.8rem;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="terminal-header">
+    <div class="terminal-dots">
+      <span class="dot dot-close"></span>
+      <span class="dot dot-min"></span>
+      <span class="dot dot-max"></span>
+    </div>
+    <span class="terminal-title">omega-track -- {{ header.target }}</span>
+  </div>
+  <div class="terminal-body">
+<h1>Rapport OMEGA-TRACK — {{ header.target }}</h1>
+<ul class="meta">
+<li>Genere le {{ header.generated_at }}</li>
+<li>Profil : {{ header.profile }} (modules : {{ header.modules | join(", ") if header.modules else "aucun" }})</li>
+<li>Sources consultees : {{ header.sources | join(", ") if header.sources else "aucune" }}</li>
+<li>Politique de redaction : {{ header.redaction_policy }}</li>
+<li>Schema d'export v{{ header.schema_version }} — omega-track {{ header.app_version }}</li>
+</ul>
+
+<h2>Resume</h2>
+<div class="stats-grid">
+{% for level, count in summary.items() %}
+<div class="stat"><div class="stat-value confidence-{{ level }}">{{ count }}</div><div>{{ level }}</div></div>
+{% endfor %}
+</div>
+
+{% for family, findings in findings_by_family.items() %}
+<div class="box">
+<details>
+<summary>{{ family | capitalize }} ({{ findings | length }})</summary>
+<table>
+<tr><th>Type</th><th>Donnees</th><th>Confiance</th><th>Source</th></tr>
+{% for finding in findings %}
+<tr><td>{{ finding.finding_type }}</td><td>{{ finding.payload }}</td><td><span class="badge confidence-{{ finding.confidence.value }}">{{ finding.confidence.value }}</span></td><td>{{ finding.source_name }}</td></tr>
+{% endfor %}
+</table>
+</details>
+</div>
+{% endfor %}
+
+{% if relations %}
+<div class="box">
+<details open>
+<summary>Relations ({{ relations | length }})</summary>
+<table>
+<tr><th>Source</th><th>Cible</th><th>Type</th><th>Confiance</th></tr>
+{% for relation in relations %}
+<tr><td>{{ relation.source_entity_ref }}</td><td>{{ relation.target_entity_ref }}</td><td>{{ relation.relation_type.value }}</td><td><span class="badge confidence-{{ relation.confidence.value }}">{{ relation.confidence.value }}</span></td></tr>
+{% endfor %}
+</table>
+<pre class="mermaid">
+{{ mermaid_graph | safe }}
+</pre>
+</details>
+</div>
+{% endif %}
+
+{% for path in paths %}
+<div class="box">
+<details>
+<summary>Chemin reseau vers {{ path.target_ip }} ({{ path.protocol }}) — {{ "atteinte" if path.reached_target else "non atteinte" }}</summary>
+<table>
+<tr><th>#</th><th>IP</th><th>Hote</th><th>RTT (ms)</th><th>ASN</th><th>Pays</th></tr>
+{% for hop in path.hops %}
+<tr><td>{{ hop.sequence }}</td><td>{{ hop.ip if hop.ip is not none else "*" }}</td><td>{{ hop.hostname or "" }}</td><td>{{ hop.rtt_ms if hop.rtt_ms is not none else "" }}</td><td>{{ hop.asn or "" }}</td><td>{{ hop.geo_country or "" }}</td></tr>
+{% endfor %}
+</table>
+<pre class="mermaid">
+{{ path.mermaid_graph | safe }}
+</pre>
+</details>
+</div>
+{% endfor %}
+
+<div class="footer-note">omega-track — genere sans serveur, theme d'export : {{ header.export_theme }}</div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+# Environnement Python
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.import_linter_cache/
+*.egg-info/
+
+# État runtime généré localement (recréé automatiquement au démarrage) —
+# voir docs/PRIVACY.md §1. Les dossiers eux-mêmes restent versionnés (via
+# .gitkeep) pour exister dès l'extraction de l'archive, avant tout premier
+# lancement : sans ça, un export ou une mise à jour GeoIP échoue en
+# silence tant que le dossier n'a jamais été créé par le code.
+var/db/*
+var/exports/*
+var/screenshots/*
+var/geoip/*
+var/cache/*
+var/settings.json
+var/secrets.json
+var/*.log
+var/*.jsonl
+!var/db/.gitkeep
+!var/exports/.gitkeep
+!var/screenshots/.gitkeep
+!var/geoip/.gitkeep
+!var/cache/.gitkeep
+
+# Archives de release (générées, pas du code source)
+*.tar.gz
+
+# Secrets locaux
+.env
+config.ini
+
+# Éditeurs
+*~
+*.bak
+*.swp
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Couverture de tests
+.coverage
+htmlcov/
+
+# Build / packaging
+dist/
+build/
