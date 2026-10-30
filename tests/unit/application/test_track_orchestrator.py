@@ -277,7 +277,7 @@ def test_global_timeout_exceeded_before_start_skips_everything_and_stays_partial
 
     assert result.status in (TrackStatus.PARTIAL, TrackStatus.FAILED)
     assert result.module_runs["dns"].status == ModuleStatus.SKIPPED
-    assert result.module_runs["dns"].error_detail == "budget de temps global depasse"
+    assert result.module_runs["dns"].error_detail == "budget de temps global dépassé"
     assert findings_repo.findings == []
 
 
@@ -314,7 +314,7 @@ def test_unsupported_extended_module_is_skipped_with_explicit_reason() -> None:
     result = orchestrator.run(track_run=track_run, target_value=DomainName.parse("example.com"))
 
     assert result.module_runs["organization"].status == ModuleStatus.SKIPPED
-    assert result.module_runs["organization"].error_detail == "module non encore implemente"
+    assert result.module_runs["organization"].error_detail == "module non encore implémenté"
 
 
 def test_certificate_transparency_module_skipped_without_collector_configured() -> None:

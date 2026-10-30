@@ -13,6 +13,7 @@ from omega_track.domain.services.target_validator import validate_alias, validat
 from omega_track.domain.value_objects.identifiers import TargetId
 from omega_track.domain.value_objects.target_value import parse_target_value
 from omega_track.ports.repositories.target_repository import TargetRepository
+from omega_track.shared.i18n import _
 from omega_track.shared.typing import IdFactory
 
 
@@ -27,7 +28,7 @@ def create_target(
 ) -> Target:
     value = parse_target_value(raw_value)
     if target_repository.find_by_value(value) is not None:
-        raise DuplicateTargetError(f"cible deja existante : {value}")
+        raise DuplicateTargetError(_("cible déjà existante : {value}").format(value=value))
 
     moment = now()
     target = Target(

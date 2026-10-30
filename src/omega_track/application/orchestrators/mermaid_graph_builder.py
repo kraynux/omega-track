@@ -15,6 +15,7 @@ import html
 
 from omega_track.domain.entities.findings.path import NetworkPath
 from omega_track.domain.entities.identity_report import IdentityReport
+from omega_track.shared.i18n import _
 
 
 def _escape(text: str) -> str:
@@ -61,7 +62,8 @@ def build_network_path_mermaid(path: NetworkPath) -> str:
     silencieusement (`*` explicite, meme discipline que le domaine,
     voir domain/entities/findings/path.py::NetworkHop.is_responding)."""
     if not path.hops:
-        return "graph LR\n  vide[\"aucun saut collecte\"]"
+        # Syntaxe Mermaid jamais traduite : seul le libelle du noeud l'est.
+        return 'graph LR\n  vide["' + _("aucun saut collecté") + '"]'
 
     lines = ["graph LR"]
     for hop in path.hops:

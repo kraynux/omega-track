@@ -120,7 +120,7 @@ def test_ct_module_skipped_when_no_collector_configured() -> None:
         enriched_ips=[], ct_collector=None, archive_collector=None, bgp_collector=None,
     )
     assert module_runs["certificate_transparency"].status == ModuleStatus.SKIPPED
-    assert module_runs["certificate_transparency"].error_detail == "aucun collecteur Certificate Transparency configure"
+    assert module_runs["certificate_transparency"].error_detail == "aucun collecteur Certificate Transparency configuré"
     assert not result.degraded
 
 

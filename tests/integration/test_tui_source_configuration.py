@@ -46,7 +46,7 @@ async def test_source_screen_shows_disclosure_before_any_key_is_entered(
 
         disclosure = str(pilot.app.screen.query_one("#disclosure-text", Static).content)
         assert "Quota" in disclosure
-        assert "Donnees envoyees" in disclosure
+        assert "Données envoyées" in disclosure
         status = str(pilot.app.screen.query_one("#status-text", Static).content)
         assert "absente" in status
 
@@ -79,7 +79,7 @@ async def test_save_and_clear_key_round_trip(container: DependencyContainer) -> 
 
         assert container.secret_store.get_secret("virustotal_api_key") == "cle-de-test"
         status = str(pilot.app.screen.query_one("#status-text", Static).content)
-        assert "configuree" in status
+        assert "configurée" in status
 
         pilot.app.screen.query_one("#clear-key", Button).press()
         await pilot.pause()

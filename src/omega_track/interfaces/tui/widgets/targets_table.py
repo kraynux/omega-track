@@ -6,6 +6,7 @@ from __future__ import annotations
 from textual.widgets import DataTable
 
 from omega_track.domain.entities.target import Target
+from omega_track.shared.i18n import _
 
 
 class TargetsTable(DataTable[str]):
@@ -13,7 +14,7 @@ class TargetsTable(DataTable[str]):
 
     def on_mount(self) -> None:
         self.cursor_type = "row"
-        self.add_columns("Valeur", "Alias", "Tags", "Epinglee", "Dernier statut")
+        self.add_columns(_("Valeur"), _("Alias"), _("Tags"), _("Épinglée"), _("Dernier statut"))
 
     def set_targets(self, targets: list[Target]) -> None:
         self.clear()
@@ -22,7 +23,7 @@ class TargetsTable(DataTable[str]):
                 str(target.value),
                 target.alias or "-",
                 ", ".join(sorted(target.tags)) or "-",
-                "oui" if target.pinned else "non",
+                _("oui") if target.pinned else _("non"),
                 target.last_status or "-",
                 key=str(target.id),
             )

@@ -21,6 +21,7 @@ from omega_track.domain.value_objects.identifiers import (
     TrackRunId,
 )
 from omega_track.infrastructure.exceptions import StorageError
+from omega_track.shared.i18n import _
 
 
 def _evidences_to_json(evidences: list[Evidence]) -> str:
@@ -86,7 +87,7 @@ class SqliteFindingRepository:
                 )
             self._connection.commit()
         except sqlite3.Error as exc:
-            raise StorageError("echec de sauvegarde des findings") from exc
+            raise StorageError(_("échec de sauvegarde des findings")) from exc
 
     def save_relations(self, relations: list[Relation]) -> None:
         try:
@@ -113,7 +114,7 @@ class SqliteFindingRepository:
                 )
             self._connection.commit()
         except sqlite3.Error as exc:
-            raise StorageError("echec de sauvegarde des relations") from exc
+            raise StorageError(_("échec de sauvegarde des relations")) from exc
 
     def list_findings_for_run(self, track_run_id: TrackRunId) -> list[Finding]:
         rows = self._connection.execute(
@@ -133,7 +134,7 @@ class SqliteFindingRepository:
             self._connection.execute("DELETE FROM relations WHERE track_run_id = ?", (track_run_id,))
             self._connection.commit()
         except sqlite3.Error as exc:
-            raise StorageError("echec de suppression des findings/relations") from exc
+            raise StorageError(_("échec de suppression des findings/relations")) from exc
 
     @staticmethod
     def _row_to_finding(row: sqlite3.Row) -> Finding:

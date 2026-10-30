@@ -2,7 +2,7 @@
 """Composition ASCII de l'ecran de demarrage. Logo fourni par l'utilisateur,
 voir ~/DEV/TRACK/ascii.txt (legende de couleurs en tete du fichier) - motif
 2D (plusieurs elements decoratifs partagent une meme ligne a des colonnes
-differentes : boite LINUX WEB-TRACKER, banniere V1.0, pyramide DNS, schema
+differentes : boite LINUX WEB-TRACKER, banniere V1.5, pyramide DNS, schema
 de trace, bandeau OMEGA-TRACK), contrairement au logo empile d'omega-check
 qui autorise un centrage ligne par ligne (`str.center`). Ici chaque ligne
 est chargee et reindentee tabs->espaces (`expandtabs`) mais JAMAIS recentree

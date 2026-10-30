@@ -2,6 +2,8 @@
 """Exceptions du bounded context TrackRun."""
 from __future__ import annotations
 
+from omega_track.shared.i18n import _
+
 
 class TrackError(Exception):
     """Base commune, jamais levee directement."""
@@ -12,7 +14,7 @@ class InvalidTrackTransitionError(TrackError):
     ::is_valid_transition, Phase 7 §"Etats attendus")."""
 
     def __init__(self, current: str, attempted: str) -> None:
-        super().__init__(f"transition {current!r} -> {attempted!r} non autorisee")
+        super().__init__(_("transition {current!r} -> {attempted!r} non autorisée").format(current=current, attempted=attempted))
         self.current = current
         self.attempted = attempted
 

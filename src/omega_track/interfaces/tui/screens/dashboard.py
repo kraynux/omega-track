@@ -46,6 +46,7 @@ from omega_track.domain.value_objects.statuses import ModuleStatus, TrackStatus
 from omega_track.domain.value_objects.target_value import TargetKind
 from omega_track.interfaces.tui.screens._base import OmegaScreen
 from omega_track.interfaces.tui.screens.history import HistoryScreen
+from omega_track.shared.i18n import _
 
 if TYPE_CHECKING:
     from omega_track.app.container import DependencyContainer
@@ -96,34 +97,34 @@ class DashboardScreen(OmegaScreen):
     def compose(self) -> ComposeResult:
         yield Header()
         with VerticalScroll(classes="omega-panel"):
-            yield Static("DASHBOARD", classes="omega-title")
+            yield Static(_("DASHBOARD"), classes="omega-title")
 
-            yield Static("Cibles", classes="omega-subtitle")
+            yield Static(_("Cibles"), classes="omega-subtitle")
             yield Static("", id="targets-text")
 
-            yield Static("Derniere activite", classes="omega-subtitle")
+            yield Static(_("Dernière activité"), classes="omega-subtitle")
             yield Static("", id="last-activity-text")
 
-            yield Static("Observations par statut", classes="omega-subtitle")
+            yield Static(_("Observations par statut"), classes="omega-subtitle")
             yield Static("", id="status-breakdown-text")
 
-            yield Static("Fiabilite par module (sur l'historique complet)", classes="omega-subtitle")
+            yield Static(_("Fiabilité par module (sur l'historique complet)"), classes="omega-subtitle")
             yield Static("", id="module-reliability-text")
 
-            yield Static("Typologie des derniers findings", classes="omega-subtitle")
+            yield Static(_("Typologie des derniers findings"), classes="omega-subtitle")
             yield Static("", id="findings-typology-text")
 
             yield Static("GeoIP", classes="omega-subtitle")
             yield Static("", id="geoip-text")
 
-            yield Static("Sources a cle", classes="omega-subtitle")
+            yield Static(_("Sources à clé"), classes="omega-subtitle")
             yield Static("", id="sources-text")
 
             with Horizontal(classes="omega-actions"):
                 with Container(classes="omega-btn-frame"):
-                    yield Button("Voir l'historique complet", id="open-history", variant="primary")
+                    yield Button(_("Voir l'historique complet"), id="open-history", variant="primary")
                 with Container(classes="omega-btn-frame"):
-                    yield Button("Retour", id="back")
+                    yield Button(_("Retour"), id="back")
         yield Footer()
 
     def on_mount(self) -> None:
@@ -145,14 +146,14 @@ class DashboardScreen(OmegaScreen):
         domain_count = len(targets) - ip_count
         never_scanned = sum(1 for t in targets if t.last_track_at is None)
         self.query_one("#targets-text", Static).update(
-            f"{len(targets)} cible(s) enregistree(s) ({ip_count} IP, {domain_count} domaine(s)), "
-            f"{pinned_count} epinglee(s) (autorisees durablement)\n"
-            f"{never_scanned} cible(s) jamais observee(s)"
+            _("{count} cible(s) enregistrée(s) ({ip_count} IP, {domain_count} domaine(s)), "
+              "{pinned_count} épinglée(s) (autorisées durablement)\n{never_scanned} cible(s) "
+              "jamais observée(s)").format(count=len(targets), ip_count=ip_count, domain_count=domain_count, pinned_count=pinned_count, never_scanned=never_scanned)
         )
 
     def _refresh_last_activity(self, runs: list[TrackRun], targets_by_id: dict[TargetId, Target]) -> None:
         if not runs:
-            self.query_one("#last-activity-text", Static).update("Aucune observation pour le moment.")
+            self.query_one("#last-activity-text", Static).update(_("Aucune observation pour le moment."))
             return
         last = runs[0]
         target = targets_by_id.get(last.target_id)
@@ -174,8 +175,9 @@ class DashboardScreen(OmegaScreen):
                 continue
             color = _STATUS_COLOR.get(status, "white")
             lines.append(f"[{color}]{status.value:<10}[/{color}] {count:>4}  {_bar(count, maximum)}")
-        text = "\n".join(lines) if lines else "(aucune observation)"
-        self.query_one("#status-breakdown-text", Static).update(f"{len(runs)} observation(s) au total\n{text}")
+        text = "\n".join(lines) if lines else _("(aucune observation)")
+        self.query_one("#status-breakdown-text", Static).update(_("{count} observation(s) au "
+                                                                  "total\n{text}").format(count=len(runs), text=text))
 
     def _refresh_module_reliability(self, runs: list[TrackRun]) -> None:
         per_module: dict[str, Counter[ModuleStatus]] = {name: Counter() for name in sorted(KNOWN_MODULES)}
@@ -188,12 +190,13 @@ class DashboardScreen(OmegaScreen):
             tally = per_module[module_name]
             attempted = tally[ModuleStatus.COMPLETED] + tally[ModuleStatus.PARTIAL] + tally[ModuleStatus.FAILED]
             if attempted == 0:
-                lines.append(f"{module_name:<24} jamais execute")
+                lines.append(_("{module_name:<24} jamais exécuté").format(module_name=module_name))
                 continue
             success = tally[ModuleStatus.COMPLETED] + tally[ModuleStatus.PARTIAL]
             rate = round(100 * success / attempted)
             color = "green" if rate >= 80 else "yellow" if rate >= 50 else "red"
-            lines.append(f"{module_name:<24} [{color}]{rate:>3}%[/{color}] de succes  ({attempted} tentative(s))")
+            lines.append(_("{module_name:<24} [{color}]{rate:>3}%[/{color}] de succès  "
+                           "({attempted} tentative(s))").format(module_name=module_name, color=color, rate=rate, attempted=attempted))
         self.query_one("#module-reliability-text", Static).update("\n".join(lines))
 
     def _refresh_findings_typology(self, runs: list[TrackRun]) -> None:
@@ -207,13 +210,13 @@ class DashboardScreen(OmegaScreen):
 
         if not prefix_counts:
             self.query_one("#findings-typology-text", Static).update(
-                "(aucun finding sur les observations recentes)"
+                _("(aucun finding sur les observations récentes)")
             )
             return
         maximum = max(prefix_counts.values())
         lines = [f"{prefix:<12} {count:>4}  {_bar(count, maximum)}" for prefix, count in prefix_counts.most_common()]
         self.query_one("#findings-typology-text", Static).update(
-            f"sur les {len(sample)} observation(s) terminee(s) les plus recentes\n" + "\n".join(lines)
+            _("sur les {count} observation(s) terminée(s) les plus récentes\n").format(count=len(sample)) + "\n".join(lines)
         )
 
     def _refresh_geoip(self) -> None:
@@ -223,8 +226,9 @@ class DashboardScreen(OmegaScreen):
             provider=provider,
             now=self._container.clock,
         )
-        geoip_text = "absente" if geoip_view.status is None else geoip_view.status.status
-        self.query_one("#geoip-text", Static).update(f"fournisseur actif : {provider} — base : {geoip_text}")
+        geoip_text = _("absente") if geoip_view.status is None else geoip_view.status.status
+        self.query_one("#geoip-text", Static).update(_("fournisseur actif : {provider} — base "
+                                                       ": {geoip_text}").format(provider=provider, geoip_text=geoip_text))
 
     def _refresh_sources(self) -> None:
         lines = []
@@ -236,12 +240,13 @@ class DashboardScreen(OmegaScreen):
                 now=self._container.clock,
             )
             if not status.key_configured:
-                lines.append(f"{source_name:<12} [grey62]absente[/grey62]")
+                lines.append(_("{source_name:<12} [grey62]absente[/grey62]").format(source_name=source_name))
             elif status.in_backoff:
                 until = f"{status.backoff_until:%H:%M}" if status.backoff_until else "?"
-                lines.append(f"{source_name:<12} [yellow]en pause (quota) jusqu'a {until}[/yellow]")
+                lines.append(_("{source_name:<12} [yellow]en pause (quota) jusqu'à "
+                               "{until}[/yellow]").format(source_name=source_name, until=until))
             else:
-                lines.append(f"{source_name:<12} [green]configuree[/green]")
+                lines.append(_("{source_name:<12} [green]configurée[/green]").format(source_name=source_name))
         self.query_one("#sources-text", Static).update("\n".join(lines))
 
     def on_button_pressed(self, event: Button.Pressed) -> None:

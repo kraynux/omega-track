@@ -25,6 +25,7 @@ from omega_track.domain.entities.findings.network import NetworkFindingType
 from omega_track.domain.value_objects.collected_record import CollectedRecord
 from omega_track.domain.value_objects.domain_name import DomainName
 from omega_track.domain.value_objects.ip_address import IPAddress
+from omega_track.shared.i18n import _
 
 SOURCE_NAME = "rdap"
 
@@ -84,14 +85,14 @@ class HttpRdapCollector:
         if response.status_code == 404:
             return None
         if response.status_code == 429:
-            raise CollectorUnavailableError(SOURCE_NAME, "limite de requetes atteinte (429)")
+            raise CollectorUnavailableError(SOURCE_NAME, _("limite de requêtes atteinte (429)"))
         if response.status_code >= 500:
-            raise CollectorUnavailableError(SOURCE_NAME, f"erreur serveur ({response.status_code})")
+            raise CollectorUnavailableError(SOURCE_NAME, _("erreur serveur ({status_code})").format(status_code=response.status_code))
 
         try:
             payload = response.json()
         except ValueError as exc:
-            raise CollectorUnavailableError(SOURCE_NAME, "reponse JSON invalide") from exc
+            raise CollectorUnavailableError(SOURCE_NAME, _("réponse JSON invalide")) from exc
         return dict(payload) if isinstance(payload, dict) else None
 
 

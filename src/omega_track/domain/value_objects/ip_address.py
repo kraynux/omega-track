@@ -8,6 +8,7 @@ import ipaddress
 from dataclasses import dataclass
 
 from omega_track.domain.exceptions.target import InvalidTargetValueError
+from omega_track.shared.i18n import _
 
 _AddressT = ipaddress.IPv4Address | ipaddress.IPv6Address
 
@@ -25,7 +26,7 @@ class IPAddress:
         try:
             return cls(ipaddress.ip_address(raw.strip()))
         except ValueError as exc:
-            raise InvalidTargetValueError(f"adresse IP invalide : {raw!r}") from exc
+            raise InvalidTargetValueError(_("adresse IP invalide : {raw!r}").format(raw=raw)) from exc
 
     @property
     def version(self) -> int:

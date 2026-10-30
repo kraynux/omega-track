@@ -22,6 +22,7 @@ from omega_track.domain.value_objects.identifiers import TargetId
 from omega_track.interfaces.tui.screens._base import OmegaScreen
 from omega_track.interfaces.tui.screens.confirm import ConfirmScreen
 from omega_track.interfaces.tui.widgets.targets_table import TargetsTable
+from omega_track.shared.i18n import _
 
 if TYPE_CHECKING:
     from omega_track.app.container import DependencyContainer
@@ -42,22 +43,22 @@ class TargetsScreen(OmegaScreen):
     def compose(self) -> ComposeResult:
         yield Header()
         with Vertical(classes="omega-panel"):
-            yield Static("CIBLES", classes="omega-title")
+            yield Static(_("CIBLES"), classes="omega-title")
             yield TargetsTable(id="targets-table")
-            yield Input(placeholder="ex. 192.168.1.10, example.org", id="value-input")
-            yield Input(placeholder="Alias (optionnel)", id="alias-input")
-            yield Input(placeholder="Tags separes par des virgules (optionnel)", id="tags-input")
+            yield Input(placeholder=_("ex. 192.168.1.10, example.org"), id="value-input")
+            yield Input(placeholder=_("Alias (optionnel)"), id="alias-input")
+            yield Input(placeholder=_("Tags séparés par des virgules (optionnel)"), id="tags-input")
             with Horizontal(classes="omega-actions"):
                 with Container(classes="omega-btn-frame"):
-                    yield Button("Ajouter", id="add", variant="primary")
+                    yield Button(_("Ajouter"), id="add", variant="primary")
                 with Container(classes="omega-btn-frame"):
-                    yield Button("Modifier", id="edit")
+                    yield Button(_("Modifier"), id="edit")
                 with Container(classes="omega-btn-frame"):
-                    yield Button("Epingler", id="pin")
+                    yield Button(_("Épingler"), id="pin")
                 with Container(classes="omega-btn-frame"):
-                    yield Button("Supprimer", id="delete", variant="error")
+                    yield Button(_("Supprimer"), id="delete", variant="error")
                 with Container(classes="omega-btn-frame"):
-                    yield Button("Retour", id="back")
+                    yield Button(_("Retour"), id="back")
         yield Footer()
 
     def on_mount(self) -> None:
@@ -94,7 +95,7 @@ class TargetsScreen(OmegaScreen):
     def _add(self) -> None:
         raw_value = self.query_one("#value-input", Input).value.strip()
         if not raw_value:
-            self.app.notify("Saisissez une valeur de cible.", severity="warning")
+            self.app.notify(_("Saisissez une valeur de cible."), severity="warning")
             return
         alias = self.query_one("#alias-input", Input).value.strip() or None
         tags = _parse_tags(self.query_one("#tags-input", Input).value)
@@ -117,7 +118,7 @@ class TargetsScreen(OmegaScreen):
 
     def _edit(self) -> None:
         if self._selected_id is None:
-            self.app.notify("Selectionnez d'abord une ligne.", severity="warning")
+            self.app.notify(_("Sélectionnez d'abord une ligne."), severity="warning")
             return
         alias = self.query_one("#alias-input", Input).value.strip() or None
         tags = _parse_tags(self.query_one("#tags-input", Input).value)
@@ -135,7 +136,7 @@ class TargetsScreen(OmegaScreen):
 
     def _pin(self) -> None:
         if self._selected_id is None:
-            self.app.notify("Selectionnez d'abord une ligne.", severity="warning")
+            self.app.notify(_("Sélectionnez d'abord une ligne."), severity="warning")
             return
         pin_target(
             target_repository=self._container.target_repository,
@@ -146,10 +147,10 @@ class TargetsScreen(OmegaScreen):
 
     def _confirm_delete(self) -> None:
         if self._selected_id is None:
-            self.app.notify("Selectionnez d'abord une ligne.", severity="warning")
+            self.app.notify(_("Sélectionnez d'abord une ligne."), severity="warning")
             return
         self.app.push_screen(
-            ConfirmScreen(title="SUPPRIMER CETTE CIBLE ?", message="Cette action est irreversible."),
+            ConfirmScreen(title=_("SUPPRIMER CETTE CIBLE ?"), message=_("Cette action est irréversible.")),
             self._delete_if_confirmed,
         )
 

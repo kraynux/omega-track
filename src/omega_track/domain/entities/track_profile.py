@@ -8,6 +8,7 @@ from datetime import datetime
 
 from omega_track.domain.exceptions.profile import UnknownModuleError
 from omega_track.domain.value_objects.identifiers import TrackProfileId
+from omega_track.shared.i18n import _
 
 KNOWN_MODULES: frozenset[str] = frozenset({
     "dns",
@@ -81,7 +82,7 @@ class TrackProfile:
     def __post_init__(self) -> None:
         unknown = self.modules - KNOWN_MODULES
         if unknown:
-            raise UnknownModuleError(f"module(s) inconnu(s) : {sorted(unknown)}")
+            raise UnknownModuleError(_("module(s) inconnu(s) : {value}").format(value=sorted(unknown)))
 
     def enabled_mvp_modules(self) -> set[str]:
         return self.modules & _MVP_MODULES

@@ -67,16 +67,21 @@ async def test_theme_cycle_key_changes_theme(container: DependencyContainer) -> 
         assert app.theme != initial_theme
 
 
-async def test_home_menu_has_no_help_or_quit_button(container: DependencyContainer) -> None:
-    """Regression Phase 12 : Aide/Quitter retires du menu (hauteur
-    excessive signalee) - restent accessibles via les raccourcis `a`/`q`
-    du Footer (BINDINGS de app.py), jamais retires de l'app elle-meme."""
+async def test_home_menu_has_help_and_quit_buttons(container: DependencyContainer) -> None:
+    """Aide et Quitter retires du menu en Phase 12 (hauteur excessive
+    signalee), tous deux retablis depuis (espace entre boutons resserre,
+    ".omega-home-menu .omega-btn-frame" dans base.tcss, fait la place
+    sans faire deborder le menu). Quitter est retabli en dernier (retour
+    utilisateur dans le contexte d'omega-suite : sans bouton visible, `q`
+    pouvait etre confondu avec le raccourci global de la suite qui ferme
+    TOUTE la suite) - les deux restent AUSSI accessibles par raccourci
+    clavier (`a`/`q`), les deux voies coexistent."""
     app = OmegaTrackApp(container)
     async with app.run_test() as pilot:
         await _reach_home(pilot)
         button_ids = {b.id for b in pilot.app.screen.query(Button)}
-        assert "help" not in button_ids
-        assert "quit" not in button_ids
+        assert "help" in button_ids
+        assert "quit" in button_ids
 
         pilot.app.screen.query_one(HomeWordmark)
         await pilot.press("a")
@@ -117,5 +122,5 @@ async def test_help_screen_explains_module_failed_status(container: DependencyCo
         await pilot.pause()
 
         text = " ".join(str(s.content) for s in pilot.app.screen.query(Static))
-        assert "en echec" in text.lower() or "En echec" in text
+        assert "en échec" in text.lower() or "En échec" in text
         assert "bloqu" in text.lower()

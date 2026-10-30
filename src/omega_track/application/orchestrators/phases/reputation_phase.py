@@ -46,6 +46,7 @@ from omega_track.domain.value_objects.target_value import TargetValue
 from omega_track.ports.collectors.reputation_collector import ReputationCollector
 from omega_track.ports.repositories.settings_repository import SettingsRepository
 from omega_track.ports.services.secret_store import SecretStore
+from omega_track.shared.i18n import _
 
 _VIRUSTOTAL_MODULE = "virustotal"
 _HIBP_MODULE = "hibp"
@@ -111,13 +112,13 @@ def _run_keyed_module(
     domain: DomainName | None,
 ) -> tuple[list[Finding], bool]:
     if domain is None:
-        skip_module(module_run, context, reason=f"cible IP : {source_name} non applicable")
+        skip_module(module_run, context, reason=_("cible IP : {source_name} non applicable").format(source_name=source_name))
         return [], True
     if collector is None:
-        skip_module(module_run, context, reason=f"aucun collecteur {source_name} configure")
+        skip_module(module_run, context, reason=_("aucun collecteur {source_name} configuré").format(source_name=source_name))
         return [], True
     if context.cancellation_token.is_cancelled:
-        skip_module(module_run, context, reason="annule avant demarrage")
+        skip_module(module_run, context, reason=_("annulé avant démarrage"))
         return [], True
 
     if (
@@ -125,14 +126,15 @@ def _run_keyed_module(
         or settings_repository is None
         or not secret_store.get_secret(secret_name_for(source_name))
     ):
-        skip_module(module_run, context, reason=f"cle API {source_name} non configuree")
+        skip_module(module_run, context, reason=_("clé API {source_name} non configurée").format(source_name=source_name))
         finding = _collection_finding(
             module_run, context, CollectionFindingType.NOT_EXECUTED_NO_KEY, source_name
         )
         return [finding], True
 
     if is_in_backoff(settings_repository=settings_repository, source_name=source_name, now=context.now):
-        skip_module(module_run, context, reason=f"quota {source_name} depasse (en attente de reessai)")
+        skip_module(module_run, context, reason=_("quota {source_name} dépassé (en attente de "
+                                                  "réessai)").format(source_name=source_name))
         finding = _collection_finding(
             module_run, context, CollectionFindingType.QUOTA_EXCEEDED, source_name
         )

@@ -28,6 +28,7 @@ from omega_track.infrastructure.collectors.network.traceroute_parser import (
 )
 from omega_track.ports.services.geoip_resolver import GeoIpResolver
 from omega_track.ports.services.reverse_dns_resolver import ReverseDnsResolver
+from omega_track.shared.i18n import _
 
 RunFn = Callable[[list[str], float], "subprocess.CompletedProcess[str]"]
 WhichFn = Callable[[str], str | None]
@@ -73,7 +74,7 @@ class SubprocessTracerouteCollector:
     def trace(self, target_ip: IPAddress, options: NeoTraceOptions) -> NetworkPath:
         selection = self._select_binary(target_ip.version)
         if selection is None:
-            raise CollectorUnavailableError("traceroute", "aucun binaire disponible")
+            raise CollectorUnavailableError("traceroute", _("aucun binaire disponible"))
         binary, extra_flags = selection
 
         args = [binary, *_protocol_flags(options.protocol), *extra_flags]
@@ -83,12 +84,12 @@ class SubprocessTracerouteCollector:
         try:
             result = self._run_fn(args, timeout)
         except subprocess.TimeoutExpired as exc:
-            raise CollectorUnavailableError("traceroute", f"delai depasse ({timeout:.0f}s)") from exc
+            raise CollectorUnavailableError("traceroute", _("délai dépassé ({timeout:.0f}s)").format(timeout=timeout)) from exc
         except OSError as exc:
             raise CollectorUnavailableError("traceroute", str(exc)) from exc
 
         if result.returncode != 0 and _looks_like_permission_error(result.stderr):
-            raise CollectorUnavailableError("traceroute", "permissions insuffisantes")
+            raise CollectorUnavailableError("traceroute", _("permissions insuffisantes"))
 
         parser = parse_traceroute_ipv6 if target_ip.version == 6 else parse_traceroute_ipv4
         hops = parser(result.stdout)

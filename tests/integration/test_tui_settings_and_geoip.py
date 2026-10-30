@@ -128,7 +128,7 @@ async def test_dashboard_shows_enriched_activity_reliability_and_sources(
         pilot.app.screen.query_one("#dashboard", Button).press()
         await pilot.pause()
 
-        assert "0 cible(s) jamais observee(s)" in str(pilot.app.screen.query_one("#targets-text", Static).content)
+        assert "0 cible(s) jamais observée(s)" in str(pilot.app.screen.query_one("#targets-text", Static).content)
 
         last_activity = str(pilot.app.screen.query_one("#last-activity-text", Static).content)
         assert "example.org" in last_activity
@@ -242,7 +242,7 @@ async def test_settings_screen_config_set_and_cleanup_preview(container: Depende
         pilot.app.screen.query_one("#cleanup-days-input", Input).value = "9999"
         pilot.app.screen.query_one("#cleanup-preview", Button).press()
         await pilot.pause()
-        assert "0 execution" in str(pilot.app.screen.query_one("#cleanup-text", Static).content)
+        assert "0 exécution" in str(pilot.app.screen.query_one("#cleanup-text", Static).content)
 
 
 async def test_settings_screen_has_header_footer_and_consistent_button_styling(
@@ -318,3 +318,28 @@ async def test_theme_select_applies_theme(container: DependencyContainer) -> Non
         await pilot.pause()
         assert app.theme == "omega-neon"
         assert container.settings_repository.get("theme") == "omega-neon"
+
+
+async def test_opening_settings_screen_does_not_reset_the_stored_render_profile_override(
+    container: DependencyContainer,
+) -> None:
+    """Regression : "profil de rendu applique au prochain demarrage"
+    s'affichait a CHAQUE ouverture de cet ecran, meme sans toucher au
+    Select - un Select sans `value=` au constructeur choisit lui-meme sa
+    PREMIERE option ("(automatique)") et poste son propre evenement
+    Changed pendant son montage, effacant silencieusement le profil
+    reellement persiste (voir compose() de settings_screen.py). Prouve
+    ici par effet de bord verifiable (le reglage persiste), la
+    notification elle-meme n'etant pas directement observable depuis un
+    test Pilot."""
+    container.settings_repository.set("render_profile_override", "reduced")
+
+    app = OmegaTrackApp(container)
+    async with app.run_test(size=(120, 40)) as pilot:
+        await _reach_home(pilot)
+        pilot.app.screen.query_one("#settings", Button).press()
+        await pilot.pause()
+        assert isinstance(pilot.app.screen, SettingsScreen)
+
+        assert container.settings_repository.get("render_profile_override") == "reduced"
+        assert pilot.app.screen.query_one("#render-profile-select", Select).value == "reduced"

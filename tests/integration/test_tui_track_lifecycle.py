@@ -161,9 +161,9 @@ async def test_full_lifecycle_add_pin_track_show_replay(container: DependencyCon
         from omega_track.interfaces.tui.screens.results import _module_status_note
 
         cert_note = _module_status_note(pilot.app.screen._track_run, "certificate_transparency")
-        assert cert_note is not None and "non active" in cert_note
+        assert cert_note is not None and "non activé" in cert_note
         rdap_note = _module_status_note(pilot.app.screen._track_run, "rdap")
-        assert rdap_note is not None and "non active" in rdap_note
+        assert rdap_note is not None and "non activé" in rdap_note
 
         pilot.app.screen.query_one("#back", Button).press()
         await pilot.pause()
@@ -208,6 +208,26 @@ async def test_tracker_refuses_unauthorized_target(container: DependencyContaine
         pilot.app.screen.query_one("#launch", Button).press()
         await pilot.pause()
         assert isinstance(pilot.app.screen, TrackerScreen)
+
+
+async def test_tracker_screen_offers_a_back_button_with_no_target_registered(
+    container: DependencyContainer,
+) -> None:
+    """Regression : "Retour" ne vivait que dans la branche "des cibles
+    existent" de compose() - sans aucune cible enregistree, cet ecran
+    n'offrait alors aucun moyen d'en sortir a la souris (seul Echap
+    fonctionnait), seul endroit de toute l'interface dans ce cas."""
+    app = OmegaTrackApp(container)
+    async with app.run_test(size=(120, 40)) as pilot:
+        await _reach_home(pilot)
+        pilot.app.screen.query_one("#tracker", Button).press()
+        await pilot.pause()
+        assert isinstance(pilot.app.screen, TrackerScreen)
+
+        assert len(pilot.app.screen.query("#launch")) == 0
+        pilot.app.screen.query_one("#back", Button).press()
+        await pilot.pause()
+        assert not isinstance(pilot.app.screen, TrackerScreen)
 
 
 async def test_export_from_history_writes_a_file(container: DependencyContainer, tmp_path: Path) -> None:

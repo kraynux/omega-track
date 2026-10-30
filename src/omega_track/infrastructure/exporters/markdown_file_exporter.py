@@ -10,6 +10,7 @@ from collections import defaultdict
 from omega_track.domain.entities.identity_report import IdentityReport
 from omega_track.domain.value_objects.export_options import ExportOptions
 from omega_track.infrastructure.exporters._report_view import build_header, path_to_dict
+from omega_track.shared.i18n import _
 
 
 class MarkdownFileExporter:
@@ -19,21 +20,21 @@ class MarkdownFileExporter:
         header = build_header(report, options)
         lines: list[str] = []
 
-        lines.append(f"# Rapport OMEGA-TRACK - {header['target']}")
+        lines.append(_("# Rapport OMEGA-TRACK - {target}").format(target=header['target']))
         lines.append("")
-        lines.append(f"- Genere le {header['generated_at']}")
-        lines.append(f"- Profil : {header['profile']} (modules : {', '.join(header['modules']) or 'aucun'})")
-        lines.append(f"- Sources consultees : {', '.join(header['sources']) or 'aucune'}")
-        lines.append(f"- Politique de redaction : {header['redaction_policy']}")
+        lines.append(_("- Généré le {generated_at}").format(generated_at=header['generated_at']))
+        lines.append(_("- Profil : {profile} (modules : {value})").format(profile=header['profile'], value=', '.join(header['modules']) or _("aucun")))
+        lines.append(_("- Sources consultées : {value}").format(value=', '.join(header['sources']) or _("aucune")))
+        lines.append(_("- Politique de rédaction : {redaction_policy}").format(redaction_policy=header['redaction_policy']))
         lines.append(
-            f"- Schema d'export v{header['schema_version']} - omega-track {header['app_version']}"
+            _("- Schéma d'export v{schema_version} - omega-track {app_version}").format(schema_version=header['schema_version'], app_version=header['app_version'])
         )
         lines.append("")
 
         summary = report.summarize()
-        lines.append("## Resume")
+        lines.append(_("## Résumé"))
         lines.append("")
-        lines.append("| Niveau de confiance | Nombre |")
+        lines.append(_("| Niveau de confiance | Nombre |"))
         lines.append("| --- | --- |")
         for level, count in summary.items():
             lines.append(f"| {level} | {count} |")
@@ -45,9 +46,9 @@ class MarkdownFileExporter:
             by_family[family].append(finding)
 
         for family in sorted(by_family):
-            lines.append(f"## {family.capitalize()}")
+            lines.append(_("## {capitalize}").format(capitalize=family.capitalize()))
             lines.append("")
-            lines.append("| Type | Donnees | Confiance | Source |")
+            lines.append(_("| Type | Données | Confiance | Source |"))
             lines.append("| --- | --- | --- | --- |")
             for finding in by_family[family]:
                 lines.append(
@@ -56,9 +57,9 @@ class MarkdownFileExporter:
             lines.append("")
 
         if report.relations:
-            lines.append("## Relations")
+            lines.append(_("## Relations"))
             lines.append("")
-            lines.append("| Source | Cible | Type | Confiance |")
+            lines.append(_("| Source | Cible | Type | Confiance |"))
             lines.append("| --- | --- | --- | --- |")
             for relation in report.relations:
                 lines.append(
@@ -68,23 +69,22 @@ class MarkdownFileExporter:
             lines.append("")
 
         if report.clusters:
-            lines.append("## Clusters")
+            lines.append(_("## Clusters"))
             lines.append("")
             for cluster in report.clusters:
                 lines.append(f"- {cluster.label or cluster.id} : {', '.join(sorted(cluster.member_refs))}")
             lines.append("")
 
         if report.paths:
-            lines.append("## Chemin reseau (NeoTrace)")
+            lines.append(_("## Chemin réseau (NeoTrace)"))
             lines.append("")
             for path in report.paths:
                 path_view = path_to_dict(path)
                 lines.append(
-                    f"### Vers {path_view['target_ip']} ({path_view['protocol']}) - "
-                    f"{'atteinte' if path_view['reached_target'] else 'non atteinte'}"
+                    _("### Vers {target_ip} ({protocol}) - {value}").format(target_ip=path_view['target_ip'], protocol=path_view['protocol'], value=_("atteinte") if path_view['reached_target'] else _("non atteinte"))
                 )
                 lines.append("")
-                lines.append("| # | IP | Hote | RTT (ms) | ASN | Pays |")
+                lines.append(_("| # | IP | Hôte | RTT (ms) | ASN | Pays |"))
                 lines.append("| --- | --- | --- | --- | --- | --- |")
                 for hop in path_view["hops"]:
                     ip_text = hop["ip"] if hop["ip"] is not None else "*"

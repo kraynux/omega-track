@@ -14,6 +14,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from omega_track.application.exceptions import UnknownReputationSourceError
+from omega_track.shared.i18n import _
 
 
 @dataclass(frozen=True, slots=True)
@@ -32,28 +33,28 @@ _DISCLOSURES: dict[str, SourceDisclosure] = {
         source_name="virustotal",
         is_paid=False,
         quota_notice=(
-            "Cle API gratuite disponible avec un compte VirusTotal (Google). "
-            "Quota de l'ordre de quelques requetes/minute et quelques centaines/jour "
-            "pour une cle gratuite - a revalider contre la documentation officielle, "
-            "VirusTotal ajuste regulierement ces seuils."
+            _("Clé API gratuite disponible avec un compte VirusTotal (Google). Quota de "
+              "l'ordre de quelques requêtes/minute et quelques centaines/jour pour une clé "
+              "gratuite - à revalider contre la documentation officielle, VirusTotal ajuste "
+              "régulièrement ces seuils.")
         ),
         data_sent_notice=(
-            "Le domaine ou l'IP observe par ce TrackRun est transmis a VirusTotal (Google). "
-            "Selon le type de requete, cette donnee peut etre partagee avec l'ecosysteme "
-            "VirusTotal (autres utilisateurs/partenaires du service)."
+            _("Le domaine ou l'IP observé par ce TrackRun est transmis à VirusTotal (Google). "
+              "Selon le type de requête, cette donnée peut être partagée avec l'écosystème "
+              "VirusTotal (autres utilisateurs/partenaires du service).")
         ),
-        privacy_notice="Voir docs/PRIVACY.md - la cle est stockee hors de la base de resultats.",
+        privacy_notice=_("Voir docs/PRIVACY.md - la clé est stockée hors de la base de résultats."),
     ),
     "hibp": SourceDisclosure(
         source_name="hibp",
         is_paid=True,
         quota_notice=(
-            "Source PAYANTE depuis le changement de politique HIBP de 2022 - "
-            "plus d'offre d'API gratuite pour les recherches par domaine/breach. "
-            "Verifier le plan tarifaire actuel avant de configurer une cle."
+            _("Source PAYANTE depuis le changement de politique HIBP de 2022 - plus d'offre "
+              "d'API gratuite pour les recherches par domaine/breach. Vérifier le plan "
+              "tarifaire actuel avant de configurer une clé.")
         ),
-        data_sent_notice="Le domaine observe par ce TrackRun est transmis a Have I Been Pwned.",
-        privacy_notice="Voir docs/PRIVACY.md - la cle est stockee hors de la base de resultats.",
+        data_sent_notice=_("Le domaine observé par ce TrackRun est transmis à Have I Been Pwned."),
+        privacy_notice=_("Voir docs/PRIVACY.md - la clé est stockée hors de la base de résultats."),
     ),
 }
 

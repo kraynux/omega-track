@@ -6,6 +6,7 @@ from __future__ import annotations
 
 from omega_track.domain.entities.identity_report import IdentityReport
 from omega_track.domain.value_objects.export_options import ExportOptions
+from omega_track.shared.i18n import _
 
 
 class GraphvizDotExporter:
@@ -18,7 +19,7 @@ class GraphvizDotExporter:
         for node in nodes:
             lines.append(f'  "{node}";')
         for relation in report.relations:
-            label = f"{relation.relation_type.value} ({relation.confidence.value})"
+            label = _("{value} ({value2})").format(value=relation.relation_type.value, value2=relation.confidence.value)
             lines.append(
                 f'  "{relation.source_entity_ref}" -> "{relation.target_entity_ref}" [label="{label}"];'
             )

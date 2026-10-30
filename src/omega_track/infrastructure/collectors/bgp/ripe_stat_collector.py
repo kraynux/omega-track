@@ -20,6 +20,7 @@ from omega_track.core.enums import ConfidenceLevel
 from omega_track.domain.entities.findings.network import NetworkFindingType
 from omega_track.domain.value_objects.collected_record import CollectedRecord
 from omega_track.domain.value_objects.ip_address import IPAddress
+from omega_track.shared.i18n import _
 
 SOURCE_NAME = "ripestat"
 _NETWORK_INFO_URL = "https://stat.ripe.net/data/network-info/data.json"
@@ -61,10 +62,10 @@ class RipeStatCollector:
         try:
             payload = response.json()
         except ValueError as exc:
-            raise CollectorUnavailableError(SOURCE_NAME, "reponse JSON invalide") from exc
+            raise CollectorUnavailableError(SOURCE_NAME, _("réponse JSON invalide")) from exc
 
         if not isinstance(payload, dict):
-            raise CollectorUnavailableError(SOURCE_NAME, "forme de reponse inattendue")
+            raise CollectorUnavailableError(SOURCE_NAME, _("forme de réponse inattendue"))
 
         status = payload.get("status")
         if status != "ok":

@@ -6,6 +6,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 
 from omega_track.domain.exceptions.target import InvalidTargetValueError
+from omega_track.shared.i18n import _
 
 _MAX_ASN = 4_294_967_295
 
@@ -18,7 +19,7 @@ class Asn:
 
     def __post_init__(self) -> None:
         if not (0 <= self.number <= _MAX_ASN):
-            raise InvalidTargetValueError(f"ASN hors plage 32 bits : {self.number}")
+            raise InvalidTargetValueError(_("ASN hors plage 32 bits : {number}").format(number=self.number))
 
     def __str__(self) -> str:
         return f"AS{self.number}"

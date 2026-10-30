@@ -13,101 +13,99 @@ from textual.widgets import Button, Footer, Header, Static
 
 from omega_track.domain.entities.track_profile import KNOWN_MODULES
 from omega_track.interfaces.tui.screens._base import OmegaScreen
+from omega_track.shared.i18n import _
 
 _SHORTCUTS = (
-    ("Haut / Bas", "Naviguer entre les elements d'un ecran"),
-    ("Tab / Maj+Tab", "Naviguer entre les champs d'un formulaire"),
-    ("Echap", "Retour a l'ecran precedent (confirmation de sortie sur l'accueil)"),
-    ("t", "Theme suivant (applique immediatement, sans confirmation)"),
-    ("r", "Rafraichir la detection du terminal"),
-    ("a", "Cette aide"),
-    ("q", "Quitter (avec confirmation)"),
+    (_("Haut / Bas"), _("Naviguer entre les éléments d'un écran")),
+    (_("Tab / Maj+Tab"), _("Naviguer entre les champs d'un formulaire")),
+    (_("Échap"), _("Retour à l'écran précédent (confirmation de sortie sur l'accueil)")),
+    ("t", _("Thème suivant (appliqué immédiatement, sans confirmation)")),
+    ("r", _("Rafraîchir la détection du terminal")),
+    ("a", _("Cette aide")),
+    ("q", _("Quitter (avec confirmation)")),
 )
 
 _SECTIONS = (
     (
-        "Cibles",
+        _("Cibles"),
         (
-            "Enregistrer une IP ou un domaine, avec alias et tags. Epingler une "
-            "cible l'autorise durablement (plus besoin de confirmation explicite "
-            "sur ses futures observations)."
+            _("Enregistrer une IP ou un domaine, avec alias et tags. Épingler une cible "
+              "l'autorise durablement (plus besoin de confirmation explicite sur ses futures "
+              "observations).")
         ),
     ),
     (
-        "Tracker",
+        _("Tracker"),
         (
-            "Choisir une cible enregistree, les modules de collecte a activer et "
-            "lancer une observation (TrackRun). Une observation contre une cible "
-            "non epinglee exige une confirmation explicite."
+            _("Choisir une cible enregistrée, les modules de collecte à activer et lancer une "
+              "observation (TrackRun). Une observation contre une cible non épinglée exige une "
+              "confirmation explicite.")
         ),
     ),
     (
-        "Resultats",
+        _("Résultats"),
         (
-            "Rapport d'identite complet d'une observation terminee : DNS/RDAP, "
-            "chemin reseau (NeoTrace), certificats (Certificate Transparency), "
-            "archives, ASN/BGP, relations correlees entre entites."
+            _("Rapport d'identité complet d'une observation terminée : DNS/RDAP, chemin réseau "
+              "(NeoTrace), certificats (Certificate Transparency), archives, ASN/BGP, "
+              "relations corrélées entre entités.")
         ),
     ),
     (
-        "Statuts d'un module (onglet Resultats)",
+        _("Statuts d'un module (onglet Résultats)"),
         (
-            "Termine : la source a repondu, donnees exploitables presentes.\n"
-            "Partiel : au moins une reponse obtenue, mais pas toutes (ex. certains "
-            "sauts NeoTrace sans reponse).\n"
-            "Non active : ce module n'etait pas coche au lancement de l'observation.\n"
-            "Non execute : desactive par une condition (ex. cible IP pour un module "
-            "qui n'a de sens que pour un domaine, cle API absente, quota en attente).\n"
-            "En echec : la source a ete interrogee mais n'a donne AUCUNE reponse "
-            "exploitable (timeout, erreur du serveur distant, reseau injoignable) - "
-            "ne signifie jamais que l'application est bloquee ou reste a charger : "
-            "l'observation dans son ensemble s'est deja terminee normalement, seul "
-            "ce module precis n'a rien pu produire. Frequent et normal pour RDAP sur "
-            "certains registres/TLD (pas de reponse, service temporairement "
-            "indisponible, cible sans enregistrement connu)."
+            _("Terminé : la source a répondu, données exploitables présentes.\nPartiel : au "
+              "moins une réponse obtenue, mais pas toutes (ex. certains sauts NeoTrace sans "
+              "réponse).\nNon activé : ce module n'était pas coché au lancement de "
+              "l'observation.\nNon exécuté : désactivé par une condition (ex. cible IP pour un "
+              "module qui n'a de sens que pour un domaine, clé API absente, quota en "
+              "attente).\nEn échec : la source a été interrogée mais n'a donné AUCUNE réponse "
+              "exploitable (timeout, erreur du serveur distant, réseau injoignable) - ne "
+              "signifie jamais que l'application est bloquée ou reste à charger : "
+              "l'observation dans son ensemble s'est déjà terminée normalement, seul ce module "
+              "précis n'a rien pu produire. Fréquent et normal pour RDAP sur certains "
+              "registres/TLD (pas de réponse, service temporairement indisponible, cible sans "
+              "enregistrement connu).")
         ),
     ),
     (
-        "Historique",
+        _("Historique"),
         (
-            "Liste toutes les observations passees : filtrage par cible/statut/"
-            "tag, rejeu contre la resolution actuelle, export du rapport."
+            _("Liste toutes les observations passées : filtrage par cible/statut/tag, rejeu "
+              "contre la résolution actuelle, export du rapport.")
         ),
     ),
     (
-        "GeoIP - comment l'obtenir",
+        _("GeoIP - comment l'obtenir"),
         (
-            "DB-IP (fournisseur par defaut) : gratuit, sans inscription - "
-            "'Mettre a jour la base' dans l'ecran GeoIP suffit, rien a configurer.\n"
-            "MaxMind (alternatif, optionnel) : creer un compte gratuit sur "
-            "maxmind.com, puis dans 'Mon compte' -> 'Gerer les cles de licence' -> "
-            "'Generer une nouvelle cle de licence'. Coller cette cle dans l'ecran "
-            "GeoIP, choisir 'maxmind' comme fournisseur, puis 'Mettre a jour la base'."
+            _("DB-IP (fournisseur par défaut) : gratuit, sans inscription - 'Mettre à jour la "
+              "base' dans l'écran GeoIP suffit, rien à configurer.\nMaxMind (alternatif, "
+              "optionnel) : créer un compte gratuit sur maxmind.com, puis dans 'Mon compte' -> "
+              "'Gérer les clés de licence' -> 'Générer une nouvelle clé de licence'. Coller "
+              "cette clé dans l'écran GeoIP, choisir 'maxmind' comme fournisseur, puis 'Mettre "
+              "à jour la base'.")
         ),
     ),
     (
-        "Sources a cle - comment les obtenir",
+        _("Sources à clé - comment les obtenir"),
         (
-            "VirusTotal (gratuit avec compte) : creer un compte sur virustotal.com, "
-            "puis dans son profil -> 'API key', copier la cle affichee. La coller "
-            "dans l'ecran 'Sources a cle' (choisir 'virustotal', champ Cle API). "
-            "Quota limite pour une cle gratuite (quelques requetes/minute).\n"
-            "HIBP - Have I Been Pwned (PAYANT depuis 2022, plus d'offre gratuite) : "
-            "necessite un abonnement sur haveibeenpwned.com/API/Key avant de pouvoir "
-            "obtenir une cle - jamais presente comme gratuite dans cette application.\n"
-            "Dans les deux cas : l'ecran affiche toujours le detail (quota, donnees "
-            "envoyees au fournisseur, confidentialite) avant d'enregistrer une cle. "
-            "Sans cle configuree, le module correspondant est simplement ignore "
-            "(jamais une erreur bloquante pour le reste de l'observation)."
+            _("VirusTotal (gratuit avec compte) : créer un compte sur virustotal.com, puis "
+              "dans son profil -> 'API key', copier la clé affichée. La coller dans l'écran "
+              "'Sources à clé' (choisir 'virustotal', champ Clé API). Quota limité pour une "
+              "clé gratuite (quelques requêtes/minute).\nHIBP - Have I Been Pwned (PAYANT "
+              "depuis 2022, plus d'offre gratuite) : nécessite un abonnement sur "
+              "haveibeenpwned.com/API/Key avant de pouvoir obtenir une clé - jamais présenté "
+              "comme gratuite dans cette application.\nDans les deux cas : l'écran affiche "
+              "toujours le détail (quota, données envoyées au fournisseur, confidentialité) "
+              "avant d'enregistrer une clé. Sans clé configurée, le module correspondant est "
+              "simplement ignoré (jamais une erreur bloquante pour le reste de l'observation).")
         ),
     ),
 )
 
 _SCOPE_NOTICE = (
-    "Omega-track observe des cibles explicitement enregistrees et autorisees "
-    "(epinglees ou confirmation explicite) : aucune decouverte ni derive "
-    "automatique vers d'autres cibles. Le score de confiance n'est jamais un "
-    "verdict de securite."
+    _("Omega-track observe des cibles explicitement enregistrées et autorisées (épinglées ou "
+      "confirmation explicite) : aucune découverte ni dérive automatique vers d'autres cibles. "
+      "Le score de confiance n'est jamais un verdict de sécurité.")
 )
 
 
@@ -117,21 +115,21 @@ class HelpScreen(OmegaScreen):
     def compose(self) -> ComposeResult:
         yield Header()
         with VerticalScroll(classes="omega-panel"):
-            yield Static("AIDE", classes="omega-title")
-            yield Static("Raccourcis clavier", classes="omega-subtitle")
+            yield Static(_("AIDE"), classes="omega-title")
+            yield Static(_("Raccourcis clavier"), classes="omega-subtitle")
             for key, description in _SHORTCUTS:
-                yield Static(f"{key:<14} {description}")
+                yield Static(_("{key:<14} {description}").format(key=key, description=description))
             yield Static("")
-            yield Static("Fonctions", classes="omega-subtitle")
+            yield Static(_("Fonctions"), classes="omega-subtitle")
             for title, description in _SECTIONS:
                 yield Static(f"[b]{title}[/b]\n{description}\n")
             yield Static("")
-            yield Static("Modules de collecte connus", classes="omega-subtitle")
+            yield Static(_("Modules de collecte connus"), classes="omega-subtitle")
             yield Static(", ".join(sorted(KNOWN_MODULES)))
             yield Static("")
             yield Static(_SCOPE_NOTICE, classes="omega-subtitle")
             with Horizontal(classes="omega-actions"), Container(classes="omega-btn-frame"):
-                yield Button("Retour", id="back")
+                yield Button(_("Retour"), id="back")
         yield Footer()
 
     def on_button_pressed(self, event: Button.Pressed) -> None:

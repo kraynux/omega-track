@@ -7,6 +7,7 @@ from enum import Enum
 from omega_track.domain.exceptions.target import InvalidTargetValueError
 from omega_track.domain.value_objects.domain_name import DomainName
 from omega_track.domain.value_objects.ip_address import IPAddress
+from omega_track.shared.i18n import _
 
 TargetValue = DomainName | IPAddress
 
@@ -22,7 +23,7 @@ def parse_target_value(raw: str) -> TargetValue:
     avec le message du domaine (le plus specifique des deux echecs)."""
     stripped = raw.strip()
     if not stripped:
-        raise InvalidTargetValueError("cible vide")
+        raise InvalidTargetValueError(_("cible vide"))
 
     try:
         return IPAddress.parse(stripped)

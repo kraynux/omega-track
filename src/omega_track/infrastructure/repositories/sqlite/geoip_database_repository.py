@@ -8,6 +8,7 @@ from datetime import datetime
 
 from omega_track.domain.entities.geoip_database_status import GeoIpDatabaseStatus
 from omega_track.infrastructure.exceptions import StorageError
+from omega_track.shared.i18n import _
 
 
 class SqliteGeoipDatabaseRepository:
@@ -43,7 +44,7 @@ class SqliteGeoipDatabaseRepository:
             )
             self._connection.commit()
         except sqlite3.Error as exc:
-            raise StorageError(f"echec de sauvegarde du statut GeoIP {status.provider!r}") from exc
+            raise StorageError(_("échec de sauvegarde du statut GeoIP {provider!r}").format(provider=status.provider)) from exc
 
     def get_status(self, provider: str) -> GeoIpDatabaseStatus | None:
         row = self._connection.execute(

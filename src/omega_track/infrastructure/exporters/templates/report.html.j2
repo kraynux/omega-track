@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="fr">
+<html lang="{{ html_lang() }}" dir="{{ html_dir() }}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OMEGA-TRACK — Rapport {{ header.target }}</title>
+<title>{{ _("OMEGA-TRACK — Rapport {target}").format(target=header.target) }}</title>
 <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
 <script>
   // Mermaid.js a ses propres couleurs par defaut (texte fonce, pense pour
@@ -167,16 +167,16 @@
     <span class="terminal-title">omega-track -- {{ header.target }}</span>
   </div>
   <div class="terminal-body">
-<h1>Rapport OMEGA-TRACK — {{ header.target }}</h1>
+<h1>{{ _("Rapport OMEGA-TRACK — {target}").format(target=header.target) }}</h1>
 <ul class="meta">
-<li>Genere le {{ header.generated_at }}</li>
-<li>Profil : {{ header.profile }} (modules : {{ header.modules | join(", ") if header.modules else "aucun" }})</li>
-<li>Sources consultees : {{ header.sources | join(", ") if header.sources else "aucune" }}</li>
-<li>Politique de redaction : {{ header.redaction_policy }}</li>
-<li>Schema d'export v{{ header.schema_version }} — omega-track {{ header.app_version }}</li>
+<li>{{ _("Généré le {generated_at}").format(generated_at=header.generated_at) }}</li>
+<li>{{ _("Profil : {profile} (modules : {modules})").format(profile=header.profile, modules=(header.modules | join(", ") if header.modules else _("aucun"))) }}</li>
+<li>{{ _("Sources consultées : {sources}").format(sources=(header.sources | join(", ") if header.sources else _("aucune"))) }}</li>
+<li>{{ _("Politique de rédaction : {redaction_policy}").format(redaction_policy=header.redaction_policy) }}</li>
+<li>{{ _("Schéma d'export v{schema_version} — omega-track {app_version}").format(schema_version=header.schema_version, app_version=header.app_version) }}</li>
 </ul>
 
-<h2>Resume</h2>
+<h2>{{ _("Résumé") }}</h2>
 <div class="stats-grid">
 {% for level, count in summary.items() %}
 <div class="stat"><div class="stat-value confidence-{{ level }}">{{ count }}</div><div>{{ level }}</div></div>
@@ -188,7 +188,7 @@
 <details>
 <summary>{{ family | capitalize }} ({{ findings | length }})</summary>
 <table>
-<tr><th>Type</th><th>Donnees</th><th>Confiance</th><th>Source</th></tr>
+<tr><th>{{ _("Type") }}</th><th>{{ _("Données") }}</th><th>{{ _("Confiance") }}</th><th>{{ _("Source") }}</th></tr>
 {% for finding in findings %}
 <tr><td>{{ finding.finding_type }}</td><td>{{ finding.payload }}</td><td><span class="badge confidence-{{ finding.confidence.value }}">{{ finding.confidence.value }}</span></td><td>{{ finding.source_name }}</td></tr>
 {% endfor %}
@@ -200,9 +200,9 @@
 {% if relations %}
 <div class="box">
 <details open>
-<summary>Relations ({{ relations | length }})</summary>
+<summary>{{ _("Relations ({relations})").format(relations=(relations | length)) }}</summary>
 <table>
-<tr><th>Source</th><th>Cible</th><th>Type</th><th>Confiance</th></tr>
+<tr><th>{{ _("Source") }}</th><th>{{ _("Cible") }}</th><th>{{ _("Type") }}</th><th>{{ _("Confiance") }}</th></tr>
 {% for relation in relations %}
 <tr><td>{{ relation.source_entity_ref }}</td><td>{{ relation.target_entity_ref }}</td><td>{{ relation.relation_type.value }}</td><td><span class="badge confidence-{{ relation.confidence.value }}">{{ relation.confidence.value }}</span></td></tr>
 {% endfor %}
@@ -217,9 +217,9 @@
 {% for path in paths %}
 <div class="box">
 <details>
-<summary>Chemin reseau vers {{ path.target_ip }} ({{ path.protocol }}) — {{ "atteinte" if path.reached_target else "non atteinte" }}</summary>
+<summary>{{ _("Chemin réseau vers {target_ip} ({protocol}) — {value}").format(target_ip=path.target_ip, protocol=path.protocol, value=(_("atteinte") if path.reached_target else _("non atteinte"))) }}</summary>
 <table>
-<tr><th>#</th><th>IP</th><th>Hote</th><th>RTT (ms)</th><th>ASN</th><th>Pays</th></tr>
+<tr><th>#</th><th>IP</th><th>{{ _("Hôte") }}</th><th>RTT (ms)</th><th>ASN</th><th>{{ _("Pays") }}</th></tr>
 {% for hop in path.hops %}
 <tr><td>{{ hop.sequence }}</td><td>{{ hop.ip if hop.ip is not none else "*" }}</td><td>{{ hop.hostname or "" }}</td><td>{{ hop.rtt_ms if hop.rtt_ms is not none else "" }}</td><td>{{ hop.asn or "" }}</td><td>{{ hop.geo_country or "" }}</td></tr>
 {% endfor %}
@@ -231,7 +231,7 @@
 </div>
 {% endfor %}
 
-<div class="footer-note">omega-track — genere sans serveur, theme d'export : {{ header.export_theme }}</div>
+<div class="footer-note">{{ _("omega-track — généré sans serveur, thème d'export : {export_theme}").format(export_theme=header.export_theme) }}</div>
   </div>
 </div>
 </body>

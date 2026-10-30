@@ -41,6 +41,7 @@ from omega_track.ports.collectors.bgp_collector import BgpCollector
 from omega_track.ports.collectors.certificate_transparency_collector import (
     CertificateTransparencyCollector,
 )
+from omega_track.shared.i18n import _
 
 _CT_MODULE = "certificate_transparency"
 _ARCHIVES_MODULE = "archives"
@@ -97,13 +98,15 @@ def _run_ct_module(
     domain: DomainName | None,
 ) -> tuple[list[Finding], bool]:
     if domain is None:
-        skip_module(module_run, context, reason="cible IP : Certificate Transparency non applicable")
+        skip_module(module_run, context, reason=_("cible IP : Certificate Transparency non "
+                                                  "applicable"))
         return [], True
     if collector is None:
-        skip_module(module_run, context, reason="aucun collecteur Certificate Transparency configure")
+        skip_module(module_run, context, reason=_("aucun collecteur Certificate Transparency "
+                                                  "configuré"))
         return [], True
     if context.cancellation_token.is_cancelled:
-        skip_module(module_run, context, reason="annule avant demarrage")
+        skip_module(module_run, context, reason=_("annulé avant démarrage"))
         return [], True
 
     module_run.transition_to(ModuleStatus.RUNNING, now=context.now())
@@ -133,13 +136,13 @@ def _run_archive_module(
     domain: DomainName | None,
 ) -> tuple[list[Finding], bool]:
     if domain is None:
-        skip_module(module_run, context, reason="cible IP : archives web non applicables")
+        skip_module(module_run, context, reason=_("cible IP : archives web non applicables"))
         return [], True
     if collector is None:
-        skip_module(module_run, context, reason="aucun collecteur d'archives configure")
+        skip_module(module_run, context, reason=_("aucun collecteur d'archives configuré"))
         return [], True
     if context.cancellation_token.is_cancelled:
-        skip_module(module_run, context, reason="annule avant demarrage")
+        skip_module(module_run, context, reason=_("annulé avant démarrage"))
         return [], True
 
     module_run.transition_to(ModuleStatus.RUNNING, now=context.now())
@@ -169,13 +172,13 @@ def _run_bgp_module(
     ips: list[IPAddress],
 ) -> tuple[list[Finding], bool]:
     if not ips:
-        skip_module(module_run, context, reason="aucune IP disponible pour BGP")
+        skip_module(module_run, context, reason=_("aucune IP disponible pour BGP"))
         return [], True
     if collector is None:
-        skip_module(module_run, context, reason="aucun collecteur BGP configure")
+        skip_module(module_run, context, reason=_("aucun collecteur BGP configuré"))
         return [], True
     if context.cancellation_token.is_cancelled:
-        skip_module(module_run, context, reason="annule avant demarrage")
+        skip_module(module_run, context, reason=_("annulé avant démarrage"))
         return [], True
 
     module_run.transition_to(ModuleStatus.RUNNING, now=context.now())
@@ -204,12 +207,12 @@ def _run_bgp_module(
         ok = True
     elif any_failure and any_success:
         module_run.transition_to(ModuleStatus.PARTIAL, now=context.now())
-        module_run.error_detail = "au moins une requete BGP indisponible"
+        module_run.error_detail = _("au moins une requête BGP indisponible")
         ok = False
     elif any_failure and not any_success:
         module_run.transition_to(ModuleStatus.FAILED, now=context.now())
         module_run.error_code = "collector_unavailable"
-        module_run.error_detail = "aucune reponse BGP disponible"
+        module_run.error_detail = _("aucune réponse BGP disponible")
         ok = False
     else:
         module_run.transition_to(ModuleStatus.COMPLETED, now=context.now())

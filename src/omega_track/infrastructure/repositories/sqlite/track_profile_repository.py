@@ -12,6 +12,7 @@ from omega_track.infrastructure.repositories.sqlite._profile_serde import (
     options_json_for,
     profile_from_columns,
 )
+from omega_track.shared.i18n import _
 
 
 class SqliteTrackProfileRepository:
@@ -46,7 +47,7 @@ class SqliteTrackProfileRepository:
             )
             self._connection.commit()
         except sqlite3.Error as exc:
-            raise StorageError(f"echec de sauvegarde du profil {profile.id!r}") from exc
+            raise StorageError(_("échec de sauvegarde du profil {id!r}").format(id=profile.id)) from exc
 
     def get(self, profile_id: TrackProfileId) -> TrackProfile | None:
         row = self._connection.execute(

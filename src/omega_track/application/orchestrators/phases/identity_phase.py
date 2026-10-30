@@ -37,6 +37,7 @@ from omega_track.domain.value_objects.statuses import ModuleStatus
 from omega_track.domain.value_objects.target_value import TargetValue
 from omega_track.ports.collectors.dns_collector import DnsCollector
 from omega_track.ports.collectors.rdap_collector import RdapCollector
+from omega_track.shared.i18n import _
 
 _DNS_MODULE = "dns"
 _REVERSE_DNS_MODULE = "reverse_dns"
@@ -107,10 +108,10 @@ def _run_dns_module(
     domain: DomainName | None,
 ) -> tuple[list[Finding], list[IPAddress], bool]:
     if domain is None:
-        skip_module(module_run, context, reason="cible IP : resolution DNS non applicable")
+        skip_module(module_run, context, reason=_("cible IP : résolution DNS non applicable"))
         return [], [], True
     if context.cancellation_token.is_cancelled:
-        skip_module(module_run, context, reason="annule avant demarrage")
+        skip_module(module_run, context, reason=_("annulé avant démarrage"))
         return [], [], True
 
     module_run.transition_to(ModuleStatus.RUNNING, now=context.now())
@@ -145,10 +146,10 @@ def _run_reverse_dns_module(
     target_ip: IPAddress | None,
 ) -> tuple[list[Finding], bool]:
     if target_ip is None:
-        skip_module(module_run, context, reason="aucune IP resolue pour effectuer un PTR")
+        skip_module(module_run, context, reason=_("aucune IP résolue pour effectuer un PTR"))
         return [], True
     if context.cancellation_token.is_cancelled:
-        skip_module(module_run, context, reason="annule avant demarrage")
+        skip_module(module_run, context, reason=_("annulé avant démarrage"))
         return [], True
 
     module_run.transition_to(ModuleStatus.RUNNING, now=context.now())
@@ -180,7 +181,7 @@ def _run_rdap_module(
     ips: list[IPAddress],
 ) -> tuple[list[Finding], bool]:
     if context.cancellation_token.is_cancelled:
-        skip_module(module_run, context, reason="annule avant demarrage")
+        skip_module(module_run, context, reason=_("annulé avant démarrage"))
         return [], True
 
     module_run.transition_to(ModuleStatus.RUNNING, now=context.now())
@@ -219,12 +220,12 @@ def _run_rdap_module(
         ok = True
     elif any_failure and any_success:
         module_run.transition_to(ModuleStatus.PARTIAL, now=context.now())
-        module_run.error_detail = "au moins une requete RDAP indisponible"
+        module_run.error_detail = _("au moins une requête RDAP indisponible")
         ok = False
     elif any_failure and not any_success:
         module_run.transition_to(ModuleStatus.FAILED, now=context.now())
         module_run.error_code = "collector_unavailable"
-        module_run.error_detail = "aucune reponse RDAP disponible"
+        module_run.error_detail = _("aucune réponse RDAP disponible")
         ok = False
     else:
         module_run.transition_to(ModuleStatus.COMPLETED, now=context.now())

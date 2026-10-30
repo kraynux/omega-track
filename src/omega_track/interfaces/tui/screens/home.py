@@ -22,22 +22,30 @@ from omega_track.interfaces.tui.screens.source_configuration import SourceConfig
 from omega_track.interfaces.tui.screens.targets import TargetsScreen
 from omega_track.interfaces.tui.screens.tracker import TrackerScreen
 from omega_track.interfaces.tui.widgets.home_wordmark import HomeWordmark
+from omega_track.shared.i18n import _
 
 if TYPE_CHECKING:
     from omega_track.app.container import DependencyContainer
 
 _MENU_ITEMS: tuple[tuple[str, str], ...] = (
-    ("dashboard", "Dashboard"),
-    ("targets", "Cibles"),
-    ("tracker", "Tracker"),
-    ("history", "Historique"),
+    ("dashboard", _("Dashboard")),
+    ("targets", _("Cibles")),
+    ("tracker", _("Tracker")),
+    ("history", _("Historique")),
     ("geoip", "GeoIP"),
-    ("sources", "Sources a cle"),
-    ("settings", "Reglages"),
+    ("sources", _("Sources à clé")),
+    ("settings", _("Réglages")),
+    ("help", _("Aide")),
+    ("quit", _("Quitter")),
 )
-"""Aide/Quitter retires du menu (retour utilisateur : hauteur excessive) -
-raccourcis clavier `a`/`q` deja affiches dans le Footer via les BINDINGS
-de app.py (show=True), meme convention que le reste de la suite."""
+"""Quitter avait ete retire du menu (hauteur excessive, retour
+utilisateur initial) au profit du seul raccourci clavier `q` - retabli
+ici (retour utilisateur ulterieur, dans le contexte d'omega-suite : sans
+bouton visible, "q" pouvait etre confondu avec le raccourci global de
+la suite qui ferme TOUTE la suite, pas seulement cet onglet - un bouton
+explicite lisible dans le menu evite l'ambiguite, meme convention que
+les 6 autres outils). `on_button_pressed`/`action_back` geraient deja
+"quit" via `_quit_if_confirmed` - seule l'entree de menu manquait."""
 
 
 class HomeScreen(Screen[None]):
@@ -46,9 +54,9 @@ class HomeScreen(Screen[None]):
     dismiss() (rien "en dessous" de cet ecran)."""
 
     BINDINGS: ClassVar[list[BindingType]] = [
-        Binding("escape", "back", "Retour", show=True),
-        Binding("up", "focus_previous_item", "Monter", show=False),
-        Binding("down", "focus_next_item", "Descendre", show=False),
+        Binding("escape", "back", _("Retour"), show=True),
+        Binding("up", "focus_previous_item", _("Monter"), show=False),
+        Binding("down", "focus_next_item", _("Descendre"), show=False),
     ]
 
     def __init__(self, *, container: DependencyContainer) -> None:
@@ -65,7 +73,7 @@ class HomeScreen(Screen[None]):
                     for item_id, label in _MENU_ITEMS:
                         with Container(classes="omega-btn-frame"):
                             yield Button(label.upper(), id=item_id)
-                menu.border_title = "MENU PRINCIPAL"
+                menu.border_title = _("MENU PRINCIPAL")
         yield Footer()
 
     def on_button_pressed(self, event: Button.Pressed) -> None:

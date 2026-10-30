@@ -127,7 +127,7 @@ def test_skipped_when_no_collector_configured() -> None:
         secret_store=_FakeSecretStore(), settings_repository=_FakeSettingsRepository(),
     )
     assert module_runs["virustotal"].status == ModuleStatus.SKIPPED
-    assert module_runs["virustotal"].error_detail == "aucun collecteur virustotal configure"
+    assert module_runs["virustotal"].error_detail == "aucun collecteur virustotal configuré"
     assert not result.degraded
 
 
@@ -204,7 +204,7 @@ def test_hibp_and_virustotal_are_independent_modules() -> None:
     )
     assert module_runs["virustotal"].status == ModuleStatus.COMPLETED
     assert module_runs["hibp"].status == ModuleStatus.SKIPPED
-    assert module_runs["hibp"].error_detail == "aucun collecteur hibp configure"
+    assert module_runs["hibp"].error_detail == "aucun collecteur hibp configuré"
     assert len(result.findings) == 1
 
 

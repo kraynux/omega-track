@@ -6,7 +6,7 @@ version applicative (plan de dev §8 "Regles communes"), jusqu'ici
 source unique."""
 from __future__ import annotations
 
-APP_VERSION = "0.1.0"
+APP_VERSION = "1.5.0"
 EXPORT_SCHEMA_VERSION = 1
 """Version du schema des artefacts exportes (JSON/HTML/...) - independante
 de APP_VERSION, incrementee seulement si la FORME d'un export change de

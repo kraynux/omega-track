@@ -1,0 +1,1129 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: omega-track\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Omega-Status: testing\n"
+
+#: src/omega_track/application/commands/targets/create_target.py:31
+#, python-brace-format
+msgid "cible déjà existante : {value}"
+msgstr "alvo já existente: {value}"
+
+#: src/omega_track/application/exceptions.py:21 src/omega_track/infrastructure/geoip/database_updater.py:107
+msgid "fournisseur GeoIP inconnu : {provider!r}"
+msgstr "provedor GeoIP desconhecido: {provider!r}"
+
+#: src/omega_track/application/exceptions.py:31
+msgid "clé de licence MaxMind absente ou vide"
+msgstr "chave de licença MaxMind ausente ou vazia"
+
+#: src/omega_track/application/exceptions.py:64
+msgid "format d'export inconnu : {export_format!r}"
+msgstr "formato de exportação desconhecido: {export_format!r}"
+
+#: src/omega_track/application/exceptions.py:72
+msgid "cible introuvable : {target_id!r}"
+msgstr "alvo não encontrado: {target_id!r}"
+
+#: src/omega_track/application/exceptions.py:82
+msgid "TrackRun introuvable : {track_run_id!r}"
+msgstr "TrackRun não encontrado: {track_run_id!r}"
+
+#: src/omega_track/application/exceptions.py:96
+#, python-brace-format
+msgid "source indisponible : {source}"
+msgstr "fonte indisponível: {source}"
+
+#: src/omega_track/application/exceptions.py:109
+msgid "source de réputation inconnue : {source_name!r}"
+msgstr "fonte de reputação desconhecida: {source_name!r}"
+
+#: src/omega_track/application/exceptions.py:121
+msgid "clé API absente ou vide pour {source_name!r}"
+msgstr "chave de API ausente ou vazia para {source_name!r}"
+
+#: src/omega_track/application/exceptions.py:134
+#, python-brace-format
+msgid "quota dépassé : {source}"
+msgstr "cota excedida: {source}"
+
+#: src/omega_track/application/guards/authorization_guard.py:24
+#, python-brace-format
+msgid "cible non autorisée : {value} (épinglez-la ou passez --authorize)"
+msgstr "alvo não autorizado: {value} (fixe-o ou use --authorize)"
+
+#: src/omega_track/application/orchestrators/mermaid_graph_builder.py:66
+msgid "aucun saut collecté"
+msgstr "nenhum salto coletado"
+
+#: src/omega_track/application/orchestrators/phases/extended_modules_phase.py:101
+msgid "cible IP : Certificate Transparency non applicable"
+msgstr "alvo IP: Certificate Transparency não aplicável"
+
+#: src/omega_track/application/orchestrators/phases/extended_modules_phase.py:105
+msgid "aucun collecteur Certificate Transparency configuré"
+msgstr "nenhum coletor de Certificate Transparency configurado"
+
+#: src/omega_track/application/orchestrators/phases/extended_modules_phase.py:109 src/omega_track/application/orchestrators/phases/extended_modules_phase.py:145 src/omega_track/application/orchestrators/phases/extended_modules_phase.py:181 src/omega_track/application/orchestrators/phases/identity_phase.py:114 src/omega_track/application/orchestrators/phases/identity_phase.py:152 src/omega_track/application/orchestrators/phases/identity_phase.py:184 src/omega_track/application/orchestrators/phases/network_path_phase.py:60 src/omega_track/application/orchestrators/phases/reputation_phase.py:121
+msgid "annulé avant démarrage"
+msgstr "cancelado antes do início"
+
+#: src/omega_track/application/orchestrators/phases/extended_modules_phase.py:139
+msgid "cible IP : archives web non applicables"
+msgstr "alvo IP: arquivos web não aplicáveis"
+
+#: src/omega_track/application/orchestrators/phases/extended_modules_phase.py:142
+msgid "aucun collecteur d'archives configuré"
+msgstr "nenhum coletor de arquivos configurado"
+
+#: src/omega_track/application/orchestrators/phases/extended_modules_phase.py:175
+msgid "aucune IP disponible pour BGP"
+msgstr "nenhum IP disponível para BGP"
+
+#: src/omega_track/application/orchestrators/phases/extended_modules_phase.py:178
+msgid "aucun collecteur BGP configuré"
+msgstr "nenhum coletor BGP configurado"
+
+#: src/omega_track/application/orchestrators/phases/extended_modules_phase.py:210
+msgid "au moins une requête BGP indisponible"
+msgstr "pelo menos uma consulta BGP indisponível"
+
+#: src/omega_track/application/orchestrators/phases/extended_modules_phase.py:215
+msgid "aucune réponse BGP disponible"
+msgstr "nenhuma resposta BGP disponível"
+
+#: src/omega_track/application/orchestrators/phases/identity_phase.py:111
+msgid "cible IP : résolution DNS non applicable"
+msgstr "alvo IP: resolução DNS não aplicável"
+
+#: src/omega_track/application/orchestrators/phases/identity_phase.py:149
+msgid "aucune IP résolue pour effectuer un PTR"
+msgstr "nenhum IP resolvido para fazer um PTR"
+
+#: src/omega_track/application/orchestrators/phases/identity_phase.py:223
+msgid "au moins une requête RDAP indisponible"
+msgstr "pelo menos uma consulta RDAP indisponível"
+
+#: src/omega_track/application/orchestrators/phases/identity_phase.py:228
+msgid "aucune réponse RDAP disponible"
+msgstr "nenhuma resposta RDAP disponível"
+
+#: src/omega_track/application/orchestrators/phases/network_path_phase.py:57
+msgid "aucune IP disponible pour NeoTrace"
+msgstr "nenhum IP disponível para o NeoTrace"
+
+#: src/omega_track/application/orchestrators/phases/network_path_phase.py:63
+msgid "traceroute indisponible (binaire absent ou capacité insuffisante)"
+msgstr "traceroute indisponível (binário ausente ou capacidade insuficiente)"
+
+#: src/omega_track/application/orchestrators/phases/network_path_phase.py:94
+msgid "au moins une trace NeoTrace indisponible"
+msgstr "pelo menos um traço NeoTrace indisponível"
+
+#: src/omega_track/application/orchestrators/phases/network_path_phase.py:99
+msgid "aucune trace NeoTrace disponible"
+msgstr "nenhum traço NeoTrace disponível"
+
+#: src/omega_track/application/orchestrators/phases/reputation_phase.py:115
+#, python-brace-format
+msgid "cible IP : {source_name} non applicable"
+msgstr "alvo IP: {source_name} não aplicável"
+
+#: src/omega_track/application/orchestrators/phases/reputation_phase.py:118
+#, python-brace-format
+msgid "aucun collecteur {source_name} configuré"
+msgstr "nenhum coletor {source_name} configurado"
+
+#: src/omega_track/application/orchestrators/phases/reputation_phase.py:129
+#, python-brace-format
+msgid "clé API {source_name} non configurée"
+msgstr "chave de API {source_name} não configurada"
+
+#: src/omega_track/application/orchestrators/phases/reputation_phase.py:136
+#, python-brace-format
+msgid "quota {source_name} dépassé (en attente de réessai)"
+msgstr "cota {source_name} excedida (aguardando nova tentativa)"
+
+#: src/omega_track/application/orchestrators/track_orchestrator.py:175
+msgid "module non encore implémenté"
+msgstr "módulo ainda não implementado"
+
+#: src/omega_track/application/orchestrators/track_orchestrator.py:187 src/omega_track/application/orchestrators/track_orchestrator.py:204 src/omega_track/application/orchestrators/track_orchestrator.py:220 src/omega_track/application/orchestrators/track_orchestrator.py:237
+msgid "budget de temps global dépassé"
+msgstr "orçamento de tempo global excedido"
+
+#: src/omega_track/application/orchestrators/track_orchestrator.py:200
+msgid "identité terminée"
+msgstr "identidade concluída"
+
+#: src/omega_track/application/orchestrators/track_orchestrator.py:216
+msgid "chemin réseau terminé"
+msgstr "caminho de rede concluído"
+
+#: src/omega_track/application/orchestrators/track_orchestrator.py:233
+msgid "modules étendus terminés"
+msgstr "módulos estendidos concluídos"
+
+#: src/omega_track/application/orchestrators/track_orchestrator.py:250
+msgid "sources à clé terminées"
+msgstr "fontes com chave concluídas"
+
+#: src/omega_track/application/orchestrators/track_orchestrator.py:295
+msgid "terminé"
+msgstr "concluído"
+
+#: src/omega_track/application/queries/get_source_disclosure.py:36
+msgid "Clé API gratuite disponible avec un compte VirusTotal (Google). Quota de l'ordre de quelques requêtes/minute et quelques centaines/jour pour une clé gratuite - à revalider contre la documentation officielle, VirusTotal ajuste régulièrement ces seuils."
+msgstr "Chave de API gratuita disponível com uma conta VirusTotal (Google). Cota da ordem de algumas requisições/minuto e algumas centenas/dia para uma chave gratuita - a confirmar na documentação oficial, o VirusTotal ajusta regularmente esses limites."
+
+#: src/omega_track/application/queries/get_source_disclosure.py:42
+msgid "Le domaine ou l'IP observé par ce TrackRun est transmis à VirusTotal (Google). Selon le type de requête, cette donnée peut être partagée avec l'écosystème VirusTotal (autres utilisateurs/partenaires du service)."
+msgstr "O domínio ou o IP observado por este TrackRun é enviado ao VirusTotal (Google). Conforme o tipo de requisição, esse dado pode ser compartilhado com o ecossistema VirusTotal (outros usuários/parceiros do serviço)."
+
+#: src/omega_track/application/queries/get_source_disclosure.py:46 src/omega_track/application/queries/get_source_disclosure.py:57
+msgid "Voir docs/PRIVACY.md - la clé est stockée hors de la base de résultats."
+msgstr "Ver docs/PRIVACY.md - a chave é armazenada fora do banco de resultados."
+
+#: src/omega_track/application/queries/get_source_disclosure.py:52
+msgid "Source PAYANTE depuis le changement de politique HIBP de 2022 - plus d'offre d'API gratuite pour les recherches par domaine/breach. Vérifier le plan tarifaire actuel avant de configurer une clé."
+msgstr "Fonte PAGA desde a mudança de política do HIBP em 2022 - não há mais oferta de API gratuita para buscas por domínio/vazamento. Verifique o plano de preços atual antes de configurar uma chave."
+
+#: src/omega_track/application/queries/get_source_disclosure.py:56
+msgid "Le domaine observé par ce TrackRun est transmis à Have I Been Pwned."
+msgstr "O domínio observado por este TrackRun é enviado ao Have I Been Pwned."
+
+#: src/omega_track/domain/entities/track_profile.py:85
+#, python-brace-format
+msgid "module(s) inconnu(s) : {value}"
+msgstr "módulo(s) desconhecido(s): {value}"
+
+#: src/omega_track/domain/exceptions/track.py:17
+msgid "transition {current!r} -> {attempted!r} non autorisée"
+msgstr "transição {current!r} -> {attempted!r} não autorizada"
+
+#: src/omega_track/domain/services/target_validator.py:22
+msgid "alias trop long (max {MAX_ALIAS_LENGTH}) : {alias!r}"
+msgstr "alias longo demais (máx. {MAX_ALIAS_LENGTH}): {alias!r}"
+
+#: src/omega_track/domain/services/target_validator.py:29
+msgid "tag vide"
+msgstr "tag vazia"
+
+#: src/omega_track/domain/services/target_validator.py:31
+msgid "tag trop long (max {MAX_TAG_LENGTH}) : {tag!r}"
+msgstr "tag longa demais (máx. {MAX_TAG_LENGTH}): {tag!r}"
+
+#: src/omega_track/domain/value_objects/asn.py:22
+#, python-brace-format
+msgid "ASN hors plage 32 bits : {number}"
+msgstr "ASN fora do intervalo de 32 bits: {number}"
+
+#: src/omega_track/domain/value_objects/domain_name.py:35
+msgid "nom de domaine vide"
+msgstr "nome de domínio vazio"
+
+#: src/omega_track/domain/value_objects/domain_name.py:37
+msgid "nom de domaine trop long : {raw!r}"
+msgstr "nome de domínio longo demais: {raw!r}"
+
+#: src/omega_track/domain/value_objects/domain_name.py:41
+msgid "nom de domaine avec un label vide : {raw!r}"
+msgstr "nome de domínio com um rótulo vazio: {raw!r}"
+
+#: src/omega_track/domain/value_objects/domain_name.py:54
+msgid "label IDNA invalide dans {original_raw!r} : {label!r}"
+msgstr "rótulo IDNA inválido em {original_raw!r}: {label!r}"
+
+#: src/omega_track/domain/value_objects/domain_name.py:58
+msgid "label invalide dans {original_raw!r} : {label!r}"
+msgstr "rótulo inválido em {original_raw!r}: {label!r}"
+
+#: src/omega_track/domain/value_objects/ip_address.py:29
+msgid "adresse IP invalide : {raw!r}"
+msgstr "endereço IP inválido: {raw!r}"
+
+#: src/omega_track/domain/value_objects/target_value.py:26
+msgid "cible vide"
+msgstr "alvo vazio"
+
+#: src/omega_track/infrastructure/collectors/archives/wayback_collector.py:53
+msgid "en-tête CDX inattendu"
+msgstr "cabeçalho CDX inesperado"
+
+#: src/omega_track/infrastructure/collectors/archives/wayback_collector.py:87 src/omega_track/infrastructure/collectors/bgp/ripe_stat_collector.py:65 src/omega_track/infrastructure/collectors/certificates/crtsh_collector.py:123 src/omega_track/infrastructure/collectors/rdap/http_rdap_collector.py:95 src/omega_track/infrastructure/collectors/reputation/hibp_collector.py:80 src/omega_track/infrastructure/collectors/reputation/virustotal_collector.py:87
+msgid "réponse JSON invalide"
+msgstr "resposta JSON inválida"
+
+#: src/omega_track/infrastructure/collectors/archives/wayback_collector.py:90 src/omega_track/infrastructure/collectors/bgp/ripe_stat_collector.py:68 src/omega_track/infrastructure/collectors/certificates/crtsh_collector.py:126 src/omega_track/infrastructure/collectors/reputation/hibp_collector.py:83 src/omega_track/infrastructure/collectors/reputation/virustotal_collector.py:90
+msgid "forme de réponse inattendue"
+msgstr "formato de resposta inesperado"
+
+#: src/omega_track/infrastructure/collectors/certificates/crtsh_collector.py:118 src/omega_track/infrastructure/collectors/reputation/hibp_collector.py:75 src/omega_track/infrastructure/collectors/reputation/virustotal_collector.py:82
+#, python-brace-format
+msgid "erreur HTTP ({status_code})"
+msgstr "erro HTTP ({status_code})"
+
+#: src/omega_track/infrastructure/collectors/network/subprocess_traceroute_collector.py:77
+msgid "aucun binaire disponible"
+msgstr "nenhum binário disponível"
+
+#: src/omega_track/infrastructure/collectors/network/subprocess_traceroute_collector.py:87
+#, python-brace-format
+msgid "délai dépassé ({timeout:.0f}s)"
+msgstr "tempo limite excedido ({timeout:.0f}s)"
+
+#: src/omega_track/infrastructure/collectors/network/subprocess_traceroute_collector.py:92
+msgid "permissions insuffisantes"
+msgstr "permissões insuficientes"
+
+#: src/omega_track/infrastructure/collectors/rdap/http_rdap_collector.py:88
+msgid "limite de requêtes atteinte (429)"
+msgstr "limite de requisições atingido (429)"
+
+#: src/omega_track/infrastructure/collectors/rdap/http_rdap_collector.py:90
+#, python-brace-format
+msgid "erreur serveur ({status_code})"
+msgstr "erro do servidor ({status_code})"
+
+#: src/omega_track/infrastructure/geoip/database_updater.py:63
+msgid "échec de téléchargement pour {provider!r}"
+msgstr "falha no download para {provider!r}"
+
+#: src/omega_track/infrastructure/geoip/database_updater.py:68
+msgid "archive invalide pour {provider!r}"
+msgstr "arquivo compactado inválido para {provider!r}"
+
+#: src/omega_track/infrastructure/geoip/database_updater.py:76
+msgid "base téléchargée invalide pour {provider!r}"
+msgstr "base baixada inválida para {provider!r}"
+
+#: src/omega_track/infrastructure/geoip/database_updater.py:116
+msgid "aucun fichier .mmdb trouvé dans l'archive"
+msgstr "nenhum arquivo .mmdb encontrado no arquivo compactado"
+
+#: src/omega_track/infrastructure/geoip/database_updater.py:119
+msgid "membre .mmdb illisible dans l'archive"
+msgstr "membro .mmdb ilegível no arquivo compactado"
+
+#: src/omega_track/infrastructure/repositories/sqlite/export_repository.py:41
+msgid "échec de sauvegarde de l'export {id!r}"
+msgstr "falha ao salvar a exportação {id!r}"
+
+#: src/omega_track/infrastructure/repositories/sqlite/finding_repository.py:90
+msgid "échec de sauvegarde des findings"
+msgstr "falha ao salvar os achados"
+
+#: src/omega_track/infrastructure/repositories/sqlite/finding_repository.py:117
+msgid "échec de sauvegarde des relations"
+msgstr "falha ao salvar as relações"
+
+#: src/omega_track/infrastructure/repositories/sqlite/finding_repository.py:137
+msgid "échec de suppression des findings/relations"
+msgstr "falha ao excluir os achados/relações"
+
+#: src/omega_track/infrastructure/repositories/sqlite/geoip_database_repository.py:47
+msgid "échec de sauvegarde du statut GeoIP {provider!r}"
+msgstr "falha ao salvar o status GeoIP {provider!r}"
+
+#: src/omega_track/infrastructure/repositories/sqlite/target_repository.py:61
+msgid "échec de sauvegarde de la cible {id!r}"
+msgstr "falha ao salvar o alvo {id!r}"
+
+#: src/omega_track/infrastructure/repositories/sqlite/track_profile_repository.py:50
+msgid "échec de sauvegarde du profil {id!r}"
+msgstr "falha ao salvar o perfil {id!r}"
+
+#: src/omega_track/infrastructure/repositories/sqlite/track_run_repository.py:84
+msgid "échec de sauvegarde du TrackRun {id!r}"
+msgstr "falha ao salvar o TrackRun {id!r}"
+
+#: src/omega_track/interfaces/tui/app.py:44
+msgid "🛰 OMEGA-TRACK"
+msgstr "🛰 OMEGA-TRACK"
+
+#: src/omega_track/interfaces/tui/app.py:147
+msgid "Ajouter une cible"
+msgstr "Adicionar um alvo"
+
+#: src/omega_track/interfaces/tui/app.py:147
+msgid "Ouvrir l'écran Cibles"
+msgstr "Abrir a tela Alvos"
+
+#: src/omega_track/interfaces/tui/app.py:148
+msgid "Lancer une observation"
+msgstr "Iniciar uma observação"
+
+#: src/omega_track/interfaces/tui/app.py:148
+msgid "Ouvrir l'écran Tracker"
+msgstr "Abrir a tela Tracker"
+
+#: src/omega_track/interfaces/tui/app.py:149
+msgid "Ouvrir l'historique"
+msgstr "Abrir o histórico"
+
+#: src/omega_track/interfaces/tui/app.py:149
+msgid "Ouvrir l'écran Historique"
+msgstr "Abrir a tela Histórico"
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:100
+msgid "DASHBOARD"
+msgstr "PAINEL"
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:105
+msgid "Dernière activité"
+msgstr "Última atividade"
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:108
+msgid "Observations par statut"
+msgstr "Observações por status"
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:111
+msgid "Fiabilité par module (sur l'historique complet)"
+msgstr "Confiabilidade por módulo (em todo o histórico)"
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:114
+msgid "Typologie des derniers findings"
+msgstr "Tipologia dos últimos achados"
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:120 src/omega_track/interfaces/tui/screens/home.py:36
+msgid "Sources à clé"
+msgstr "Fontes com chave"
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:125
+msgid "Voir l'historique complet"
+msgstr "Ver o histórico completo"
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:149
+#, python-brace-format
+msgid ""
+"{count} cible(s) enregistrée(s) ({ip_count} IP, {domain_count} domaine(s)), {pinned_count} épinglée(s) (autorisées durablement)\n"
+"{never_scanned} cible(s) jamais observée(s)"
+msgstr ""
+"{count} alvo(s) registrado(s) ({ip_count} IP, {domain_count} domínio(s)), {pinned_count} fixado(s) (autorizados de forma duradoura)\n"
+"{never_scanned} alvo(s) nunca observado(s)"
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:156
+msgid "Aucune observation pour le moment."
+msgstr "Nenhuma observação por enquanto."
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:178
+msgid "(aucune observation)"
+msgstr "(nenhuma observação)"
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:179
+#, python-brace-format
+msgid ""
+"{count} observation(s) au total\n"
+"{text}"
+msgstr ""
+"{count} observação(ões) no total\n"
+"{text}"
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:193
+#, python-brace-format
+msgid "{module_name:<24} jamais exécuté"
+msgstr "{module_name:<24} nunca executado"
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:198
+#, python-brace-format
+msgid "{module_name:<24} [{color}]{rate:>3}%[/{color}] de succès  ({attempted} tentative(s))"
+msgstr "{module_name:<24} [{color}]{rate:>3}%[/{color}] de sucesso  ({attempted} tentativa(s))"
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:213
+msgid "(aucun finding sur les observations récentes)"
+msgstr "(nenhum achado nas observações recentes)"
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:219
+#, python-brace-format
+msgid "sur les {count} observation(s) terminée(s) les plus récentes\n"
+msgstr "nas {count} observação(ões) concluída(s) mais recentes\n"
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:229 src/omega_track/interfaces/tui/screens/settings_screen.py:136 src/omega_track/interfaces/tui/screens/source_configuration.py:85
+msgid "absente"
+msgstr "ausente"
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:230
+#, python-brace-format
+msgid "fournisseur actif : {provider} — base : {geoip_text}"
+msgstr "provedor ativo: {provider} — base: {geoip_text}"
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:243
+#, python-brace-format
+msgid "{source_name:<12} [grey62]absente[/grey62]"
+msgstr "{source_name:<12} [grey62]ausente[/grey62]"
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:246
+#, python-brace-format
+msgid "{source_name:<12} [yellow]en pause (quota) jusqu'à {until}[/yellow]"
+msgstr "{source_name:<12} [yellow]em pausa (cota) até {until}[/yellow]"
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:249
+#, python-brace-format
+msgid "{source_name:<12} [green]configurée[/green]"
+msgstr "{source_name:<12} [green]configurada[/green]"
+
+#: src/omega_track/interfaces/tui/screens/geoip_configuration.py:56
+msgid "GEOIP"
+msgstr "GEOIP"
+
+#: src/omega_track/interfaces/tui/screens/geoip_configuration.py:59
+msgid "Fournisseur"
+msgstr "Provedor"
+
+#: src/omega_track/interfaces/tui/screens/geoip_configuration.py:64
+msgid "Clé de licence MaxMind (optionnel, requise pour le fournisseur maxmind)"
+msgstr "Chave de licença MaxMind (opcional, necessária para o provedor maxmind)"
+
+#: src/omega_track/interfaces/tui/screens/geoip_configuration.py:66
+msgid "clé de licence"
+msgstr "chave de licença"
+
+#: src/omega_track/interfaces/tui/screens/geoip_configuration.py:70 src/omega_track/interfaces/tui/screens/source_configuration.py:53
+msgid "Enregistrer la clé"
+msgstr "Salvar a chave"
+
+#: src/omega_track/interfaces/tui/screens/geoip_configuration.py:72
+msgid "Mettre à jour la base"
+msgstr "Atualizar a base"
+
+#: src/omega_track/interfaces/tui/screens/geoip_configuration.py:89
+#, python-brace-format
+msgid "base GeoIP ({provider}) : absente"
+msgstr "base GeoIP ({provider}): ausente"
+
+#: src/omega_track/interfaces/tui/screens/geoip_configuration.py:92
+#, python-brace-format
+msgid "base GeoIP ({provider}) : {status}{stale} - {local_path}"
+msgstr "base GeoIP ({provider}): {status}{stale} - {local_path}"
+
+#: src/omega_track/interfaces/tui/screens/geoip_configuration.py:123
+msgid "Clé de licence enregistrée."
+msgstr "Chave de licença salva."
+
+#: src/omega_track/interfaces/tui/screens/geoip_configuration.py:128
+msgid "Téléchargement en cours..."
+msgstr "Baixando..."
+
+#: src/omega_track/interfaces/tui/screens/geoip_configuration.py:149
+msgid "Clé de licence MaxMind absente - renseignez-la ci-dessus avant de mettre à jour."
+msgstr "Chave de licença MaxMind ausente - informe-a acima antes de atualizar."
+
+#: src/omega_track/interfaces/tui/screens/geoip_configuration.py:157
+msgid "Base GeoIP mise à jour."
+msgstr "Base GeoIP atualizada."
+
+#: src/omega_track/interfaces/tui/screens/help_screen.py:32
+msgid "Enregistrer une IP ou un domaine, avec alias et tags. Épingler une cible l'autorise durablement (plus besoin de confirmation explicite sur ses futures observations)."
+msgstr "Registrar um IP ou um domínio, com alias e tags. Fixar um alvo o autoriza de forma duradoura (não é mais necessária confirmação explícita nas próximas observações)."
+
+#: src/omega_track/interfaces/tui/screens/help_screen.py:38 src/omega_track/interfaces/tui/screens/home.py:33
+msgid "Tracker"
+msgstr "Tracker"
+
+#: src/omega_track/interfaces/tui/screens/help_screen.py:40
+msgid "Choisir une cible enregistrée, les modules de collecte à activer et lancer une observation (TrackRun). Une observation contre une cible non épinglée exige une confirmation explicite."
+msgstr "Escolher um alvo registrado, os módulos de coleta a ativar e iniciar uma observação (TrackRun). Uma observação contra um alvo não fixado exige uma confirmação explícita."
+
+#: src/omega_track/interfaces/tui/screens/help_screen.py:46
+msgid "Résultats"
+msgstr "Resultados"
+
+#: src/omega_track/interfaces/tui/screens/help_screen.py:48
+msgid "Rapport d'identité complet d'une observation terminée : DNS/RDAP, chemin réseau (NeoTrace), certificats (Certificate Transparency), archives, ASN/BGP, relations corrélées entre entités."
+msgstr "Relatório de identidade completo de uma observação concluída: DNS/RDAP, caminho de rede (NeoTrace), certificados (Certificate Transparency), arquivos, ASN/BGP, relações correlacionadas entre entidades."
+
+#: src/omega_track/interfaces/tui/screens/help_screen.py:54
+msgid "Statuts d'un module (onglet Résultats)"
+msgstr "Status de um módulo (aba Resultados)"
+
+#: src/omega_track/interfaces/tui/screens/help_screen.py:56
+msgid ""
+"Terminé : la source a répondu, données exploitables présentes.\n"
+"Partiel : au moins une réponse obtenue, mais pas toutes (ex. certains sauts NeoTrace sans réponse).\n"
+"Non activé : ce module n'était pas coché au lancement de l'observation.\n"
+"Non exécuté : désactivé par une condition (ex. cible IP pour un module qui n'a de sens que pour un domaine, clé API absente, quota en attente).\n"
+"En échec : la source a été interrogée mais n'a donné AUCUNE réponse exploitable (timeout, erreur du serveur distant, réseau injoignable) - ne signifie jamais que l'application est bloquée ou reste à charger : l'observation dans son ensemble s'est déjà terminée normalement, seul ce module précis n'a rien pu produire. Fréquent et normal pour RDAP sur certains registres/TLD (pas de réponse, service temporairement indisponible, cible sans enregistrement connu)."
+msgstr ""
+"Concluído: a fonte respondeu, há dados utilizáveis.\n"
+"Parcial: pelo menos uma resposta obtida, mas não todas (ex. alguns saltos do NeoTrace sem resposta).\n"
+"Não ativado: este módulo não estava marcado ao iniciar a observação.\n"
+"Não executado: desativado por uma condição (ex. alvo IP para um módulo que só faz sentido para um domínio, chave de API ausente, cota em espera).\n"
+"Falhou: a fonte foi consultada mas NÃO deu nenhuma resposta utilizável (timeout, erro do servidor remoto, rede inacessível) - isso nunca significa que o aplicativo esteja travado ou ainda carregando: a observação como um todo já terminou normalmente, só este módulo específico não pôde produzir nada. Frequente e normal para RDAP em alguns registros/TLDs (sem resposta, serviço temporariamente indisponível, alvo sem registro conhecido)."
+
+#: src/omega_track/interfaces/tui/screens/help_screen.py:73
+msgid "Liste toutes les observations passées : filtrage par cible/statut/tag, rejeu contre la résolution actuelle, export du rapport."
+msgstr "Lista todas as observações anteriores: filtro por alvo/status/tag, repetição contra a resolução atual, exportação do relatório."
+
+#: src/omega_track/interfaces/tui/screens/help_screen.py:78
+msgid "GeoIP - comment l'obtenir"
+msgstr "GeoIP - como obter"
+
+#: src/omega_track/interfaces/tui/screens/help_screen.py:80
+msgid ""
+"DB-IP (fournisseur par défaut) : gratuit, sans inscription - 'Mettre à jour la base' dans l'écran GeoIP suffit, rien à configurer.\n"
+"MaxMind (alternatif, optionnel) : créer un compte gratuit sur maxmind.com, puis dans 'Mon compte' -> 'Gérer les clés de licence' -> 'Générer une nouvelle clé de licence'. Coller cette clé dans l'écran GeoIP, choisir 'maxmind' comme fournisseur, puis 'Mettre à jour la base'."
+msgstr ""
+"DB-IP (provedor padrão): gratuito, sem cadastro - 'Atualizar a base' na tela GeoIP basta, nada a configurar.\n"
+"MaxMind (alternativa, opcional): criar uma conta gratuita em maxmind.com e depois em 'My Account' -> 'Manage License Keys' -> 'Generate new license key'. Colar essa chave na tela GeoIP, escolher 'maxmind' como provedor e depois 'Atualizar a base'."
+
+#: src/omega_track/interfaces/tui/screens/help_screen.py:89
+msgid "Sources à clé - comment les obtenir"
+msgstr "Fontes com chave - como obter"
+
+#: src/omega_track/interfaces/tui/screens/help_screen.py:91
+msgid ""
+"VirusTotal (gratuit avec compte) : créer un compte sur virustotal.com, puis dans son profil -> 'API key', copier la clé affichée. La coller dans l'écran 'Sources à clé' (choisir 'virustotal', champ Clé API). Quota limité pour une clé gratuite (quelques requêtes/minute).\n"
+"HIBP - Have I Been Pwned (PAYANT depuis 2022, plus d'offre gratuite) : nécessite un abonnement sur haveibeenpwned.com/API/Key avant de pouvoir obtenir une clé - jamais présenté comme gratuite dans cette application.\n"
+"Dans les deux cas : l'écran affiche toujours le détail (quota, données envoyées au fournisseur, confidentialité) avant d'enregistrer une clé. Sans clé configurée, le module correspondant est simplement ignoré (jamais une erreur bloquante pour le reste de l'observation)."
+msgstr ""
+"VirusTotal (gratuito com conta): criar uma conta em virustotal.com e depois, no seu perfil -> 'API key', copiar a chave exibida. Colá-la na tela 'Fontes com chave' (escolher 'virustotal', campo Chave de API). Cota limitada para uma chave gratuita (algumas requisições/minuto).\n"
+"HIBP - Have I Been Pwned (PAGO desde 2022, sem oferta gratuita): exige uma assinatura em haveibeenpwned.com/API/Key antes de obter uma chave - nunca apresentado como gratuito neste aplicativo.\n"
+"Nos dois casos: a tela sempre mostra os detalhes (cota, dados enviados ao provedor, privacidade) antes de salvar uma chave. Sem chave configurada, o módulo correspondente é simplesmente ignorado (nunca um erro bloqueante para o resto da observação)."
+
+#: src/omega_track/interfaces/tui/screens/help_screen.py:106
+msgid "Omega-track observe des cibles explicitement enregistrées et autorisées (épinglées ou confirmation explicite) : aucune découverte ni dérive automatique vers d'autres cibles. Le score de confiance n'est jamais un verdict de sécurité."
+msgstr "O omega-track observa alvos registrados e autorizados explicitamente (fixados ou com confirmação explícita): nenhuma descoberta ou desvio automático para outros alvos. A pontuação de confiança nunca é um veredito de segurança."
+
+#: src/omega_track/interfaces/tui/screens/help_screen.py:127
+msgid "Modules de collecte connus"
+msgstr "Módulos de coleta conhecidos"
+
+#: src/omega_track/interfaces/tui/screens/history.py:40
+msgid "(tous)"
+msgstr "(todos)"
+
+#: src/omega_track/interfaces/tui/screens/history.py:61
+msgid "Filtrer par tag (optionnel)"
+msgstr "Filtrar por tag (opcional)"
+
+#: src/omega_track/interfaces/tui/screens/history.py:66
+msgid "Voir le rapport"
+msgstr "Ver o relatório"
+
+#: src/omega_track/interfaces/tui/screens/history.py:88
+msgid "Lancé le"
+msgstr "Iniciado em"
+
+#: src/omega_track/interfaces/tui/screens/history.py:88
+msgid "Run"
+msgstr "Run"
+
+#: src/omega_track/interfaces/tui/screens/history.py:147
+msgid "Exécution introuvable."
+msgstr "Execução não encontrada."
+
+#: src/omega_track/interfaces/tui/screens/history.py:168
+msgid "Rejeu en cours..."
+msgstr "Repetição em andamento..."
+
+#: src/omega_track/interfaces/tui/screens/history.py:185
+#, python-brace-format
+msgid "Exporté vers {name}"
+msgstr "Exportado para {name}"
+
+#: src/omega_track/interfaces/tui/screens/home.py:31
+msgid "Dashboard"
+msgstr "Painel"
+
+#: src/omega_track/interfaces/tui/screens/progress.py:93
+msgid "Annulation demandée - en attente de la fin de la phase en cours."
+msgstr "Cancelamento solicitado - aguardando o fim da fase em andamento."
+
+#: src/omega_track/interfaces/tui/screens/progress.py:110
+msgid "Observation échouée"
+msgstr "Observação falhou"
+
+#: src/omega_track/interfaces/tui/screens/progress.py:117
+msgid "Annulé"
+msgstr "Cancelado"
+
+#: src/omega_track/interfaces/tui/screens/progress.py:117
+msgid "Observation annulée."
+msgstr "Observação cancelada."
+
+#: src/omega_track/interfaces/tui/screens/quit_confirm.py:21
+msgid "QUITTER OMEGA-TRACK ?"
+msgstr "SAIR DO OMEGA-TRACK?"
+
+#: src/omega_track/interfaces/tui/screens/results.py:43 src/omega_track/interfaces/tui/widgets/targets_table.py:17
+msgid "Valeur"
+msgstr "Valor"
+
+#: src/omega_track/interfaces/tui/screens/results.py:59
+#, python-brace-format
+msgid "Module '{module_name}' non activé dans le profil de cette observation."
+msgstr "Módulo '{module_name}' não ativado no perfil desta observação."
+
+#: src/omega_track/interfaces/tui/screens/results.py:61
+#, python-brace-format
+msgid "Module '{module_name}' non exécuté : {value}."
+msgstr "Módulo '{module_name}' não executado: {value}."
+
+#: src/omega_track/interfaces/tui/screens/results.py:61 src/omega_track/interfaces/tui/screens/results.py:63
+msgid "raison non précisée"
+msgstr "motivo não informado"
+
+#: src/omega_track/interfaces/tui/screens/results.py:71
+#, python-brace-format
+msgid "Module '{module_name}' en échec ({detail}) - la source n'a donné aucune réponse exploitable ; ceci ne bloque jamais le reste de l'observation, déjà terminée."
+msgstr "Módulo '{module_name}' falhou ({detail}) - a fonte não deu nenhuma resposta utilizável; isso nunca bloqueia o resto da observação, já concluída."
+
+#: src/omega_track/interfaces/tui/screens/results.py:75
+#, python-brace-format
+msgid "Module '{module_name}' annulé avant d'avoir terminé."
+msgstr "Módulo '{module_name}' cancelado antes de terminar."
+
+#: src/omega_track/interfaces/tui/screens/results.py:103
+#, python-brace-format
+msgid "Cible : {target_value}  |  Run : {track_run_id}  |  {count} finding(s), {count2} relation(s), {count3} chemin(s)"
+msgstr "Alvo: {target_value}  |  Run: {track_run_id}  |  {count} achado(s), {count2} relação(ões), {count3} caminho(s)"
+
+#: src/omega_track/interfaces/tui/screens/results.py:108
+msgid "Identité"
+msgstr "Identidade"
+
+#: src/omega_track/interfaces/tui/screens/results.py:113
+msgid "DNS"
+msgstr "DNS"
+
+#: src/omega_track/interfaces/tui/screens/results.py:118
+msgid "Réseau / ASN"
+msgstr "Rede / ASN"
+
+#: src/omega_track/interfaces/tui/screens/results.py:128
+msgid "Certificats"
+msgstr "Certificados"
+
+#: src/omega_track/interfaces/tui/screens/results.py:133
+msgid "Archives"
+msgstr "Arquivos"
+
+#: src/omega_track/interfaces/tui/screens/results.py:138
+msgid "Relations"
+msgstr "Relações"
+
+#: src/omega_track/interfaces/tui/screens/results.py:140
+msgid "Graphe Mermaid (même source que l'export .mmd)"
+msgstr "Grafo Mermaid (mesma fonte que a exportação .mmd)"
+
+#: src/omega_track/interfaces/tui/screens/results.py:142 src/omega_track/interfaces/tui/screens/settings_screen.py:81
+msgid "Diagnostics"
+msgstr "Diagnósticos"
+
+#: src/omega_track/interfaces/tui/screens/results.py:150
+msgid "Aucun chemin réseau collecté."
+msgstr "Nenhum caminho de rede coletado."
+
+#: src/omega_track/interfaces/tui/screens/results.py:155
+msgid "ASN"
+msgstr "ASN"
+
+#: src/omega_track/interfaces/tui/screens/results.py:155 src/omega_track/infrastructure/exporters/templates/report.html.j2:222
+msgid "Pays"
+msgstr "País"
+
+#: src/omega_track/interfaces/tui/screens/results.py:155
+msgid "RTT (ms)"
+msgstr "RTT (ms)"
+
+#: src/omega_track/interfaces/tui/screens/results.py:155
+msgid "Séquence"
+msgstr "Sequência"
+
+#: src/omega_track/interfaces/tui/screens/results.py:165
+#, python-brace-format
+msgid "{target_ip} ({protocol})"
+msgstr "{target_ip} ({protocol})"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:36
+msgid "(automatique)"
+msgstr "(automático)"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:76
+msgid "Profil de rendu (surcharge la détection automatique)"
+msgstr "Perfil de renderização (substitui a detecção automática)"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:84
+msgid "Réglages actuels"
+msgstr "Configurações atuais"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:90
+msgid "Définir"
+msgstr "Definir"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:92
+msgid "Purge de l'historique"
+msgstr "Limpeza do histórico"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:93
+msgid "0 = toutes les observations existantes (utile pour tester sans attendre)"
+msgstr "0 = todas as observações existentes (útil para testar sem esperar)"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:96
+msgid "ancienneté en jours"
+msgstr "idade em dias"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:98
+msgid "Aperçu"
+msgstr "Prévia"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:100
+msgid "Purger"
+msgstr "Limpar"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:103
+msgid "Fichiers locaux"
+msgstr "Arquivos locais"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:106
+msgid "Vider les captures d'écran"
+msgstr "Limpar as capturas de tela"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:108
+msgid "Vider les exports"
+msgstr "Esvaziar exportações"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:134
+#, python-brace-format
+msgid ""
+"version : {app_version} | schéma export : {schema_version}\n"
+"répertoire de données : {var_dir}\n"
+"traceroute disponible : {value}\n"
+"base GeoIP ({provider}) : {value2}"
+msgstr ""
+"versão: {app_version} | esquema de exportação: {schema_version}\n"
+"diretório de dados: {var_dir}\n"
+"traceroute disponível: {value}\n"
+"base GeoIP ({provider}): {value2}"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:156
+msgid "Profil de rendu appliqué au prochain démarrage."
+msgstr "Perfil de renderização aplicado na próxima inicialização."
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:181
+msgid "Saisissez une clé."
+msgstr "Informe uma chave."
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:187
+#, python-brace-format
+msgid "{key} = {value}"
+msgstr "{key} = {value}"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:192
+msgid "Saisissez une ancienneté en jours (entier)."
+msgstr "Informe uma idade em dias (inteiro)."
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:205
+#, python-brace-format
+msgid "{count} exécution(s) seraient supprimée(s)."
+msgstr "{count} execução(ões) seria(m) excluída(s)."
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:214
+msgid "PURGER L'HISTORIQUE ?"
+msgstr "LIMPAR O HISTÓRICO?"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:215
+#, python-brace-format
+msgid "Supprime définitivement toutes les exécutions de plus de {days} jour(s)."
+msgstr "Exclui definitivamente todas as execuções com mais de {days} dia(s)."
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:231
+#, python-brace-format
+msgid "{count} exécution(s) supprimée(s)."
+msgstr "{count} execução(ões) excluída(s)."
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:236
+#, python-brace-format
+msgid "VIDER LES {upper} ?"
+msgstr "LIMPAR OS {upper}?"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:237
+#, python-brace-format
+msgid "Supprime définitivement tous les fichiers de {directory}."
+msgstr "Exclui definitivamente todos os arquivos de {directory}."
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:246
+#, python-brace-format
+msgid "{deleted} fichier(s) {label} supprimé(s)."
+msgstr "{deleted} arquivo(s) {label} excluído(s)."
+
+#: src/omega_track/interfaces/tui/screens/source_configuration.py:41
+msgid "SOURCES À CLÉ"
+msgstr "FONTES COM CHAVE"
+
+#: src/omega_track/interfaces/tui/screens/source_configuration.py:48
+msgid "Clé API"
+msgstr "Chave de API"
+
+#: src/omega_track/interfaces/tui/screens/source_configuration.py:49
+msgid "clé API"
+msgstr "chave de API"
+
+#: src/omega_track/interfaces/tui/screens/source_configuration.py:55
+msgid "Retirer la clé"
+msgstr "Remover a chave"
+
+#: src/omega_track/interfaces/tui/screens/source_configuration.py:70
+msgid " -- SOURCE PAYANTE"
+msgstr " -- FONTE PAGA"
+
+#: src/omega_track/interfaces/tui/screens/source_configuration.py:72
+#, python-brace-format
+msgid ""
+"[b]{source_name}{payant}[/b]\n"
+"Quota : {quota_notice}\n"
+"Données envoyées : {data_sent_notice}\n"
+"Confidentialité : {privacy_notice}"
+msgstr ""
+"[b]{source_name}{payant}[/b]\n"
+"Cota: {quota_notice}\n"
+"Dados enviados: {data_sent_notice}\n"
+"Privacidade: {privacy_notice}"
+
+#: src/omega_track/interfaces/tui/screens/source_configuration.py:83
+#, python-brace-format
+msgid " (en attente jusqu'à {isoformat})"
+msgstr " (em espera até {isoformat})"
+
+#: src/omega_track/interfaces/tui/screens/source_configuration.py:85
+#, python-brace-format
+msgid "clé {value}{backoff}"
+msgstr "chave {value}{backoff}"
+
+#: src/omega_track/interfaces/tui/screens/source_configuration.py:85
+msgid "configurée"
+msgstr "configurada"
+
+#: src/omega_track/interfaces/tui/screens/source_configuration.py:108
+#, python-brace-format
+msgid "Clé enregistrée pour {source_name}."
+msgstr "Chave salva para {source_name}."
+
+#: src/omega_track/interfaces/tui/screens/source_configuration.py:113
+#, python-brace-format
+msgid "Clé retirée pour {source_name}."
+msgstr "Chave removida para {source_name}."
+
+#: src/omega_track/interfaces/tui/screens/targets.py:49
+msgid "Alias (optionnel)"
+msgstr "Alias (opcional)"
+
+#: src/omega_track/interfaces/tui/screens/targets.py:50
+msgid "Tags séparés par des virgules (optionnel)"
+msgstr "Tags separadas por vírgulas (opcional)"
+
+#: src/omega_track/interfaces/tui/screens/targets.py:98
+msgid "Saisissez une valeur de cible."
+msgstr "Informe um valor de alvo."
+
+#: src/omega_track/interfaces/tui/screens/targets.py:153
+msgid "Cette action est irréversible."
+msgstr "Esta ação é irreversível."
+
+#: src/omega_track/interfaces/tui/screens/targets.py:153
+msgid "SUPPRIMER CETTE CIBLE ?"
+msgstr "EXCLUIR ESTE ALVO?"
+
+#: src/omega_track/interfaces/tui/screens/tracker.py:59
+msgid "LANCER UNE OBSERVATION"
+msgstr "INICIAR UMA OBSERVAÇÃO"
+
+#: src/omega_track/interfaces/tui/screens/tracker.py:63
+msgid "Aucune cible enregistrée - ajoutez-en une dans l'écran Cibles."
+msgstr "Nenhum alvo registrado - adicione um na tela Alvos."
+
+#: src/omega_track/interfaces/tui/screens/tracker.py:74
+msgid "Modules"
+msgstr "Módulos"
+
+#: src/omega_track/interfaces/tui/screens/tracker.py:80
+msgid "Tags (séparés par des virgules, optionnel)"
+msgstr "Tags (separadas por vírgulas, opcional)"
+
+#: src/omega_track/interfaces/tui/screens/tracker.py:81
+msgid "ex. campagne-2026"
+msgstr "ex. campanha-2026"
+
+#: src/omega_track/interfaces/tui/screens/tracker.py:84
+msgid "Autorisation explicite pour cette observation (cible non épinglée)"
+msgstr "Autorização explícita para esta observação (alvo não fixado)"
+
+#: src/omega_track/interfaces/tui/screens/tracker.py:127
+msgid "Aucune cible enregistrée."
+msgstr "Nenhum alvo registrado."
+
+#: src/omega_track/interfaces/tui/screens/tracker.py:132
+msgid "Choisissez une cible."
+msgstr "Escolha um alvo."
+
+#: src/omega_track/interfaces/tui/screens/tracker.py:136
+msgid "Cible introuvable."
+msgstr "Alvo não encontrado."
+
+#: src/omega_track/interfaces/tui/screens/tracker.py:143
+msgid "Activez au moins un module."
+msgstr "Ative pelo menos um módulo."
+
+#: src/omega_track/interfaces/tui/screens/tracker.py:172
+msgid "Observation en cours..."
+msgstr "Observação em andamento..."
+
+#: src/omega_track/interfaces/tui/widgets/targets_table.py:17
+msgid "Alias"
+msgstr "Alias"
+
+#: src/omega_track/interfaces/tui/widgets/targets_table.py:17
+msgid "Dernier statut"
+msgstr "Último status"
+
+#: src/omega_track/interfaces/tui/widgets/targets_table.py:17
+msgid "Épinglée"
+msgstr "Fixado"
+
+#: src/omega_track/infrastructure/exporters/graphviz_dot_exporter.py:22
+#, python-brace-format
+msgid "{value} ({value2})"
+msgstr "{value} ({value2})"
+
+#: src/omega_track/infrastructure/exporters/markdown_file_exporter.py:23
+#, python-brace-format
+msgid "# Rapport OMEGA-TRACK - {target}"
+msgstr "# Relatório OMEGA-TRACK - {target}"
+
+#: src/omega_track/infrastructure/exporters/markdown_file_exporter.py:25
+#, python-brace-format
+msgid "- Généré le {generated_at}"
+msgstr "- Gerado em {generated_at}"
+
+#: src/omega_track/infrastructure/exporters/markdown_file_exporter.py:26
+#, python-brace-format
+msgid "- Profil : {profile} (modules : {value})"
+msgstr "- Perfil: {profile} (módulos: {value})"
+
+#: src/omega_track/infrastructure/exporters/markdown_file_exporter.py:26 src/omega_track/infrastructure/exporters/templates/report.html.j2:173
+msgid "aucun"
+msgstr "nenhum"
+
+#: src/omega_track/infrastructure/exporters/markdown_file_exporter.py:27
+#, python-brace-format
+msgid "- Sources consultées : {value}"
+msgstr "- Fontes consultadas: {value}"
+
+#: src/omega_track/infrastructure/exporters/markdown_file_exporter.py:28
+#, python-brace-format
+msgid "- Politique de rédaction : {redaction_policy}"
+msgstr "- Política de redação: {redaction_policy}"
+
+#: src/omega_track/infrastructure/exporters/markdown_file_exporter.py:30
+#, python-brace-format
+msgid "- Schéma d'export v{schema_version} - omega-track {app_version}"
+msgstr "- Esquema de exportação v{schema_version} - omega-track {app_version}"
+
+#: src/omega_track/infrastructure/exporters/markdown_file_exporter.py:35
+msgid "## Résumé"
+msgstr "## Resumo"
+
+#: src/omega_track/infrastructure/exporters/markdown_file_exporter.py:37
+msgid "| Niveau de confiance | Nombre |"
+msgstr "| Nível de confiança | Número |"
+
+#: src/omega_track/infrastructure/exporters/markdown_file_exporter.py:49
+#, python-brace-format
+msgid "## {capitalize}"
+msgstr "## {capitalize}"
+
+#: src/omega_track/infrastructure/exporters/markdown_file_exporter.py:51
+msgid "| Type | Données | Confiance | Source |"
+msgstr "| Tipo | Dados | Confiança | Fonte |"
+
+#: src/omega_track/infrastructure/exporters/markdown_file_exporter.py:60
+msgid "## Relations"
+msgstr "## Relações"
+
+#: src/omega_track/infrastructure/exporters/markdown_file_exporter.py:62
+msgid "| Source | Cible | Type | Confiance |"
+msgstr "| Fonte | Alvo | Tipo | Confiança |"
+
+#: src/omega_track/infrastructure/exporters/markdown_file_exporter.py:72
+msgid "## Clusters"
+msgstr "## Clusters"
+
+#: src/omega_track/infrastructure/exporters/markdown_file_exporter.py:79
+msgid "## Chemin réseau (NeoTrace)"
+msgstr "## Caminho de rede (NeoTrace)"
+
+#: src/omega_track/infrastructure/exporters/markdown_file_exporter.py:84
+#, python-brace-format
+msgid "### Vers {target_ip} ({protocol}) - {value}"
+msgstr "### Para {target_ip} ({protocol}) - {value}"
+
+#: src/omega_track/infrastructure/exporters/markdown_file_exporter.py:84 src/omega_track/infrastructure/exporters/templates/report.html.j2:220
+msgid "atteinte"
+msgstr "atingido"
+
+#: src/omega_track/infrastructure/exporters/markdown_file_exporter.py:84 src/omega_track/infrastructure/exporters/templates/report.html.j2:220
+msgid "non atteinte"
+msgstr "não atingido"
+
+#: src/omega_track/infrastructure/exporters/markdown_file_exporter.py:87
+msgid "| # | IP | Hôte | RTT (ms) | ASN | Pays |"
+msgstr "| # | IP | Host | RTT (ms) | ASN | País |"
+
+#: src/omega_track/infrastructure/exporters/templates/report.html.j2:6
+#, python-brace-format
+msgid "OMEGA-TRACK — Rapport {target}"
+msgstr "OMEGA-TRACK — Relatório {target}"
+
+#: src/omega_track/infrastructure/exporters/templates/report.html.j2:170
+#, python-brace-format
+msgid "Rapport OMEGA-TRACK — {target}"
+msgstr "Relatório OMEGA-TRACK — {target}"
+
+#: src/omega_track/infrastructure/exporters/templates/report.html.j2:172
+#, python-brace-format
+msgid "Généré le {generated_at}"
+msgstr "Gerado em {generated_at}"
+
+#: src/omega_track/infrastructure/exporters/templates/report.html.j2:173
+#, python-brace-format
+msgid "Profil : {profile} (modules : {modules})"
+msgstr "Perfil: {profile} (módulos: {modules})"
+
+#: src/omega_track/infrastructure/exporters/templates/report.html.j2:174
+#, python-brace-format
+msgid "Sources consultées : {sources}"
+msgstr "Fontes consultadas: {sources}"
+
+#: src/omega_track/infrastructure/exporters/templates/report.html.j2:175
+#, python-brace-format
+msgid "Politique de rédaction : {redaction_policy}"
+msgstr "Política de redação: {redaction_policy}"
+
+#: src/omega_track/infrastructure/exporters/templates/report.html.j2:176
+#, python-brace-format
+msgid "Schéma d'export v{schema_version} — omega-track {app_version}"
+msgstr "Esquema de exportação v{schema_version} — omega-track {app_version}"
+
+#: src/omega_track/infrastructure/exporters/templates/report.html.j2:191
+msgid "Données"
+msgstr "Dados"
+
+#: src/omega_track/infrastructure/exporters/templates/report.html.j2:203
+#, python-brace-format
+msgid "Relations ({relations})"
+msgstr "Relações ({relations})"
+
+#: src/omega_track/infrastructure/exporters/templates/report.html.j2:220
+#, python-brace-format
+msgid "Chemin réseau vers {target_ip} ({protocol}) — {value}"
+msgstr "Caminho de rede para {target_ip} ({protocol}) — {value}"
+
+#: src/omega_track/infrastructure/exporters/templates/report.html.j2:234
+#, python-brace-format
+msgid "omega-track — généré sans serveur, thème d'export : {export_theme}"
+msgstr "omega-track — gerado sem servidor, tema de exportação: {export_theme}"

@@ -85,6 +85,6 @@ def test_markdown_includes_network_path_table() -> None:
         paths=[path],
     )
     markdown = MarkdownFileExporter().export(report, ExportOptions()).decode("utf-8")
-    assert "## Chemin reseau (NeoTrace)" in markdown
+    assert "## Chemin réseau (NeoTrace)" in markdown
     assert "1.1.1.1" in markdown
     assert "atteinte" in markdown

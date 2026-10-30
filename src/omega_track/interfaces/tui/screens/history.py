@@ -31,12 +31,13 @@ from omega_track.domain.value_objects.statuses import TrackStatus
 from omega_track.interfaces.tui.screens._base import OmegaScreen
 from omega_track.interfaces.tui.screens.progress import ProgressScreen
 from omega_track.interfaces.tui.screens.results import ResultsScreen
+from omega_track.shared.i18n import LANGUAGE, _, translating_as
 
 if TYPE_CHECKING:
     from omega_track.app.container import DependencyContainer
     from omega_track.domain.entities.track_run import TrackRun
 
-_STATUS_CHOICES: tuple[tuple[str, str], ...] = (("(tous)", ""), *((s.value, s.value) for s in TrackStatus))
+_STATUS_CHOICES: tuple[tuple[str, str], ...] = ((_("(tous)"), ""), *((s.value, s.value) for s in TrackStatus))
 _EXPORT_FORMATS: tuple[str, ...] = ("html", "json", "markdown", "csv", "dot", "mermaid")
 """HTML en tete de liste (Phase 12, retour utilisateur) - format le plus
 directement consultable (theme applique, graphes Mermaid rendus), tant
@@ -54,17 +55,17 @@ class HistoryScreen(OmegaScreen):
     def compose(self) -> ComposeResult:
         yield Header()
         with Vertical(classes="omega-panel"):
-            yield Static("HISTORIQUE", classes="omega-title")
+            yield Static(_("HISTORIQUE"), classes="omega-title")
             with Horizontal():
                 yield Select(_STATUS_CHOICES, value="", id="status-filter", classes="omega-select-compact")
-                yield Input(placeholder="Filtrer par tag (optionnel)", id="tag-filter")
+                yield Input(placeholder=_("Filtrer par tag (optionnel)"), id="tag-filter")
             table: DataTable[str] = DataTable(id="runs-table")
             yield table
             with Horizontal(classes="omega-actions"):
                 with Container(classes="omega-btn-frame"):
-                    yield Button("Voir le rapport", id="show", variant="primary")
+                    yield Button(_("Voir le rapport"), id="show", variant="primary")
                 with Container(classes="omega-btn-frame"):
-                    yield Button("Rejouer", id="replay")
+                    yield Button(_("Rejouer"), id="replay")
                 with Container(classes="omega-btn-frame"):
                     yield Select(
                         [(f, f) for f in _EXPORT_FORMATS],
@@ -76,15 +77,15 @@ class HistoryScreen(OmegaScreen):
                         value=DEFAULT_EXPORT_THEME, id="export-theme", classes="omega-select-compact",
                     )
                 with Container(classes="omega-btn-frame"):
-                    yield Button("Exporter", id="export")
+                    yield Button(_("Exporter"), id="export")
                 with Container(classes="omega-btn-frame"):
-                    yield Button("Retour", id="back")
+                    yield Button(_("Retour"), id="back")
         yield Footer()
 
     def on_mount(self) -> None:
         table = self.query_one("#runs-table", DataTable)
         table.cursor_type = "row"
-        table.add_columns("Run", "Cible", "Statut", "Lance le", "Tags")
+        table.add_columns(_("Run"), _("Cible"), _("Statut"), _("Lancé le"), _("Tags"))
         self._refresh()
 
     def _refresh(self) -> None:
@@ -132,18 +133,18 @@ class HistoryScreen(OmegaScreen):
 
     def _show(self) -> None:
         if self._selected_id is None:
-            self.app.notify("Selectionnez d'abord une ligne.", severity="warning")
+            self.app.notify(_("Sélectionnez d'abord une ligne."), severity="warning")
             return
         self.app.push_screen(ResultsScreen(container=self._container, track_run_id=TrackRunId(self._selected_id)))
 
     def _replay(self) -> None:
         if self._selected_id is None:
-            self.app.notify("Selectionnez d'abord une ligne.", severity="warning")
+            self.app.notify(_("Sélectionnez d'abord une ligne."), severity="warning")
             return
         original_id = TrackRunId(self._selected_id)
         original = self._container.track_run_repository.get(original_id)
         if original is None:
-            self.app.notify("Execution introuvable.", severity="error")
+            self.app.notify(_("Exécution introuvable."), severity="error")
             return
         target = get_target(target_repository=self._container.target_repository, target_id=original.target_id)
         try:
@@ -164,19 +165,21 @@ class HistoryScreen(OmegaScreen):
                 now=self._container.clock,
             )
 
-        self.app.push_screen(ProgressScreen(container=self._container, heading="Rejeu en cours...", run=_run))
+        self.app.push_screen(ProgressScreen(container=self._container, heading=_("Rejeu en cours..."), run=_run))
 
     def _export(self) -> None:
         if self._selected_id is None:
-            self.app.notify("Selectionnez d'abord une ligne.", severity="warning")
+            self.app.notify(_("Sélectionnez d'abord une ligne."), severity="warning")
             return
         export_format = str(self.query_one("#export-format", Select).value)
         export_theme = str(self.query_one("#export-theme", Select).value)
-        artifact = export_track(
-            export_orchestrator=self._container.export_orchestrator,
-            track_run_id=TrackRunId(self._selected_id),
-            export_format=export_format,
-            output_dir=self._container.default_exports_dir,
-            options=ExportOptions(export_theme=export_theme),
-        )
-        self.app.notify(f"Exporte vers {Path(artifact.output_path).name}", title="Export termine")
+        # Lot N (Q5) : rapport ecrit dans la langue des exports (reglage ; dans la suite, le sien).
+        with translating_as(LANGUAGE.export_state(self._container.settings_repository)):
+            artifact = export_track(
+                export_orchestrator=self._container.export_orchestrator,
+                track_run_id=TrackRunId(self._selected_id),
+                export_format=export_format,
+                output_dir=self._container.default_exports_dir,
+                options=ExportOptions(export_theme=export_theme),
+            )
+        self.app.notify(_("Exporté vers {name}").format(name=Path(artifact.output_path).name), title=_("Export terminé"))

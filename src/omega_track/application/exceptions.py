@@ -6,6 +6,7 @@ from __future__ import annotations
 
 from omega_track.core.errors import OmegaTrackError
 from omega_track.domain.value_objects.identifiers import TargetId, TrackRunId
+from omega_track.shared.i18n import _
 
 
 class ApplicationError(OmegaTrackError):
@@ -17,7 +18,7 @@ class UnknownGeoIpProviderError(ApplicationError):
     """Fournisseur GeoIP demande hors du catalogue connu ('dbip'/'maxmind')."""
 
     def __init__(self, provider: str) -> None:
-        super().__init__(f"fournisseur GeoIP inconnu : {provider!r}")
+        super().__init__(_("fournisseur GeoIP inconnu : {provider!r}").format(provider=provider))
         self.provider = provider
 
 
@@ -27,7 +28,7 @@ class MaxMindCredentialsMissingError(ApplicationError):
     GeoIpDownloadError ci-dessous)."""
 
     def __init__(self) -> None:
-        super().__init__("cle de licence MaxMind absente ou vide")
+        super().__init__(_("clé de licence MaxMind absente ou vide"))
 
 
 class GeoIpDownloadError(ApplicationError):
@@ -51,7 +52,7 @@ class UnknownThemeError(ApplicationError):
     CHECK/DEEP/FOLD - D-008)."""
 
     def __init__(self, theme_name: str) -> None:
-        super().__init__(f"theme inconnu : {theme_name!r}")
+        super().__init__(_("thème inconnu : {theme_name!r}").format(theme_name=theme_name))
         self.theme_name = theme_name
 
 
@@ -60,7 +61,7 @@ class UnknownExportFormatError(ApplicationError):
     'html'/'csv'/'dot'/'mermaid', Phase 8)."""
 
     def __init__(self, export_format: str) -> None:
-        super().__init__(f"format d'export inconnu : {export_format!r}")
+        super().__init__(_("format d'export inconnu : {export_format!r}").format(export_format=export_format))
         self.export_format = export_format
 
 
@@ -68,7 +69,7 @@ class TargetNotFoundError(ApplicationError):
     """Cible introuvable pour l'identifiant fourni (Phase 9)."""
 
     def __init__(self, target_id: TargetId) -> None:
-        super().__init__(f"cible introuvable : {target_id!r}")
+        super().__init__(_("cible introuvable : {target_id!r}").format(target_id=target_id))
         self.target_id = target_id
 
 
@@ -78,7 +79,7 @@ class TrackRunNotFoundError(ApplicationError):
     ex. Phase 9 `track show`)."""
 
     def __init__(self, track_run_id: TrackRunId) -> None:
-        super().__init__(f"TrackRun introuvable : {track_run_id!r}")
+        super().__init__(_("TrackRun introuvable : {track_run_id!r}").format(track_run_id=track_run_id))
         self.track_run_id = track_run_id
 
 
@@ -92,7 +93,7 @@ class CollectorUnavailableError(ApplicationError):
     que GeoIpDownloadError ci-dessus (infrastructure -> application)."""
 
     def __init__(self, source: str, reason: str | None = None) -> None:
-        message = f"source indisponible : {source}"
+        message = _("source indisponible : {source}").format(source=source)
         if reason:
             message = f"{message} ({reason})"
         super().__init__(message)
@@ -105,7 +106,7 @@ class UnknownReputationSourceError(ApplicationError):
     ('virustotal'/'hibp', Phase 12)."""
 
     def __init__(self, source_name: str) -> None:
-        super().__init__(f"source de reputation inconnue : {source_name!r}")
+        super().__init__(_("source de réputation inconnue : {source_name!r}").format(source_name=source_name))
         self.source_name = source_name
 
 
@@ -117,7 +118,7 @@ class ApiKeyMissingError(ApplicationError):
     reputation_phase.py)."""
 
     def __init__(self, source_name: str) -> None:
-        super().__init__(f"cle API absente ou vide pour {source_name!r}")
+        super().__init__(_("clé API absente ou vide pour {source_name!r}").format(source_name=source_name))
         self.source_name = source_name
 
 
@@ -130,5 +131,5 @@ class QuotaExceededError(ApplicationError):
     de retenter inutilement au prochain TrackRun."""
 
     def __init__(self, source: str) -> None:
-        super().__init__(f"quota depasse : {source}")
+        super().__init__(_("quota dépassé : {source}").format(source=source))
         self.source = source

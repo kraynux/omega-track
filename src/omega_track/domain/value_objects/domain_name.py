@@ -12,6 +12,7 @@ import re
 from dataclasses import dataclass
 
 from omega_track.domain.exceptions.target import InvalidTargetValueError
+from omega_track.shared.i18n import _
 
 _MAX_TOTAL_LENGTH = 253
 _MAX_LABEL_LENGTH = 63
@@ -31,13 +32,13 @@ class DomainName:
     def parse(cls, raw: str) -> DomainName:
         normalized = raw.strip().rstrip(".").lower()
         if not normalized:
-            raise InvalidTargetValueError("nom de domaine vide")
+            raise InvalidTargetValueError(_("nom de domaine vide"))
         if len(normalized) > _MAX_TOTAL_LENGTH:
-            raise InvalidTargetValueError(f"nom de domaine trop long : {raw!r}")
+            raise InvalidTargetValueError(_("nom de domaine trop long : {raw!r}").format(raw=raw))
 
         labels = normalized.split(".")
         if any(not label for label in labels):
-            raise InvalidTargetValueError(f"nom de domaine avec un label vide : {raw!r}")
+            raise InvalidTargetValueError(_("nom de domaine avec un label vide : {raw!r}").format(raw=raw))
 
         ascii_labels = []
         for label in labels:
@@ -50,10 +51,11 @@ class DomainName:
         try:
             ascii_label = label if label.isascii() else label.encode("idna").decode("ascii")
         except UnicodeError as exc:
-            raise InvalidTargetValueError(f"label IDNA invalide dans {original_raw!r} : {label!r}") from exc
+            raise InvalidTargetValueError(_("label IDNA invalide dans {original_raw!r} : "
+                                            "{label!r}").format(original_raw=original_raw, label=label)) from exc
 
         if len(ascii_label) > _MAX_LABEL_LENGTH or not _LDH_LABEL_RE.match(ascii_label):
-            raise InvalidTargetValueError(f"label invalide dans {original_raw!r} : {label!r}")
+            raise InvalidTargetValueError(_("label invalide dans {original_raw!r} : {label!r}").format(original_raw=original_raw, label=label))
         return ascii_label
 
     def __str__(self) -> str:

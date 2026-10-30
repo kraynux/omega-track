@@ -170,9 +170,15 @@ Screen {
 }
 
 .omega-home-menu .omega-btn-frame {
+    /* Retour utilisateur : resserrer l'espace entre les boutons du menu
+       principal (marge verticale supprimee, pas seulement reduite) -
+       fait la place pour reintroduire "Aide" (voir home.py::_MENU_ITEMS)
+       sans faire deborder le menu. Les bordures rondes propres a chaque
+       cadre suffisent deja a distinguer chaque bouton, une marge
+       supplementaire n'etait plus necessaire. */
     width: 32;
     height: 3;
-    margin-bottom: 1;
+    margin-bottom: 0;
 }
 
 .omega-actions Button,
@@ -308,4 +314,34 @@ TabbedContent {
 
 #geoip-status-table {
     height: 6;
+}
+
+/* Retour utilisateur : centrer les elements du Dashboard (titre,
+   modules, widgets...) et de l'ecran Reglages, plutot que plaques
+   contre le bord gauche du panneau - meme traitement que
+   ".omega-form-panel" (colonne de largeur fixe centree), applique ici
+   par selecteur de type d'ecran plutot qu'une nouvelle classe : ces
+   deux ecrans sont les seuls concernes, ".omega-panel" reste
+   left-aligned par defaut partout ailleurs. */
+DashboardScreen .omega-panel,
+SettingsScreen .omega-panel {
+    align-horizontal: center;
+}
+
+DashboardScreen .omega-panel > Static,
+DashboardScreen .omega-panel > Horizontal,
+SettingsScreen .omega-panel > Static,
+SettingsScreen .omega-panel > Select,
+SettingsScreen .omega-panel > Horizontal {
+    width: 70;
+}
+
+DashboardScreen .omega-title,
+SettingsScreen .omega-title {
+    content-align: center middle;
+}
+
+DashboardScreen .omega-panel > Horizontal,
+SettingsScreen .omega-panel > Horizontal {
+    align: center middle;
 }

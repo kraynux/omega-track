@@ -57,6 +57,7 @@ from omega_track.ports.repositories.track_run_repository import TrackRunReposito
 from omega_track.ports.services.event_publisher import EventPublisher
 from omega_track.ports.services.log_correlation import LogCorrelation
 from omega_track.ports.services.secret_store import SecretStore
+from omega_track.shared.i18n import _
 from omega_track.shared.typing import IdFactory
 
 _MODULE_COLLECTION_MODES: dict[str, CollectionMode] = {
@@ -171,7 +172,7 @@ class TrackOrchestrator:
             cancellation_token=token,
         )
         for module_name in unsupported_extended_modules:
-            skip_module(track_run.module_runs[module_name], context, reason="module non encore implemente")
+            skip_module(track_run.module_runs[module_name], context, reason=_("module non encore implémenté"))
 
         self._event_publisher.publish_progress(track_run.id, "demarrage", 0.0)
         start_time = self._now()
@@ -183,7 +184,7 @@ class TrackOrchestrator:
 
         if self._budget_exceeded(start_time, limits):
             timed_out = True
-            self._skip_pending(track_run.module_runs, context, reason="budget de temps global depasse")
+            self._skip_pending(track_run.module_runs, context, reason=_("budget de temps global dépassé"))
         else:
             identity_result = run_identity_phase(
                 context=context,
@@ -196,11 +197,11 @@ class TrackOrchestrator:
             all_findings += identity_result.findings
             degraded = degraded or identity_result.degraded
             resolved_ips = identity_result.resolved_ips
-            self._persist_progress(track_run, identity_result.findings, "identite terminee", 0.5)
+            self._persist_progress(track_run, identity_result.findings, _("identité terminée"), 0.5)
 
             if self._budget_exceeded(start_time, limits):
                 timed_out = True
-                self._skip_pending(track_run.module_runs, context, reason="budget de temps global depasse")
+                self._skip_pending(track_run.module_runs, context, reason=_("budget de temps global dépassé"))
             else:
                 neotrace_targets = select_neotrace_targets(identity_result.budget, limits=limits)
                 path_result = run_network_path_phase(
@@ -212,11 +213,11 @@ class TrackOrchestrator:
                 )
                 all_findings += path_result.findings
                 degraded = degraded or path_result.degraded
-                self._persist_progress(track_run, path_result.findings, "chemin reseau termine", 0.85)
+                self._persist_progress(track_run, path_result.findings, _("chemin réseau terminé"), 0.85)
 
             if self._budget_exceeded(start_time, limits):
                 timed_out = True
-                self._skip_pending(track_run.module_runs, context, reason="budget de temps global depasse")
+                self._skip_pending(track_run.module_runs, context, reason=_("budget de temps global dépassé"))
             else:
                 extended_result = run_extended_modules_phase(
                     context=context,
@@ -229,11 +230,11 @@ class TrackOrchestrator:
                 )
                 all_findings += extended_result.findings
                 degraded = degraded or extended_result.degraded
-                self._persist_progress(track_run, extended_result.findings, "modules etendus termines", 0.9)
+                self._persist_progress(track_run, extended_result.findings, _("modules étendus terminés"), 0.9)
 
             if self._budget_exceeded(start_time, limits):
                 timed_out = True
-                self._skip_pending(track_run.module_runs, context, reason="budget de temps global depasse")
+                self._skip_pending(track_run.module_runs, context, reason=_("budget de temps global dépassé"))
             else:
                 reputation_result = run_reputation_phase(
                     context=context,
@@ -246,7 +247,7 @@ class TrackOrchestrator:
                 )
                 all_findings += reputation_result.findings
                 degraded = degraded or reputation_result.degraded
-                self._persist_progress(track_run, reputation_result.findings, "sources a cle terminees", 0.95)
+                self._persist_progress(track_run, reputation_result.findings, _("sources à clé terminées"), 0.95)
 
             certificate_findings = [
                 finding
@@ -291,7 +292,7 @@ class TrackOrchestrator:
 
         track_run.update_progress(1.0)
         self._track_run_repository.save(track_run)
-        self._event_publisher.publish_progress(track_run.id, "termine", 1.0)
+        self._event_publisher.publish_progress(track_run.id, _("terminé"), 1.0)
 
     def _budget_exceeded(self, start_time: datetime, limits: ExecutionLimits) -> bool:
         return (self._now() - start_time).total_seconds() >= limits.global_timeout_seconds

@@ -33,6 +33,7 @@ from omega_track.domain.entities.track_profile import KNOWN_MODULES
 from omega_track.domain.exceptions.track import TargetNotAuthorizedError
 from omega_track.interfaces.tui.screens._base import OmegaScreen
 from omega_track.interfaces.tui.screens.progress import ProgressScreen
+from omega_track.shared.i18n import _
 
 if TYPE_CHECKING:
     from omega_track.app.container import DependencyContainer
@@ -55,42 +56,50 @@ class TrackerScreen(OmegaScreen):
 
         yield Header()
         with Vertical(classes="omega-form-panel"):
-            yield Static("LANCER UNE OBSERVATION", classes="omega-title")
+            yield Static(_("LANCER UNE OBSERVATION"), classes="omega-title")
 
             if not self._targets:
                 yield Static(
-                    "Aucune cible enregistree - ajoutez-en une dans l'ecran Cibles.",
+                    _("Aucune cible enregistrée - ajoutez-en une dans l'écran Cibles."),
                     classes="omega-hint",
                 )
             else:
-                yield Static("Cible", classes="omega-subtitle")
+                yield Static(_("Cible"), classes="omega-subtitle")
                 yield Select(
                     [(_target_label(t), str(t.id)) for t in self._targets],
                     value=str(self._targets[0].id),
                     id="target-select",
                 )
 
-                yield Static("Modules", classes="omega-subtitle")
+                yield Static(_("Modules"), classes="omega-subtitle")
                 for module in sorted(DEFAULT_MVP_MODULES):
                     yield Checkbox(module, value=True, id=f"module-{module}")
                 for module in _EXTENDED_MODULES:
                     yield Checkbox(module, value=False, id=f"module-{module}")
 
-                yield Static("Tags (separes par des virgules, optionnel)", classes="omega-subtitle")
-                yield Input(placeholder="ex. campagne-2026", id="tags-input")
+                yield Static(_("Tags (séparés par des virgules, optionnel)"), classes="omega-subtitle")
+                yield Input(placeholder=_("ex. campagne-2026"), id="tags-input")
 
                 yield Checkbox(
-                    "Autorisation explicite pour cette observation (cible non epinglee)",
+                    _("Autorisation explicite pour cette observation (cible non épinglée)"),
                     value=False,
                     id="authorize-checkbox",
                     classes="omega-hidden",
                 )
 
-                with Horizontal(classes="omega-actions"):
+            # Retour utilisateur : "Retour" ne vivait QUE dans la branche
+            # "des cibles existent" ci-dessus - sans aucune cible
+            # enregistree, cet ecran n'offrait alors aucun moyen de
+            # revenir a la souris (seul Echap fonctionnait), seul
+            # endroit de toute l'interface dans ce cas. Sorti du if/else,
+            # toujours affiche ; "Lancer" reste conditionne aux cibles
+            # (lancer sans cible n'a jamais de sens).
+            with Horizontal(classes="omega-actions"):
+                if self._targets:
                     with Container(classes="omega-btn-frame"):
-                        yield Button("Lancer", id="launch", variant="primary")
-                    with Container(classes="omega-btn-frame"):
-                        yield Button("Retour", id="back")
+                        yield Button(_("Lancer"), id="launch", variant="primary")
+                with Container(classes="omega-btn-frame"):
+                    yield Button(_("Retour"), id="back")
         yield Footer()
 
     def on_mount(self) -> None:
@@ -115,23 +124,23 @@ class TrackerScreen(OmegaScreen):
 
     def _launch(self) -> None:
         if not self._targets:
-            self.app.notify("Aucune cible enregistree.", severity="warning")
+            self.app.notify(_("Aucune cible enregistrée."), severity="warning")
             return
 
         target_id_raw = self.query_one("#target-select", Select).value
         if target_id_raw is None:
-            self.app.notify("Choisissez une cible.", severity="warning")
+            self.app.notify(_("Choisissez une cible."), severity="warning")
             return
         target = next((t for t in self._targets if str(t.id) == str(target_id_raw)), None)
         if target is None:
-            self.app.notify("Cible introuvable.", severity="error")
+            self.app.notify(_("Cible introuvable."), severity="error")
             return
 
         modules = {
             module for module in KNOWN_MODULES if self.query_one(f"#module-{module}", Checkbox).value
         }
         if not modules:
-            self.app.notify("Activez au moins un module.", severity="warning")
+            self.app.notify(_("Activez au moins un module."), severity="warning")
             return
 
         tags_raw = self.query_one("#tags-input", Input).value
@@ -160,7 +169,7 @@ class TrackerScreen(OmegaScreen):
                 now=self._container.clock,
             )
 
-        self.app.push_screen(ProgressScreen(container=self._container, heading="Observation en cours...", run=_run))
+        self.app.push_screen(ProgressScreen(container=self._container, heading=_("Observation en cours..."), run=_run))
 
 
 def _target_label(target: Target) -> str:

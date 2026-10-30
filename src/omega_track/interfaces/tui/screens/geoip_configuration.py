@@ -35,6 +35,7 @@ from omega_track.application.policies.provider_selection import (
 )
 from omega_track.application.queries.get_geoip_status import get_geoip_database_status
 from omega_track.interfaces.tui.screens._base import OmegaScreen
+from omega_track.shared.i18n import _
 
 if TYPE_CHECKING:
     from omega_track.app.container import DependencyContainer
@@ -52,24 +53,25 @@ class GeoIpConfigurationScreen(OmegaScreen):
     def compose(self) -> ComposeResult:
         yield Header()
         with Vertical(classes="omega-form-panel"):
-            yield Static("GEOIP", classes="omega-title")
+            yield Static(_("GEOIP"), classes="omega-title")
             yield Static("", id="status-text", classes="omega-subtitle")
 
-            yield Static("Fournisseur", classes="omega-subtitle")
+            yield Static(_("Fournisseur"), classes="omega-subtitle")
             yield Select(
                 [(p, p) for p in sorted(VALID_GEOIP_PROVIDERS)], id="provider-select"
             )
 
-            yield Static("Cle de licence MaxMind (optionnel, requise pour le fournisseur maxmind)", classes="omega-subtitle")
-            yield Input(placeholder="cle de licence", password=True, id="license-key-input")
+            yield Static(_("Clé de licence MaxMind (optionnel, requise pour le fournisseur "
+                           "maxmind)"), classes="omega-subtitle")
+            yield Input(placeholder=_("clé de licence"), password=True, id="license-key-input")
 
             with Horizontal(classes="omega-actions"):
                 with Container(classes="omega-btn-frame"):
-                    yield Button("Enregistrer la cle", id="save-key")
+                    yield Button(_("Enregistrer la clé"), id="save-key")
                 with Container(classes="omega-btn-frame"):
-                    yield Button("Mettre a jour la base", id="update", variant="primary")
+                    yield Button(_("Mettre à jour la base"), id="update", variant="primary")
                 with Container(classes="omega-btn-frame"):
-                    yield Button("Retour", id="back")
+                    yield Button(_("Retour"), id="back")
         yield Footer()
 
     def on_mount(self) -> None:
@@ -84,10 +86,10 @@ class GeoIpConfigurationScreen(OmegaScreen):
             now=self._container.clock,
         )
         if view.status is None:
-            text = f"base GeoIP ({provider}) : absente"
+            text = _("base GeoIP ({provider}) : absente").format(provider=provider)
         else:
             stale = " (perimee)" if view.is_stale else ""
-            text = f"base GeoIP ({provider}) : {view.status.status}{stale} - {view.status.local_path}"
+            text = _("base GeoIP ({provider}) : {status}{stale} - {local_path}").format(provider=provider, status=view.status.status, stale=stale, local_path=view.status.local_path)
         self.query_one("#status-text", Static).update(text)
 
     def on_select_changed(self, event: Select.Changed) -> None:
@@ -118,12 +120,12 @@ class GeoIpConfigurationScreen(OmegaScreen):
             self.app.notify(str(exc), severity="warning")
             return
         self.query_one("#license-key-input", Input).value = ""
-        self.app.notify("Cle de licence enregistree.")
+        self.app.notify(_("Clé de licence enregistrée."))
 
     def _update(self) -> None:
         provider = str(self.query_one("#provider-select", Select).value)
         self.query_one("#update", Button).disabled = True
-        self.app.notify("Telechargement en cours...", title="GeoIP")
+        self.app.notify(_("Téléchargement en cours..."), title="GeoIP")
         self.run_worker(self._do_update(provider), exclusive=True)
 
     async def _do_update(self, provider: str) -> None:
@@ -144,14 +146,15 @@ class GeoIpConfigurationScreen(OmegaScreen):
             # ne l'attrape jamais lui-meme par design (precondition de
             # configuration, pas un echec de telechargement).
             self.app.notify(
-                "Cle de licence MaxMind absente - renseignez-la ci-dessus avant de mettre a jour.",
+                _("Clé de licence MaxMind absente - renseignez-la ci-dessus avant de mettre à "
+                  "jour."),
                 title="GeoIP", severity="warning",
             )
         except GeoIpDownloadError as exc:
             self.app.notify(str(exc), severity="error")
         else:
             self._refresh_status(provider)
-            self.app.notify("Base GeoIP mise a jour.")
+            self.app.notify(_("Base GeoIP mise à jour."))
         finally:
             if self.is_mounted:
                 self.query_one("#update", Button).disabled = False

@@ -24,6 +24,7 @@ from omega_track.core.enums import ConfidenceLevel
 from omega_track.domain.entities.findings.reputation import ReputationFindingType
 from omega_track.domain.value_objects.collected_record import CollectedRecord
 from omega_track.domain.value_objects.domain_name import DomainName
+from omega_track.shared.i18n import _
 
 SOURCE_NAME = "virustotal"
 
@@ -78,13 +79,13 @@ class VirusTotalHttpCollector:
         if response.status_code == 429:
             raise QuotaExceededError(SOURCE_NAME)
         if response.status_code >= 400:
-            raise CollectorUnavailableError(SOURCE_NAME, f"erreur HTTP ({response.status_code})")
+            raise CollectorUnavailableError(SOURCE_NAME, _("erreur HTTP ({status_code})").format(status_code=response.status_code))
 
         try:
             payload = response.json()
         except ValueError as exc:
-            raise CollectorUnavailableError(SOURCE_NAME, "reponse JSON invalide") from exc
+            raise CollectorUnavailableError(SOURCE_NAME, _("réponse JSON invalide")) from exc
 
         if not isinstance(payload, dict):
-            raise CollectorUnavailableError(SOURCE_NAME, "forme de reponse inattendue")
+            raise CollectorUnavailableError(SOURCE_NAME, _("forme de réponse inattendue"))
         return payload

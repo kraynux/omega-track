@@ -9,6 +9,7 @@ from omega_track.domain.entities.export_artifact import ExportArtifact
 from omega_track.domain.value_objects.identifiers import ExportId, TrackRunId
 from omega_track.domain.value_objects.statuses import RedactionPolicy
 from omega_track.infrastructure.exceptions import StorageError
+from omega_track.shared.i18n import _
 
 
 class SqliteExportRepository:
@@ -37,7 +38,7 @@ class SqliteExportRepository:
             )
             self._connection.commit()
         except sqlite3.Error as exc:
-            raise StorageError(f"echec de sauvegarde de l'export {artifact.id!r}") from exc
+            raise StorageError(_("échec de sauvegarde de l'export {id!r}").format(id=artifact.id)) from exc
 
     def list_for_run(self, track_run_id: TrackRunId) -> list[ExportArtifact]:
         rows = self._connection.execute(

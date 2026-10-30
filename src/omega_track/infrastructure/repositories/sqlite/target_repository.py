@@ -16,6 +16,7 @@ from omega_track.domain.value_objects.target_value import (
     target_kind_of,
 )
 from omega_track.infrastructure.exceptions import StorageError
+from omega_track.shared.i18n import _
 
 
 class SqliteTargetRepository:
@@ -57,7 +58,7 @@ class SqliteTargetRepository:
             )
             self._connection.commit()
         except sqlite3.Error as exc:
-            raise StorageError(f"echec de sauvegarde de la cible {target.id!r}") from exc
+            raise StorageError(_("échec de sauvegarde de la cible {id!r}").format(id=target.id)) from exc
 
     def get(self, target_id: TargetId) -> Target | None:
         row = self._connection.execute("SELECT * FROM targets WHERE id = ?", (target_id,)).fetchone()

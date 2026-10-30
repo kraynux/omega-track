@@ -36,6 +36,7 @@ from omega_track.domain.entities.identity_report import IdentityReport
 from omega_track.domain.value_objects.export_options import ExportOptions
 from omega_track.infrastructure.exporters._report_view import build_header, path_to_dict
 from omega_track.infrastructure.exporters.html_theme_resolver import resolve_export_palette
+from omega_track.shared.i18n import TRANSLATOR, _
 
 _TEMPLATES_DIR = Path(__file__).parent / "templates"
 
@@ -50,6 +51,11 @@ _environment = jinja2.Environment(
     # vers un fichier .j2 separe, Phase 12).
     autoescape=True,
 )
+# Lot N (langue des exports) : texte des gabarits traduit par `_` dans la langue active
+# (celle des exports sous translating_as) ; lang= et dir= du document suivent.
+_environment.globals.update(_=_, html_lang=TRANSLATOR.html_lang, html_dir=TRANSLATOR.html_dir)
+# R1 : texte enregistre en francais (titre, impact...) retraduit dans la langue de l'export.
+_environment.filters["tr"] = lambda value: _(value) if isinstance(value, str) and value else value
 
 
 class Jinja2HtmlExporter:

@@ -22,6 +22,7 @@ from omega_track.application.queries.get_source_disclosure import (
 )
 from omega_track.application.queries.get_source_status import get_source_status
 from omega_track.interfaces.tui.screens._base import OmegaScreen
+from omega_track.shared.i18n import _
 
 if TYPE_CHECKING:
     from omega_track.app.container import DependencyContainer
@@ -37,23 +38,23 @@ class SourceConfigurationScreen(OmegaScreen):
     def compose(self) -> ComposeResult:
         yield Header()
         with Vertical(classes="omega-form-panel"):
-            yield Static("SOURCES A CLE", classes="omega-title")
+            yield Static(_("SOURCES À CLÉ"), classes="omega-title")
             yield Select(
                 [(name, name) for name in list_known_reputation_sources()], id="source-select"
             )
             yield Static("", id="disclosure-text", classes="omega-subtitle")
             yield Static("", id="status-text", classes="omega-hint")
 
-            yield Static("Cle API", classes="omega-subtitle")
-            yield Input(placeholder="cle API", password=True, id="key-input")
+            yield Static(_("Clé API"), classes="omega-subtitle")
+            yield Input(placeholder=_("clé API"), password=True, id="key-input")
 
             with Horizontal(classes="omega-actions"):
                 with Container(classes="omega-btn-frame"):
-                    yield Button("Enregistrer la cle", id="save-key", variant="primary")
+                    yield Button(_("Enregistrer la clé"), id="save-key", variant="primary")
                 with Container(classes="omega-btn-frame"):
-                    yield Button("Retirer la cle", id="clear-key", variant="error")
+                    yield Button(_("Retirer la clé"), id="clear-key", variant="error")
                 with Container(classes="omega-btn-frame"):
-                    yield Button("Retour", id="back")
+                    yield Button(_("Retour"), id="back")
         yield Footer()
 
     def on_mount(self) -> None:
@@ -66,12 +67,10 @@ class SourceConfigurationScreen(OmegaScreen):
 
     def _refresh(self, source_name: str) -> None:
         disclosure = get_source_disclosure(source_name)
-        payant = " -- SOURCE PAYANTE" if disclosure.is_paid else ""
+        payant = _(" -- SOURCE PAYANTE") if disclosure.is_paid else ""
         self.query_one("#disclosure-text", Static).update(
-            f"[b]{source_name}{payant}[/b]\n"
-            f"Quota : {disclosure.quota_notice}\n"
-            f"Donnees envoyees : {disclosure.data_sent_notice}\n"
-            f"Confidentialite : {disclosure.privacy_notice}"
+            _("[b]{source_name}{payant}[/b]\nQuota : {quota_notice}\nDonnées envoyées : "
+              "{data_sent_notice}\nConfidentialité : {privacy_notice}").format(source_name=source_name, payant=payant, quota_notice=disclosure.quota_notice, data_sent_notice=disclosure.data_sent_notice, privacy_notice=disclosure.privacy_notice)
         )
         status = get_source_status(
             secret_store=self._container.secret_store,
@@ -81,9 +80,9 @@ class SourceConfigurationScreen(OmegaScreen):
         )
         backoff = ""
         if status.in_backoff and status.backoff_until is not None:
-            backoff = f" (en attente jusqu'a {status.backoff_until.isoformat()})"
+            backoff = _(" (en attente jusqu'à {isoformat})").format(isoformat=status.backoff_until.isoformat())
         self.query_one("#status-text", Static).update(
-            f"cle {'configuree' if status.key_configured else 'absente'}{backoff}"
+            _("clé {value}{backoff}").format(value=_("configurée") if status.key_configured else _("absente"), backoff=backoff)
         )
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
@@ -106,9 +105,9 @@ class SourceConfigurationScreen(OmegaScreen):
             return
         self.query_one("#key-input", Input).value = ""
         self._refresh(source_name)
-        self.app.notify(f"Cle enregistree pour {source_name}.")
+        self.app.notify(_("Clé enregistrée pour {source_name}.").format(source_name=source_name))
 
     def _clear_key(self, source_name: str) -> None:
         clear_source_key(secret_store=self._container.secret_store, source_name=source_name)
         self._refresh(source_name)
-        self.app.notify(f"Cle retiree pour {source_name}.")
+        self.app.notify(_("Clé retirée pour {source_name}.").format(source_name=source_name))

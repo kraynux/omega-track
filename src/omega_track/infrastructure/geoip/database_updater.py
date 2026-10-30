@@ -26,6 +26,7 @@ from omega_track.application.exceptions import GeoIpDownloadError, MaxMindCreden
 from omega_track.domain.entities.geoip_database_status import GeoIpDatabaseStatus
 from omega_track.infrastructure.geoip.database_integrity import compute_checksum, validate_mmdb
 from omega_track.ports.services.secret_store import SecretStore
+from omega_track.shared.i18n import _
 
 _MAXMIND_LICENSE_KEY_NAME = "maxmind_license_key"
 
@@ -59,12 +60,12 @@ class HttpDatabaseUpdater:
             response = self._http_client.get(url)
             response.raise_for_status()
         except httpx.HTTPError as exc:
-            raise GeoIpDownloadError(f"echec de telechargement pour {provider!r}") from exc
+            raise GeoIpDownloadError(_("échec de téléchargement pour {provider!r}").format(provider=provider)) from exc
 
         try:
             raw_mmdb = _extract_mmdb_bytes(response.content, archive_format)
         except (OSError, tarfile.TarError) as exc:
-            raise GeoIpDownloadError(f"archive invalide pour {provider!r}") from exc
+            raise GeoIpDownloadError(_("archive invalide pour {provider!r}").format(provider=provider)) from exc
 
         destination.parent.mkdir(parents=True, exist_ok=True)
         tmp_path = destination.with_suffix(destination.suffix + ".tmp")
@@ -72,7 +73,7 @@ class HttpDatabaseUpdater:
 
         if not self._validate(tmp_path):
             tmp_path.unlink(missing_ok=True)
-            raise GeoIpDownloadError(f"base telechargee invalide pour {provider!r}")
+            raise GeoIpDownloadError(_("base téléchargée invalide pour {provider!r}").format(provider=provider))
 
         checksum = compute_checksum(tmp_path)
         if destination.exists():
@@ -103,7 +104,7 @@ class HttpDatabaseUpdater:
                 f"?edition_id=GeoLite2-City&license_key={license_key}&suffix=tar.gz"
             )
             return url, "tar_gz"
-        raise GeoIpDownloadError(f"fournisseur GeoIP inconnu : {provider!r}")
+        raise GeoIpDownloadError(_("fournisseur GeoIP inconnu : {provider!r}").format(provider=provider))
 
 
 def _extract_mmdb_bytes(raw: bytes, archive_format: ArchiveFormat) -> bytes:
@@ -112,8 +113,8 @@ def _extract_mmdb_bytes(raw: bytes, archive_format: ArchiveFormat) -> bytes:
     with tarfile.open(fileobj=BytesIO(raw), mode="r:gz") as archive:
         member = next((m for m in archive.getmembers() if m.name.endswith(".mmdb")), None)
         if member is None:
-            raise GeoIpDownloadError("aucun fichier .mmdb trouve dans l'archive")
+            raise GeoIpDownloadError(_("aucun fichier .mmdb trouvé dans l'archive"))
         extracted = archive.extractfile(member)
         if extracted is None:
-            raise GeoIpDownloadError("membre .mmdb illisible dans l'archive")
+            raise GeoIpDownloadError(_("membre .mmdb illisible dans l'archive"))
         return extracted.read()

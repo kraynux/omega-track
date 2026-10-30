@@ -24,16 +24,23 @@ from omega_track.application.commands.select_theme import select_theme
 from omega_track.application.exceptions import UnknownThemeError
 from omega_track.application.queries.diagnostics import run_diagnostics
 from omega_track.application.queries.get_settings import get_settings
+from omega_track.interfaces.tui.language_setting import LanguageSetting
 from omega_track.interfaces.tui.screens._base import OmegaScreen
 from omega_track.interfaces.tui.screens.confirm import ConfirmScreen
+from omega_track.shared.i18n import _
 
 if TYPE_CHECKING:
     from omega_track.app.container import DependencyContainer
 
 _RENDER_PROFILE_CHOICES: tuple[tuple[str, str], ...] = (
-    ("(automatique)", ""),
+    (_("(automatique)"), ""),
     *((p.value, p.value) for p in RenderProfile),
 )
+
+_RENDER_PROFILE_OVERRIDE_KEY = "render_profile_override"
+"""Meme cle/meme duplication locale que select_render_profile.py et
+startup_controller.py (D-008) - lue ici pour donner au Select sa valeur
+INITIALE directement au constructeur (voir compose() ci-dessous)."""
 
 
 class SettingsScreen(OmegaScreen):
@@ -45,49 +52,67 @@ class SettingsScreen(OmegaScreen):
 
     def compose(self) -> ComposeResult:
         yield Header()
+        # Retour utilisateur (bug reel : la notification "Profil de
+        # rendu applique au prochain demarrage" s'affichait a CHAQUE
+        # visite de cet ecran, meme sans toucher au Select) - meme
+        # diagnostic et meme correctif qu'omega-stress
+        # (interfaces/tui/screens/settings_screen.py) : un Select SANS
+        # `value=` passe au constructeur choisit lui-meme sa PREMIERE
+        # option et poste son evenement Changed pendant son PROPRE
+        # montage, AVANT que le on_mount() de cet ecran ne s'execute -
+        # un garde-fou pose dans on_mount() (`self.prevent(...)` ou un
+        # flag "pret") arrive donc toujours trop tard pour l'intercepter.
+        # En passant `value=` directement ICI, au constructeur, le
+        # Select n'a jamais besoin de choisir une option par defaut :
+        # aucun evenement Changed parasite ne peut se produire.
+        current_theme = self.app.theme
+        stored_profile = self._container.settings_repository.get(_RENDER_PROFILE_OVERRIDE_KEY, "")
         with VerticalScroll(classes="omega-panel"):
-            yield Static("REGLAGES", classes="omega-title")
+            yield Static(_("RÉGLAGES"), classes="omega-title")
 
-            yield Static("Theme", classes="omega-subtitle")
-            yield Select([(name, name) for name in TUI_THEMES], id="theme-select")
+            yield Static(_("Thème"), classes="omega-subtitle")
+            yield Select([(name, name) for name in TUI_THEMES], id="theme-select", allow_blank=False, value=current_theme)
 
-            yield Static("Profil de rendu (surcharge la detection automatique)", classes="omega-subtitle")
-            yield Select(_RENDER_PROFILE_CHOICES, value="", id="render-profile-select")
+            yield Static(_("Profil de rendu (surcharge la détection automatique)"), classes="omega-subtitle")
+            yield Select(_RENDER_PROFILE_CHOICES, id="render-profile-select", allow_blank=False, value=stored_profile)
 
-            yield Static("Diagnostics", classes="omega-subtitle")
+            yield LanguageSetting(self._container.settings_repository)
+
+            yield Static(_("Diagnostics"), classes="omega-subtitle")
             yield Static("", id="diagnostics-text")
 
-            yield Static("Reglages actuels", classes="omega-subtitle")
+            yield Static(_("Réglages actuels"), classes="omega-subtitle")
             yield Static("", id="settings-text")
             with Horizontal(classes="omega-actions"):
                 yield Input(placeholder="cle", id="config-key-input")
                 yield Input(placeholder="valeur", id="config-value-input")
                 with Container(classes="omega-btn-frame"):
-                    yield Button("Definir", id="config-set")
+                    yield Button(_("Définir"), id="config-set")
 
-            yield Static("Purge de l'historique", classes="omega-subtitle")
-            yield Static("0 = toutes les observations existantes (utile pour tester sans attendre)", classes="omega-hint")
+            yield Static(_("Purge de l'historique"), classes="omega-subtitle")
+            yield Static(_("0 = toutes les observations existantes (utile pour tester sans "
+                           "attendre)"), classes="omega-hint")
             with Horizontal(classes="omega-actions"):
-                yield Input(placeholder="anciennete en jours", id="cleanup-days-input")
+                yield Input(placeholder=_("ancienneté en jours"), id="cleanup-days-input")
                 with Container(classes="omega-btn-frame"):
-                    yield Button("Apercu", id="cleanup-preview")
+                    yield Button(_("Aperçu"), id="cleanup-preview")
                 with Container(classes="omega-btn-frame"):
-                    yield Button("Purger", id="cleanup-run", variant="error")
+                    yield Button(_("Purger"), id="cleanup-run", variant="error")
             yield Static("", id="cleanup-text", classes="omega-hint")
 
-            yield Static("Fichiers locaux", classes="omega-subtitle")
-            with Horizontal(classes="omega-actions"), Container(classes="omega-btn-frame"):
-                yield Button("Vider les captures d'ecran", id="clear-screenshots", variant="error")
-            with Horizontal(classes="omega-actions"), Container(classes="omega-btn-frame"):
-                yield Button("Vider les exports", id="clear-exports", variant="error")
+            yield Static(_("Fichiers locaux"), classes="omega-subtitle")
+            with Horizontal(classes="omega-actions"):
+                with Container(classes="omega-btn-frame"):
+                    yield Button(_("Vider les captures d'écran"), id="clear-screenshots", variant="error")
+                with Container(classes="omega-btn-frame"):
+                    yield Button(_("Vider les exports"), id="clear-exports", variant="error")
             yield Static("", id="clear-files-text", classes="omega-hint")
 
             with Horizontal(classes="omega-actions"), Container(classes="omega-btn-frame"):
-                yield Button("Retour", id="back")
+                yield Button(_("Retour"), id="back")
         yield Footer()
 
     def on_mount(self) -> None:
-        self.query_one("#theme-select", Select).value = self.app.theme
         self._refresh_diagnostics()
         self._refresh_settings()
 
@@ -106,11 +131,9 @@ class SettingsScreen(OmegaScreen):
             now=self._container.clock,
         )
         text = (
-            f"version : {report.app_version} | schema export : {report.schema_version}\n"
-            f"repertoire de donnees : {report.var_dir}\n"
-            f"traceroute disponible : {'oui' if report.traceroute_available else 'non'}\n"
-            f"base GeoIP ({report.geoip_status.provider}) : "
-            f"{'absente' if report.geoip_status.status is None else report.geoip_status.status.status}"
+            _("version : {app_version} | schéma export : {schema_version}\nrépertoire de "
+              "données : {var_dir}\ntraceroute disponible : {value}\nbase GeoIP ({provider}) : "
+              "{value2}").format(app_version=report.app_version, schema_version=report.schema_version, var_dir=report.var_dir, value=_("oui") if report.traceroute_available else _("non"), provider=report.geoip_status.provider, value2=_("absente") if report.geoip_status.status is None else report.geoip_status.status.status)
         )
         self.query_one("#diagnostics-text", Static).update(text)
 
@@ -130,7 +153,7 @@ class SettingsScreen(OmegaScreen):
                 settings_repository=self._container.settings_repository,
                 render_profile=RenderProfile(raw) if raw else None,
             )
-            self.app.notify("Profil de rendu applique au prochain demarrage.")
+            self.app.notify(_("Profil de rendu appliqué au prochain démarrage."))
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
         if event.button.id == "back":
@@ -155,18 +178,18 @@ class SettingsScreen(OmegaScreen):
         key = self.query_one("#config-key-input", Input).value.strip()
         value = self.query_one("#config-value-input", Input).value
         if not key:
-            self.app.notify("Saisissez une cle.", severity="warning")
+            self.app.notify(_("Saisissez une clé."), severity="warning")
             return
         self._container.settings_repository.set(key, value)
         self.query_one("#config-key-input", Input).value = ""
         self.query_one("#config-value-input", Input).value = ""
         self._refresh_settings()
-        self.app.notify(f"{key} = {value}")
+        self.app.notify(_("{key} = {value}").format(key=key, value=value))
 
     def _parsed_days(self) -> int | None:
         raw = self.query_one("#cleanup-days-input", Input).value.strip()
         if not raw.isdigit():
-            self.app.notify("Saisissez une anciennete en jours (entier).", severity="warning")
+            self.app.notify(_("Saisissez une ancienneté en jours (entier)."), severity="warning")
             return None
         return int(raw)
 
@@ -179,7 +202,8 @@ class SettingsScreen(OmegaScreen):
             older_than=timedelta(days=days),
             now=self._container.clock,
         )
-        self.query_one("#cleanup-text", Static).update(f"{preview.count} execution(s) seraient supprimee(s).")
+        self.query_one("#cleanup-text", Static).update(_("{count} exécution(s) seraient "
+                                                         "supprimée(s).").format(count=preview.count))
 
     def _confirm_cleanup(self) -> None:
         days = self._parsed_days()
@@ -187,8 +211,9 @@ class SettingsScreen(OmegaScreen):
             return
         self.app.push_screen(
             ConfirmScreen(
-                title="PURGER L'HISTORIQUE ?",
-                message=f"Supprime definitivement toutes les executions de plus de {days} jour(s).",
+                title=_("PURGER L'HISTORIQUE ?"),
+                message=_("Supprime définitivement toutes les exécutions de plus de {days} "
+                          "jour(s).").format(days=days),
             ),
             lambda confirmed: self._cleanup_if_confirmed(confirmed, days),
         )
@@ -203,13 +228,13 @@ class SettingsScreen(OmegaScreen):
             older_than=timedelta(days=days),
             now=self._container.clock,
         )
-        self.query_one("#cleanup-text", Static).update(f"{result.count} execution(s) supprimee(s).")
+        self.query_one("#cleanup-text", Static).update(_("{count} exécution(s) supprimée(s).").format(count=result.count))
 
     def _confirm_clear(self, label: str, directory: Path) -> None:
         self.app.push_screen(
             ConfirmScreen(
-                title=f"VIDER LES {label.upper()} ?",
-                message=f"Supprime definitivement tous les fichiers de {directory}.",
+                title=_("VIDER LES {upper} ?").format(upper=label.upper()),
+                message=_("Supprime définitivement tous les fichiers de {directory}.").format(directory=directory),
             ),
             lambda confirmed: self._clear_if_confirmed(confirmed, label, directory),
         )
@@ -218,4 +243,5 @@ class SettingsScreen(OmegaScreen):
         if not confirmed:
             return
         deleted = clear_directory(directory)
-        self.query_one("#clear-files-text", Static).update(f"{deleted} fichier(s) {label} supprime(s).")
+        self.query_one("#clear-files-text", Static).update(_("{deleted} fichier(s) {label} "
+                                                             "supprimé(s).").format(deleted=deleted, label=label))

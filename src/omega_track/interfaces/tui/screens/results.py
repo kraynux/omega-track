@@ -30,6 +30,7 @@ from omega_track.application.queries.get_identity_report import get_identity_rep
 from omega_track.domain.value_objects.identifiers import TrackRunId
 from omega_track.domain.value_objects.statuses import ModuleStatus
 from omega_track.interfaces.tui.screens._base import OmegaScreen
+from omega_track.shared.i18n import _
 
 if TYPE_CHECKING:
     from omega_track.app.container import DependencyContainer
@@ -39,7 +40,7 @@ if TYPE_CHECKING:
 
 def _finding_table(report: IdentityReport, prefix: str) -> DataTable[str]:
     table: DataTable[str] = DataTable()
-    table.add_columns("Type", "Valeur", "Confiance", "Source")
+    table.add_columns(_("Type"), _("Valeur"), _("Confiance"), _("Source"))
     for finding in report.findings_by_type_prefix(prefix):
         payload = ", ".join(f"{k}={v}" for k, v in finding.payload.items())
         table.add_row(finding.finding_type, payload, finding.confidence.value, finding.source_name)
@@ -55,11 +56,11 @@ def _module_status_note(track_run: TrackRun | None, module_name: str) -> str | N
         return None
     module_run: ModuleRun | None = track_run.module_runs.get(module_name)
     if module_run is None:
-        return f"Module '{module_name}' non active dans le profil de cette observation."
+        return _("Module '{module_name}' non activé dans le profil de cette observation.").format(module_name=module_name)
     if module_run.status == ModuleStatus.SKIPPED:
-        return f"Module '{module_name}' non execute : {module_run.error_detail or 'raison non precisee'}."
+        return _("Module '{module_name}' non exécuté : {value}.").format(module_name=module_name, value=_(module_run.error_detail) if module_run.error_detail else _("raison non précisée"))
     if module_run.status == ModuleStatus.FAILED:
-        detail = module_run.error_detail or module_run.error_code or "raison non precisee"
+        detail = _(module_run.error_detail) if module_run.error_detail else module_run.error_code or _("raison non précisée")
         # "en echec" = la source n'a donne AUCUNE reponse exploitable
         # (timeout, erreur HTTP, reseau injoignable...) - jamais un
         # blocage/chargement indefini de l'application elle-meme :
@@ -67,11 +68,11 @@ def _module_status_note(track_run: TrackRun | None, module_name: str) -> str | N
         # moment ou ce message s'affiche (retour utilisateur Phase 12 :
         # demande d'explication sur ce que signifie ce statut).
         return (
-            f"Module '{module_name}' en echec ({detail}) - la source n'a donne aucune reponse "
-            f"exploitable ; ceci ne bloque jamais le reste de l'observation, deja terminee."
+            _("Module '{module_name}' en échec ({detail}) - la source n'a donné aucune réponse "
+              "exploitable ; ceci ne bloque jamais le reste de l'observation, déjà terminée.").format(module_name=module_name, detail=detail)
         )
     if module_run.status == ModuleStatus.CANCELLED:
-        return f"Module '{module_name}' annule avant d'avoir termine."
+        return _("Module '{module_name}' annulé avant d'avoir terminé.").format(module_name=module_name)
     return None
 
 
@@ -99,22 +100,22 @@ class ResultsScreen(OmegaScreen):
         report = self._report
         yield Header()
         yield Static(
-            f"Cible : {report.target_value}  |  Run : {report.track_run_id}  |  "
-            f"{len(report.findings)} finding(s), {len(report.relations)} relation(s), {len(report.paths)} chemin(s)",
+            _("Cible : {target_value}  |  Run : {track_run_id}  |  {count} finding(s), "
+              "{count2} relation(s), {count3} chemin(s)").format(target_value=report.target_value, track_run_id=report.track_run_id, count=len(report.findings), count2=len(report.relations), count3=len(report.paths)),
             classes="omega-subtitle",
         )
         with TabbedContent():
-            with TabPane("Identite", id="tab-identity"):
+            with TabPane(_("Identité"), id="tab-identity"):
                 note = self._module_note_widget("rdap")
                 if note is not None:
                     yield note
                 yield _finding_table(report, "identity.")
-            with TabPane("DNS", id="tab-dns"):
+            with TabPane(_("DNS"), id="tab-dns"):
                 note = self._module_note_widget("dns")
                 if note is not None:
                     yield note
                 yield _finding_table(report, "dns.")
-            with TabPane("Reseau / ASN", id="tab-network"):
+            with TabPane(_("Réseau / ASN"), id="tab-network"):
                 note = self._module_note_widget("bgp")
                 if note is not None:
                     yield note
@@ -124,34 +125,34 @@ class ResultsScreen(OmegaScreen):
                 if note is not None:
                     yield note
                 yield self._neotrace_table()
-            with TabPane("Certificats", id="tab-certificates"):
+            with TabPane(_("Certificats"), id="tab-certificates"):
                 note = self._module_note_widget("certificate_transparency")
                 if note is not None:
                     yield note
                 yield _finding_table(report, "certificate.")
-            with TabPane("Archives", id="tab-archives"):
+            with TabPane(_("Archives"), id="tab-archives"):
                 note = self._module_note_widget("archives")
                 if note is not None:
                     yield note
                 yield _finding_table(report, "history.")
-            with TabPane("Relations", id="tab-relations"):
+            with TabPane(_("Relations"), id="tab-relations"):
                 yield self._relations_table()
-                yield Static("Graphe Mermaid (meme source que l'export .mmd)", classes="omega-hint")
+                yield Static(_("Graphe Mermaid (même source que l'export .mmd)"), classes="omega-hint")
                 yield TextArea(build_mermaid_graph(report), read_only=True, id="mermaid-source")
-            with TabPane("Diagnostics", id="tab-diagnostics"):
+            with TabPane(_("Diagnostics"), id="tab-diagnostics"):
                 yield _finding_table(report, "collection.")
         with Horizontal(classes="omega-actions"), Container(classes="omega-btn-frame"):
-            yield Button("Retour", id="back")
+            yield Button(_("Retour"), id="back")
         yield Footer()
 
     def _neotrace_table(self) -> VerticalScroll:
         if not self._report.paths:
-            return VerticalScroll(Static("Aucun chemin reseau collecte."))
+            return VerticalScroll(Static(_("Aucun chemin réseau collecté.")))
 
         children: list[Static | DataTable[str]] = []
         for path in self._report.paths:
             table: DataTable[str] = DataTable()
-            table.add_columns("Sequence", "IP", "Hote", "RTT (ms)", "ASN", "Pays")
+            table.add_columns(_("Séquence"), _("IP"), _("Hôte"), _("RTT (ms)"), _("ASN"), _("Pays"))
             for hop in path.hops:
                 table.add_row(
                     str(hop.sequence),
@@ -161,13 +162,13 @@ class ResultsScreen(OmegaScreen):
                     str(hop.asn.number) if hop.asn else "-",
                     (hop.geo.country if hop.geo else None) or "-",
                 )
-            children.append(Static(f"{path.target_ip} ({path.protocol})", classes="omega-subtitle"))
+            children.append(Static(_("{target_ip} ({protocol})").format(target_ip=path.target_ip, protocol=path.protocol), classes="omega-subtitle"))
             children.append(table)
         return VerticalScroll(*children)
 
     def _relations_table(self) -> DataTable[str]:
         table: DataTable[str] = DataTable()
-        table.add_columns("Source", "Cible", "Type", "Confiance")
+        table.add_columns(_("Source"), _("Cible"), _("Type"), _("Confiance"))
         for relation in self._report.relations:
             table.add_row(
                 relation.source_entity_ref,

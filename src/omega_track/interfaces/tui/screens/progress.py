@@ -31,6 +31,7 @@ from omega_track.core.constants import LOGGER_NAME
 from omega_track.domain.value_objects.statuses import TrackStatus
 from omega_track.interfaces.tui.screens.results import ResultsScreen
 from omega_track.interfaces.tui.widgets.progress_panel import ProgressPanel
+from omega_track.shared.i18n import _, log_message
 
 if TYPE_CHECKING:
     from omega_track.app.container import DependencyContainer
@@ -46,7 +47,8 @@ class _RelayHandler(logging.Handler):
         self._callback = callback
 
     def emit(self, record: logging.LogRecord) -> None:
-        self._callback(record.getMessage())
+        # Plan i18n R2 : le fichier journal reste en francais, l'ecran retraduit la ligne.
+        self._callback(log_message(record.msg, record.args))
 
 
 class ProgressScreen(Screen[None]):
@@ -78,7 +80,7 @@ class ProgressScreen(Screen[None]):
         with Middle():
             yield ProgressPanel(message=self._heading)
             with Center(), Horizontal(classes="omega-actions"), Container(classes="omega-btn-frame"):
-                yield Button("Annuler", id="cancel", variant="error")
+                yield Button(_("Annuler"), id="cancel", variant="error")
 
     def on_mount(self) -> None:
         self.run_worker(self._run_track(), exclusive=True)
@@ -88,7 +90,7 @@ class ProgressScreen(Screen[None]):
             self._cancel_requested = True
             self._token.cancel()
             self.query_one("#cancel", Button).disabled = True
-            self.app.notify("Annulation demandee - en attente de la fin de la phase en cours.")
+            self.app.notify(_("Annulation demandée - en attente de la fin de la phase en cours."))
 
     async def _run_track(self) -> None:
         logger = logging.getLogger(LOGGER_NAME)
@@ -105,14 +107,14 @@ class ProgressScreen(Screen[None]):
             # signale par l'utilisateur : spinner tournant sans fin,
             # obligeant a quitter l'application) - toujours notifier et
             # revenir a l'ecran precedent, jamais rester bloque ici.
-            self.app.notify(str(exc) or type(exc).__name__, title="Observation echouee", severity="error", timeout=10)
+            self.app.notify(str(exc) or type(exc).__name__, title=_("Observation échouée"), severity="error", timeout=10)
             self.dismiss()
             return
         finally:
             logger.removeHandler(handler)
 
         if track_run.status == TrackStatus.CANCELLED:
-            self.app.notify("Observation annulee.", title="Annule")
+            self.app.notify(_("Observation annulée."), title=_("Annulé"))
             self.dismiss()
             return
 

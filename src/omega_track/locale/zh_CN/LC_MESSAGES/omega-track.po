@@ -1,0 +1,1129 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: omega-track\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Omega-Status: testing\n"
+
+#: src/omega_track/application/commands/targets/create_target.py:31
+#, python-brace-format
+msgid "cible déjà existante : {value}"
+msgstr "目标已存在：{value}"
+
+#: src/omega_track/application/exceptions.py:21 src/omega_track/infrastructure/geoip/database_updater.py:107
+msgid "fournisseur GeoIP inconnu : {provider!r}"
+msgstr "未知的 GeoIP 提供商：{provider!r}"
+
+#: src/omega_track/application/exceptions.py:31
+msgid "clé de licence MaxMind absente ou vide"
+msgstr "MaxMind 许可证密钥缺失或为空"
+
+#: src/omega_track/application/exceptions.py:64
+msgid "format d'export inconnu : {export_format!r}"
+msgstr "未知的导出格式：{export_format!r}"
+
+#: src/omega_track/application/exceptions.py:72
+msgid "cible introuvable : {target_id!r}"
+msgstr "未找到目标：{target_id!r}"
+
+#: src/omega_track/application/exceptions.py:82
+msgid "TrackRun introuvable : {track_run_id!r}"
+msgstr "未找到 TrackRun：{track_run_id!r}"
+
+#: src/omega_track/application/exceptions.py:96
+#, python-brace-format
+msgid "source indisponible : {source}"
+msgstr "来源不可用：{source}"
+
+#: src/omega_track/application/exceptions.py:109
+msgid "source de réputation inconnue : {source_name!r}"
+msgstr "未知的信誉来源：{source_name!r}"
+
+#: src/omega_track/application/exceptions.py:121
+msgid "clé API absente ou vide pour {source_name!r}"
+msgstr "{source_name!r} 的 API 密钥缺失或为空"
+
+#: src/omega_track/application/exceptions.py:134
+#, python-brace-format
+msgid "quota dépassé : {source}"
+msgstr "超出配额：{source}"
+
+#: src/omega_track/application/guards/authorization_guard.py:24
+#, python-brace-format
+msgid "cible non autorisée : {value} (épinglez-la ou passez --authorize)"
+msgstr "目标未获授权：{value}（请固定它或使用 --authorize）"
+
+#: src/omega_track/application/orchestrators/mermaid_graph_builder.py:66
+msgid "aucun saut collecté"
+msgstr "未收集到任何跳点"
+
+#: src/omega_track/application/orchestrators/phases/extended_modules_phase.py:101
+msgid "cible IP : Certificate Transparency non applicable"
+msgstr "IP 目标：Certificate Transparency 不适用"
+
+#: src/omega_track/application/orchestrators/phases/extended_modules_phase.py:105
+msgid "aucun collecteur Certificate Transparency configuré"
+msgstr "未配置 Certificate Transparency 收集器"
+
+#: src/omega_track/application/orchestrators/phases/extended_modules_phase.py:109 src/omega_track/application/orchestrators/phases/extended_modules_phase.py:145 src/omega_track/application/orchestrators/phases/extended_modules_phase.py:181 src/omega_track/application/orchestrators/phases/identity_phase.py:114 src/omega_track/application/orchestrators/phases/identity_phase.py:152 src/omega_track/application/orchestrators/phases/identity_phase.py:184 src/omega_track/application/orchestrators/phases/network_path_phase.py:60 src/omega_track/application/orchestrators/phases/reputation_phase.py:121
+msgid "annulé avant démarrage"
+msgstr "启动前已取消"
+
+#: src/omega_track/application/orchestrators/phases/extended_modules_phase.py:139
+msgid "cible IP : archives web non applicables"
+msgstr "IP 目标：网页存档不适用"
+
+#: src/omega_track/application/orchestrators/phases/extended_modules_phase.py:142
+msgid "aucun collecteur d'archives configuré"
+msgstr "未配置存档收集器"
+
+#: src/omega_track/application/orchestrators/phases/extended_modules_phase.py:175
+msgid "aucune IP disponible pour BGP"
+msgstr "没有可用于 BGP 的 IP"
+
+#: src/omega_track/application/orchestrators/phases/extended_modules_phase.py:178
+msgid "aucun collecteur BGP configuré"
+msgstr "未配置 BGP 收集器"
+
+#: src/omega_track/application/orchestrators/phases/extended_modules_phase.py:210
+msgid "au moins une requête BGP indisponible"
+msgstr "至少有一个 BGP 查询不可用"
+
+#: src/omega_track/application/orchestrators/phases/extended_modules_phase.py:215
+msgid "aucune réponse BGP disponible"
+msgstr "没有可用的 BGP 响应"
+
+#: src/omega_track/application/orchestrators/phases/identity_phase.py:111
+msgid "cible IP : résolution DNS non applicable"
+msgstr "IP 目标：DNS 解析不适用"
+
+#: src/omega_track/application/orchestrators/phases/identity_phase.py:149
+msgid "aucune IP résolue pour effectuer un PTR"
+msgstr "没有已解析的 IP 可用于执行 PTR"
+
+#: src/omega_track/application/orchestrators/phases/identity_phase.py:223
+msgid "au moins une requête RDAP indisponible"
+msgstr "至少有一个 RDAP 查询不可用"
+
+#: src/omega_track/application/orchestrators/phases/identity_phase.py:228
+msgid "aucune réponse RDAP disponible"
+msgstr "没有可用的 RDAP 响应"
+
+#: src/omega_track/application/orchestrators/phases/network_path_phase.py:57
+msgid "aucune IP disponible pour NeoTrace"
+msgstr "没有可用于 NeoTrace 的 IP"
+
+#: src/omega_track/application/orchestrators/phases/network_path_phase.py:63
+msgid "traceroute indisponible (binaire absent ou capacité insuffisante)"
+msgstr "traceroute 不可用（缺少程序或权限不足）"
+
+#: src/omega_track/application/orchestrators/phases/network_path_phase.py:94
+msgid "au moins une trace NeoTrace indisponible"
+msgstr "至少有一条 NeoTrace 路由不可用"
+
+#: src/omega_track/application/orchestrators/phases/network_path_phase.py:99
+msgid "aucune trace NeoTrace disponible"
+msgstr "没有可用的 NeoTrace 路由"
+
+#: src/omega_track/application/orchestrators/phases/reputation_phase.py:115
+#, python-brace-format
+msgid "cible IP : {source_name} non applicable"
+msgstr "IP 目标：{source_name} 不适用"
+
+#: src/omega_track/application/orchestrators/phases/reputation_phase.py:118
+#, python-brace-format
+msgid "aucun collecteur {source_name} configuré"
+msgstr "未配置 {source_name} 收集器"
+
+#: src/omega_track/application/orchestrators/phases/reputation_phase.py:129
+#, python-brace-format
+msgid "clé API {source_name} non configurée"
+msgstr "未配置 {source_name} API 密钥"
+
+#: src/omega_track/application/orchestrators/phases/reputation_phase.py:136
+#, python-brace-format
+msgid "quota {source_name} dépassé (en attente de réessai)"
+msgstr "{source_name} 超出配额（等待重试）"
+
+#: src/omega_track/application/orchestrators/track_orchestrator.py:175
+msgid "module non encore implémenté"
+msgstr "模块尚未实现"
+
+#: src/omega_track/application/orchestrators/track_orchestrator.py:187 src/omega_track/application/orchestrators/track_orchestrator.py:204 src/omega_track/application/orchestrators/track_orchestrator.py:220 src/omega_track/application/orchestrators/track_orchestrator.py:237
+msgid "budget de temps global dépassé"
+msgstr "超出全局时间预算"
+
+#: src/omega_track/application/orchestrators/track_orchestrator.py:200
+msgid "identité terminée"
+msgstr "身份识别已完成"
+
+#: src/omega_track/application/orchestrators/track_orchestrator.py:216
+msgid "chemin réseau terminé"
+msgstr "网络路径已完成"
+
+#: src/omega_track/application/orchestrators/track_orchestrator.py:233
+msgid "modules étendus terminés"
+msgstr "扩展模块已完成"
+
+#: src/omega_track/application/orchestrators/track_orchestrator.py:250
+msgid "sources à clé terminées"
+msgstr "密钥来源已完成"
+
+#: src/omega_track/application/orchestrators/track_orchestrator.py:295
+msgid "terminé"
+msgstr "已完成"
+
+#: src/omega_track/application/queries/get_source_disclosure.py:36
+msgid "Clé API gratuite disponible avec un compte VirusTotal (Google). Quota de l'ordre de quelques requêtes/minute et quelques centaines/jour pour une clé gratuite - à revalider contre la documentation officielle, VirusTotal ajuste régulièrement ces seuils."
+msgstr "注册 VirusTotal（Google）账户即可获得免费 API 密钥。免费密钥的配额约为每分钟几个请求、每天几百个——请以官方文档为准，VirusTotal 会定期调整这些阈值。"
+
+#: src/omega_track/application/queries/get_source_disclosure.py:42
+msgid "Le domaine ou l'IP observé par ce TrackRun est transmis à VirusTotal (Google). Selon le type de requête, cette donnée peut être partagée avec l'écosystème VirusTotal (autres utilisateurs/partenaires du service)."
+msgstr "此 TrackRun 观察的域名或 IP 会被发送给 VirusTotal（Google）。根据请求类型，这些数据可能会在 VirusTotal 生态系统（该服务的其他用户/合作伙伴）中共享。"
+
+#: src/omega_track/application/queries/get_source_disclosure.py:46 src/omega_track/application/queries/get_source_disclosure.py:57
+msgid "Voir docs/PRIVACY.md - la clé est stockée hors de la base de résultats."
+msgstr "参见 docs/PRIVACY.md——密钥存储在结果数据库之外。"
+
+#: src/omega_track/application/queries/get_source_disclosure.py:52
+msgid "Source PAYANTE depuis le changement de politique HIBP de 2022 - plus d'offre d'API gratuite pour les recherches par domaine/breach. Vérifier le plan tarifaire actuel avant de configurer une clé."
+msgstr "自 2022 年 HIBP 政策变更后为付费来源——不再提供按域名/泄露事件查询的免费 API。配置密钥前请核实当前的价格方案。"
+
+#: src/omega_track/application/queries/get_source_disclosure.py:56
+msgid "Le domaine observé par ce TrackRun est transmis à Have I Been Pwned."
+msgstr "此 TrackRun 观察的域名会被发送给 Have I Been Pwned。"
+
+#: src/omega_track/domain/entities/track_profile.py:85
+#, python-brace-format
+msgid "module(s) inconnu(s) : {value}"
+msgstr "未知模块：{value}"
+
+#: src/omega_track/domain/exceptions/track.py:17
+msgid "transition {current!r} -> {attempted!r} non autorisée"
+msgstr "不允许从 {current!r} 转换到 {attempted!r}"
+
+#: src/omega_track/domain/services/target_validator.py:22
+msgid "alias trop long (max {MAX_ALIAS_LENGTH}) : {alias!r}"
+msgstr "别名过长（最多 {MAX_ALIAS_LENGTH}）：{alias!r}"
+
+#: src/omega_track/domain/services/target_validator.py:29
+msgid "tag vide"
+msgstr "标签为空"
+
+#: src/omega_track/domain/services/target_validator.py:31
+msgid "tag trop long (max {MAX_TAG_LENGTH}) : {tag!r}"
+msgstr "标签过长（最多 {MAX_TAG_LENGTH}）：{tag!r}"
+
+#: src/omega_track/domain/value_objects/asn.py:22
+#, python-brace-format
+msgid "ASN hors plage 32 bits : {number}"
+msgstr "ASN 超出 32 位范围：{number}"
+
+#: src/omega_track/domain/value_objects/domain_name.py:35
+msgid "nom de domaine vide"
+msgstr "域名为空"
+
+#: src/omega_track/domain/value_objects/domain_name.py:37
+msgid "nom de domaine trop long : {raw!r}"
+msgstr "域名过长：{raw!r}"
+
+#: src/omega_track/domain/value_objects/domain_name.py:41
+msgid "nom de domaine avec un label vide : {raw!r}"
+msgstr "域名包含空标签：{raw!r}"
+
+#: src/omega_track/domain/value_objects/domain_name.py:54
+msgid "label IDNA invalide dans {original_raw!r} : {label!r}"
+msgstr "{original_raw!r} 中的 IDNA 标签无效：{label!r}"
+
+#: src/omega_track/domain/value_objects/domain_name.py:58
+msgid "label invalide dans {original_raw!r} : {label!r}"
+msgstr "{original_raw!r} 中的标签无效：{label!r}"
+
+#: src/omega_track/domain/value_objects/ip_address.py:29
+msgid "adresse IP invalide : {raw!r}"
+msgstr "IP 地址无效：{raw!r}"
+
+#: src/omega_track/domain/value_objects/target_value.py:26
+msgid "cible vide"
+msgstr "目标为空"
+
+#: src/omega_track/infrastructure/collectors/archives/wayback_collector.py:53
+msgid "en-tête CDX inattendu"
+msgstr "意外的 CDX 头"
+
+#: src/omega_track/infrastructure/collectors/archives/wayback_collector.py:87 src/omega_track/infrastructure/collectors/bgp/ripe_stat_collector.py:65 src/omega_track/infrastructure/collectors/certificates/crtsh_collector.py:123 src/omega_track/infrastructure/collectors/rdap/http_rdap_collector.py:95 src/omega_track/infrastructure/collectors/reputation/hibp_collector.py:80 src/omega_track/infrastructure/collectors/reputation/virustotal_collector.py:87
+msgid "réponse JSON invalide"
+msgstr "JSON 响应无效"
+
+#: src/omega_track/infrastructure/collectors/archives/wayback_collector.py:90 src/omega_track/infrastructure/collectors/bgp/ripe_stat_collector.py:68 src/omega_track/infrastructure/collectors/certificates/crtsh_collector.py:126 src/omega_track/infrastructure/collectors/reputation/hibp_collector.py:83 src/omega_track/infrastructure/collectors/reputation/virustotal_collector.py:90
+msgid "forme de réponse inattendue"
+msgstr "意外的响应格式"
+
+#: src/omega_track/infrastructure/collectors/certificates/crtsh_collector.py:118 src/omega_track/infrastructure/collectors/reputation/hibp_collector.py:75 src/omega_track/infrastructure/collectors/reputation/virustotal_collector.py:82
+#, python-brace-format
+msgid "erreur HTTP ({status_code})"
+msgstr "HTTP 错误（{status_code}）"
+
+#: src/omega_track/infrastructure/collectors/network/subprocess_traceroute_collector.py:77
+msgid "aucun binaire disponible"
+msgstr "没有可用的程序"
+
+#: src/omega_track/infrastructure/collectors/network/subprocess_traceroute_collector.py:87
+#, python-brace-format
+msgid "délai dépassé ({timeout:.0f}s)"
+msgstr "超时（{timeout:.0f}s）"
+
+#: src/omega_track/infrastructure/collectors/network/subprocess_traceroute_collector.py:92
+msgid "permissions insuffisantes"
+msgstr "权限不足"
+
+#: src/omega_track/infrastructure/collectors/rdap/http_rdap_collector.py:88
+msgid "limite de requêtes atteinte (429)"
+msgstr "已达到请求限制（429）"
+
+#: src/omega_track/infrastructure/collectors/rdap/http_rdap_collector.py:90
+#, python-brace-format
+msgid "erreur serveur ({status_code})"
+msgstr "服务器错误（{status_code}）"
+
+#: src/omega_track/infrastructure/geoip/database_updater.py:63
+msgid "échec de téléchargement pour {provider!r}"
+msgstr "{provider!r} 下载失败"
+
+#: src/omega_track/infrastructure/geoip/database_updater.py:68
+msgid "archive invalide pour {provider!r}"
+msgstr "{provider!r} 的存档无效"
+
+#: src/omega_track/infrastructure/geoip/database_updater.py:76
+msgid "base téléchargée invalide pour {provider!r}"
+msgstr "{provider!r} 下载的数据库无效"
+
+#: src/omega_track/infrastructure/geoip/database_updater.py:116
+msgid "aucun fichier .mmdb trouvé dans l'archive"
+msgstr "存档中未找到 .mmdb 文件"
+
+#: src/omega_track/infrastructure/geoip/database_updater.py:119
+msgid "membre .mmdb illisible dans l'archive"
+msgstr "存档中的 .mmdb 成员无法读取"
+
+#: src/omega_track/infrastructure/repositories/sqlite/export_repository.py:41
+msgid "échec de sauvegarde de l'export {id!r}"
+msgstr "保存导出 {id!r} 失败"
+
+#: src/omega_track/infrastructure/repositories/sqlite/finding_repository.py:90
+msgid "échec de sauvegarde des findings"
+msgstr "保存发现项失败"
+
+#: src/omega_track/infrastructure/repositories/sqlite/finding_repository.py:117
+msgid "échec de sauvegarde des relations"
+msgstr "保存关系失败"
+
+#: src/omega_track/infrastructure/repositories/sqlite/finding_repository.py:137
+msgid "échec de suppression des findings/relations"
+msgstr "删除发现项/关系失败"
+
+#: src/omega_track/infrastructure/repositories/sqlite/geoip_database_repository.py:47
+msgid "échec de sauvegarde du statut GeoIP {provider!r}"
+msgstr "保存 GeoIP 状态 {provider!r} 失败"
+
+#: src/omega_track/infrastructure/repositories/sqlite/target_repository.py:61
+msgid "échec de sauvegarde de la cible {id!r}"
+msgstr "保存目标 {id!r} 失败"
+
+#: src/omega_track/infrastructure/repositories/sqlite/track_profile_repository.py:50
+msgid "échec de sauvegarde du profil {id!r}"
+msgstr "保存配置文件 {id!r} 失败"
+
+#: src/omega_track/infrastructure/repositories/sqlite/track_run_repository.py:84
+msgid "échec de sauvegarde du TrackRun {id!r}"
+msgstr "保存 TrackRun {id!r} 失败"
+
+#: src/omega_track/interfaces/tui/app.py:44
+msgid "🛰 OMEGA-TRACK"
+msgstr "🛰 OMEGA-TRACK"
+
+#: src/omega_track/interfaces/tui/app.py:147
+msgid "Ajouter une cible"
+msgstr "添加目标"
+
+#: src/omega_track/interfaces/tui/app.py:147
+msgid "Ouvrir l'écran Cibles"
+msgstr "打开目标界面"
+
+#: src/omega_track/interfaces/tui/app.py:148
+msgid "Lancer une observation"
+msgstr "启动观察"
+
+#: src/omega_track/interfaces/tui/app.py:148
+msgid "Ouvrir l'écran Tracker"
+msgstr "打开 Tracker 界面"
+
+#: src/omega_track/interfaces/tui/app.py:149
+msgid "Ouvrir l'historique"
+msgstr "打开历史"
+
+#: src/omega_track/interfaces/tui/app.py:149
+msgid "Ouvrir l'écran Historique"
+msgstr "打开历史界面"
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:100
+msgid "DASHBOARD"
+msgstr "仪表盘"
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:105
+msgid "Dernière activité"
+msgstr "最近活动"
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:108
+msgid "Observations par statut"
+msgstr "按状态统计的观察"
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:111
+msgid "Fiabilité par module (sur l'historique complet)"
+msgstr "各模块的可靠性（基于完整历史）"
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:114
+msgid "Typologie des derniers findings"
+msgstr "最近发现项的类型"
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:120 src/omega_track/interfaces/tui/screens/home.py:36
+msgid "Sources à clé"
+msgstr "密钥来源"
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:125
+msgid "Voir l'historique complet"
+msgstr "查看完整历史"
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:149
+#, python-brace-format
+msgid ""
+"{count} cible(s) enregistrée(s) ({ip_count} IP, {domain_count} domaine(s)), {pinned_count} épinglée(s) (autorisées durablement)\n"
+"{never_scanned} cible(s) jamais observée(s)"
+msgstr ""
+"已登记 {count} 个目标（{ip_count} 个 IP，{domain_count} 个域名），{pinned_count} 个已固定（长期授权）\n"
+"{never_scanned} 个目标从未被观察"
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:156
+msgid "Aucune observation pour le moment."
+msgstr "暂无观察。"
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:178
+msgid "(aucune observation)"
+msgstr "（无观察）"
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:179
+#, python-brace-format
+msgid ""
+"{count} observation(s) au total\n"
+"{text}"
+msgstr ""
+"共 {count} 次观察\n"
+"{text}"
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:193
+#, python-brace-format
+msgid "{module_name:<24} jamais exécuté"
+msgstr "{module_name:<24} 从未执行"
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:198
+#, python-brace-format
+msgid "{module_name:<24} [{color}]{rate:>3}%[/{color}] de succès  ({attempted} tentative(s))"
+msgstr "{module_name:<24} [{color}]{rate:>3}%[/{color}] 成功率  （{attempted} 次尝试）"
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:213
+msgid "(aucun finding sur les observations récentes)"
+msgstr "（最近的观察中没有发现项）"
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:219
+#, python-brace-format
+msgid "sur les {count} observation(s) terminée(s) les plus récentes\n"
+msgstr "基于最近 {count} 次已完成的观察\n"
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:229 src/omega_track/interfaces/tui/screens/settings_screen.py:136 src/omega_track/interfaces/tui/screens/source_configuration.py:85
+msgid "absente"
+msgstr "缺失"
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:230
+#, python-brace-format
+msgid "fournisseur actif : {provider} — base : {geoip_text}"
+msgstr "当前提供商：{provider} — 数据库：{geoip_text}"
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:243
+#, python-brace-format
+msgid "{source_name:<12} [grey62]absente[/grey62]"
+msgstr "{source_name:<12} [grey62]缺失[/grey62]"
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:246
+#, python-brace-format
+msgid "{source_name:<12} [yellow]en pause (quota) jusqu'à {until}[/yellow]"
+msgstr "{source_name:<12} [yellow]暂停（配额）至 {until}[/yellow]"
+
+#: src/omega_track/interfaces/tui/screens/dashboard.py:249
+#, python-brace-format
+msgid "{source_name:<12} [green]configurée[/green]"
+msgstr "{source_name:<12} [green]已配置[/green]"
+
+#: src/omega_track/interfaces/tui/screens/geoip_configuration.py:56
+msgid "GEOIP"
+msgstr "GEOIP"
+
+#: src/omega_track/interfaces/tui/screens/geoip_configuration.py:59
+msgid "Fournisseur"
+msgstr "提供商"
+
+#: src/omega_track/interfaces/tui/screens/geoip_configuration.py:64
+msgid "Clé de licence MaxMind (optionnel, requise pour le fournisseur maxmind)"
+msgstr "MaxMind 许可证密钥（可选，maxmind 提供商必需）"
+
+#: src/omega_track/interfaces/tui/screens/geoip_configuration.py:66
+msgid "clé de licence"
+msgstr "许可证密钥"
+
+#: src/omega_track/interfaces/tui/screens/geoip_configuration.py:70 src/omega_track/interfaces/tui/screens/source_configuration.py:53
+msgid "Enregistrer la clé"
+msgstr "保存密钥"
+
+#: src/omega_track/interfaces/tui/screens/geoip_configuration.py:72
+msgid "Mettre à jour la base"
+msgstr "更新数据库"
+
+#: src/omega_track/interfaces/tui/screens/geoip_configuration.py:89
+#, python-brace-format
+msgid "base GeoIP ({provider}) : absente"
+msgstr "GeoIP 数据库（{provider}）：缺失"
+
+#: src/omega_track/interfaces/tui/screens/geoip_configuration.py:92
+#, python-brace-format
+msgid "base GeoIP ({provider}) : {status}{stale} - {local_path}"
+msgstr "GeoIP 数据库（{provider}）：{status}{stale} - {local_path}"
+
+#: src/omega_track/interfaces/tui/screens/geoip_configuration.py:123
+msgid "Clé de licence enregistrée."
+msgstr "许可证密钥已保存。"
+
+#: src/omega_track/interfaces/tui/screens/geoip_configuration.py:128
+msgid "Téléchargement en cours..."
+msgstr "正在下载..."
+
+#: src/omega_track/interfaces/tui/screens/geoip_configuration.py:149
+msgid "Clé de licence MaxMind absente - renseignez-la ci-dessus avant de mettre à jour."
+msgstr "缺少 MaxMind 许可证密钥——请先在上方填写再更新。"
+
+#: src/omega_track/interfaces/tui/screens/geoip_configuration.py:157
+msgid "Base GeoIP mise à jour."
+msgstr "GeoIP 数据库已更新。"
+
+#: src/omega_track/interfaces/tui/screens/help_screen.py:32
+msgid "Enregistrer une IP ou un domaine, avec alias et tags. Épingler une cible l'autorise durablement (plus besoin de confirmation explicite sur ses futures observations)."
+msgstr "登记一个 IP 或域名，可附带别名和标签。固定目标即对其长期授权（以后观察时无需再明确确认）。"
+
+#: src/omega_track/interfaces/tui/screens/help_screen.py:38 src/omega_track/interfaces/tui/screens/home.py:33
+msgid "Tracker"
+msgstr "Tracker"
+
+#: src/omega_track/interfaces/tui/screens/help_screen.py:40
+msgid "Choisir une cible enregistrée, les modules de collecte à activer et lancer une observation (TrackRun). Une observation contre une cible non épinglée exige une confirmation explicite."
+msgstr "选择一个已登记的目标、要启用的收集模块，然后启动观察（TrackRun）。观察未固定的目标需要明确确认。"
+
+#: src/omega_track/interfaces/tui/screens/help_screen.py:46
+msgid "Résultats"
+msgstr "结果"
+
+#: src/omega_track/interfaces/tui/screens/help_screen.py:48
+msgid "Rapport d'identité complet d'une observation terminée : DNS/RDAP, chemin réseau (NeoTrace), certificats (Certificate Transparency), archives, ASN/BGP, relations corrélées entre entités."
+msgstr "已完成观察的完整身份报告：DNS/RDAP、网络路径（NeoTrace）、证书（Certificate Transparency）、存档、ASN/BGP、实体之间的关联关系。"
+
+#: src/omega_track/interfaces/tui/screens/help_screen.py:54
+msgid "Statuts d'un module (onglet Résultats)"
+msgstr "模块状态（结果选项卡）"
+
+#: src/omega_track/interfaces/tui/screens/help_screen.py:56
+msgid ""
+"Terminé : la source a répondu, données exploitables présentes.\n"
+"Partiel : au moins une réponse obtenue, mais pas toutes (ex. certains sauts NeoTrace sans réponse).\n"
+"Non activé : ce module n'était pas coché au lancement de l'observation.\n"
+"Non exécuté : désactivé par une condition (ex. cible IP pour un module qui n'a de sens que pour un domaine, clé API absente, quota en attente).\n"
+"En échec : la source a été interrogée mais n'a donné AUCUNE réponse exploitable (timeout, erreur du serveur distant, réseau injoignable) - ne signifie jamais que l'application est bloquée ou reste à charger : l'observation dans son ensemble s'est déjà terminée normalement, seul ce module précis n'a rien pu produire. Fréquent et normal pour RDAP sur certains registres/TLD (pas de réponse, service temporairement indisponible, cible sans enregistrement connu)."
+msgstr ""
+"已完成：来源已响应，存在可用数据。\n"
+"部分：至少获得一个响应，但并非全部（例如某些 NeoTrace 跳点无响应）。\n"
+"未启用：启动观察时未勾选此模块。\n"
+"未执行：因某个条件而停用（例如只对域名有意义的模块却遇到 IP 目标、缺少 API 密钥、等待配额）。\n"
+"失败：已查询来源，但没有得到任何可用响应（超时、远程服务器错误、网络不可达）——这绝不意味着应用卡住或仍在加载：整个观察已经正常结束，只是这个特定模块没有产出。对于某些注册机构/TLD 的 RDAP 来说，这很常见也很正常（无响应、服务暂时不可用、目标没有已知记录）。"
+
+#: src/omega_track/interfaces/tui/screens/help_screen.py:73
+msgid "Liste toutes les observations passées : filtrage par cible/statut/tag, rejeu contre la résolution actuelle, export du rapport."
+msgstr "列出所有历史观察：按目标/状态/标签筛选、按当前解析结果重放、导出报告。"
+
+#: src/omega_track/interfaces/tui/screens/help_screen.py:78
+msgid "GeoIP - comment l'obtenir"
+msgstr "GeoIP——如何获取"
+
+#: src/omega_track/interfaces/tui/screens/help_screen.py:80
+msgid ""
+"DB-IP (fournisseur par défaut) : gratuit, sans inscription - 'Mettre à jour la base' dans l'écran GeoIP suffit, rien à configurer.\n"
+"MaxMind (alternatif, optionnel) : créer un compte gratuit sur maxmind.com, puis dans 'Mon compte' -> 'Gérer les clés de licence' -> 'Générer une nouvelle clé de licence'. Coller cette clé dans l'écran GeoIP, choisir 'maxmind' comme fournisseur, puis 'Mettre à jour la base'."
+msgstr ""
+"DB-IP（默认提供商）：免费，无需注册——在 GeoIP 界面点击“更新数据库”即可，无需任何配置。\n"
+"MaxMind（备选，可选）：在 maxmind.com 创建免费账户，然后进入 'My Account' -> 'Manage License Keys' -> 'Generate new license key'。将该密钥粘贴到 GeoIP 界面，选择 'maxmind' 作为提供商，然后点击“更新数据库”。"
+
+#: src/omega_track/interfaces/tui/screens/help_screen.py:89
+msgid "Sources à clé - comment les obtenir"
+msgstr "密钥来源——如何获取"
+
+#: src/omega_track/interfaces/tui/screens/help_screen.py:91
+msgid ""
+"VirusTotal (gratuit avec compte) : créer un compte sur virustotal.com, puis dans son profil -> 'API key', copier la clé affichée. La coller dans l'écran 'Sources à clé' (choisir 'virustotal', champ Clé API). Quota limité pour une clé gratuite (quelques requêtes/minute).\n"
+"HIBP - Have I Been Pwned (PAYANT depuis 2022, plus d'offre gratuite) : nécessite un abonnement sur haveibeenpwned.com/API/Key avant de pouvoir obtenir une clé - jamais présenté comme gratuite dans cette application.\n"
+"Dans les deux cas : l'écran affiche toujours le détail (quota, données envoyées au fournisseur, confidentialité) avant d'enregistrer une clé. Sans clé configurée, le module correspondant est simplement ignoré (jamais une erreur bloquante pour le reste de l'observation)."
+msgstr ""
+"VirusTotal（注册账户即免费）：在 virustotal.com 创建账户，然后在个人资料 -> 'API key' 中复制显示的密钥。将其粘贴到“密钥来源”界面（选择 'virustotal'，API 密钥字段）。免费密钥配额有限（每分钟几个请求）。\n"
+"HIBP - Have I Been Pwned（自 2022 年起付费，不再有免费方案）：需要先在 haveibeenpwned.com/API/Key 订阅才能获得密钥——本应用从不将其描述为免费。\n"
+"两种情况下：保存密钥前，界面始终会显示详细信息（配额、发送给提供商的数据、隐私）。未配置密钥时，对应模块会被直接跳过（绝不会成为阻止其余观察的错误）。"
+
+#: src/omega_track/interfaces/tui/screens/help_screen.py:106
+msgid "Omega-track observe des cibles explicitement enregistrées et autorisées (épinglées ou confirmation explicite) : aucune découverte ni dérive automatique vers d'autres cibles. Le score de confiance n'est jamais un verdict de sécurité."
+msgstr "Omega-track 观察已明确登记并授权的目标（已固定或经明确确认）：不进行任何自动发现或扩展到其他目标。置信度分数绝不是安全结论。"
+
+#: src/omega_track/interfaces/tui/screens/help_screen.py:127
+msgid "Modules de collecte connus"
+msgstr "已知的收集模块"
+
+#: src/omega_track/interfaces/tui/screens/history.py:40
+msgid "(tous)"
+msgstr "（全部）"
+
+#: src/omega_track/interfaces/tui/screens/history.py:61
+msgid "Filtrer par tag (optionnel)"
+msgstr "按标签筛选（可选）"
+
+#: src/omega_track/interfaces/tui/screens/history.py:66
+msgid "Voir le rapport"
+msgstr "查看报告"
+
+#: src/omega_track/interfaces/tui/screens/history.py:88
+msgid "Lancé le"
+msgstr "启动时间"
+
+#: src/omega_track/interfaces/tui/screens/history.py:88
+msgid "Run"
+msgstr "运行"
+
+#: src/omega_track/interfaces/tui/screens/history.py:147
+msgid "Exécution introuvable."
+msgstr "未找到执行记录。"
+
+#: src/omega_track/interfaces/tui/screens/history.py:168
+msgid "Rejeu en cours..."
+msgstr "正在重放..."
+
+#: src/omega_track/interfaces/tui/screens/history.py:185
+#, python-brace-format
+msgid "Exporté vers {name}"
+msgstr "已导出到 {name}"
+
+#: src/omega_track/interfaces/tui/screens/home.py:31
+msgid "Dashboard"
+msgstr "仪表盘"
+
+#: src/omega_track/interfaces/tui/screens/progress.py:93
+msgid "Annulation demandée - en attente de la fin de la phase en cours."
+msgstr "已请求取消——正在等待当前阶段结束。"
+
+#: src/omega_track/interfaces/tui/screens/progress.py:110
+msgid "Observation échouée"
+msgstr "观察失败"
+
+#: src/omega_track/interfaces/tui/screens/progress.py:117
+msgid "Annulé"
+msgstr "已取消"
+
+#: src/omega_track/interfaces/tui/screens/progress.py:117
+msgid "Observation annulée."
+msgstr "观察已取消。"
+
+#: src/omega_track/interfaces/tui/screens/quit_confirm.py:21
+msgid "QUITTER OMEGA-TRACK ?"
+msgstr "退出 OMEGA-TRACK？"
+
+#: src/omega_track/interfaces/tui/screens/results.py:43 src/omega_track/interfaces/tui/widgets/targets_table.py:17
+msgid "Valeur"
+msgstr "值"
+
+#: src/omega_track/interfaces/tui/screens/results.py:59
+#, python-brace-format
+msgid "Module '{module_name}' non activé dans le profil de cette observation."
+msgstr "模块“{module_name}”未在此观察的配置文件中启用。"
+
+#: src/omega_track/interfaces/tui/screens/results.py:61
+#, python-brace-format
+msgid "Module '{module_name}' non exécuté : {value}."
+msgstr "模块“{module_name}”未执行：{value}。"
+
+#: src/omega_track/interfaces/tui/screens/results.py:61 src/omega_track/interfaces/tui/screens/results.py:63
+msgid "raison non précisée"
+msgstr "未说明原因"
+
+#: src/omega_track/interfaces/tui/screens/results.py:71
+#, python-brace-format
+msgid "Module '{module_name}' en échec ({detail}) - la source n'a donné aucune réponse exploitable ; ceci ne bloque jamais le reste de l'observation, déjà terminée."
+msgstr "模块“{module_name}”失败（{detail}）——来源没有给出任何可用响应；这绝不会阻止已经结束的其余观察。"
+
+#: src/omega_track/interfaces/tui/screens/results.py:75
+#, python-brace-format
+msgid "Module '{module_name}' annulé avant d'avoir terminé."
+msgstr "模块“{module_name}”在完成前已被取消。"
+
+#: src/omega_track/interfaces/tui/screens/results.py:103
+#, python-brace-format
+msgid "Cible : {target_value}  |  Run : {track_run_id}  |  {count} finding(s), {count2} relation(s), {count3} chemin(s)"
+msgstr "目标：{target_value}  |  运行：{track_run_id}  |  {count} 个发现项，{count2} 个关系，{count3} 条路径"
+
+#: src/omega_track/interfaces/tui/screens/results.py:108
+msgid "Identité"
+msgstr "身份"
+
+#: src/omega_track/interfaces/tui/screens/results.py:113
+msgid "DNS"
+msgstr "DNS"
+
+#: src/omega_track/interfaces/tui/screens/results.py:118
+msgid "Réseau / ASN"
+msgstr "网络 / ASN"
+
+#: src/omega_track/interfaces/tui/screens/results.py:128
+msgid "Certificats"
+msgstr "证书"
+
+#: src/omega_track/interfaces/tui/screens/results.py:133
+msgid "Archives"
+msgstr "存档"
+
+#: src/omega_track/interfaces/tui/screens/results.py:138
+msgid "Relations"
+msgstr "关系"
+
+#: src/omega_track/interfaces/tui/screens/results.py:140
+msgid "Graphe Mermaid (même source que l'export .mmd)"
+msgstr "Mermaid 图（与 .mmd 导出同源）"
+
+#: src/omega_track/interfaces/tui/screens/results.py:142 src/omega_track/interfaces/tui/screens/settings_screen.py:81
+msgid "Diagnostics"
+msgstr "诊断"
+
+#: src/omega_track/interfaces/tui/screens/results.py:150
+msgid "Aucun chemin réseau collecté."
+msgstr "未收集到网络路径。"
+
+#: src/omega_track/interfaces/tui/screens/results.py:155
+msgid "ASN"
+msgstr "ASN"
+
+#: src/omega_track/interfaces/tui/screens/results.py:155 src/omega_track/infrastructure/exporters/templates/report.html.j2:222
+msgid "Pays"
+msgstr "国家"
+
+#: src/omega_track/interfaces/tui/screens/results.py:155
+msgid "RTT (ms)"
+msgstr "RTT（毫秒）"
+
+#: src/omega_track/interfaces/tui/screens/results.py:155
+msgid "Séquence"
+msgstr "序列"
+
+#: src/omega_track/interfaces/tui/screens/results.py:165
+#, python-brace-format
+msgid "{target_ip} ({protocol})"
+msgstr "{target_ip}（{protocol}）"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:36
+msgid "(automatique)"
+msgstr "（自动）"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:76
+msgid "Profil de rendu (surcharge la détection automatique)"
+msgstr "渲染配置（覆盖自动检测）"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:84
+msgid "Réglages actuels"
+msgstr "当前设置"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:90
+msgid "Définir"
+msgstr "设置"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:92
+msgid "Purge de l'historique"
+msgstr "清除历史"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:93
+msgid "0 = toutes les observations existantes (utile pour tester sans attendre)"
+msgstr "0 = 所有现有观察（便于无需等待即可测试）"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:96
+msgid "ancienneté en jours"
+msgstr "天数"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:98
+msgid "Aperçu"
+msgstr "预览"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:100
+msgid "Purger"
+msgstr "清理"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:103
+msgid "Fichiers locaux"
+msgstr "本地文件"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:106
+msgid "Vider les captures d'écran"
+msgstr "清空截图"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:108
+msgid "Vider les exports"
+msgstr "清空导出"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:134
+#, python-brace-format
+msgid ""
+"version : {app_version} | schéma export : {schema_version}\n"
+"répertoire de données : {var_dir}\n"
+"traceroute disponible : {value}\n"
+"base GeoIP ({provider}) : {value2}"
+msgstr ""
+"版本：{app_version} | 导出架构：{schema_version}\n"
+"数据目录：{var_dir}\n"
+"traceroute 可用：{value}\n"
+"GeoIP 数据库（{provider}）：{value2}"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:156
+msgid "Profil de rendu appliqué au prochain démarrage."
+msgstr "渲染配置将在下次启动时应用。"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:181
+msgid "Saisissez une clé."
+msgstr "请输入密钥。"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:187
+#, python-brace-format
+msgid "{key} = {value}"
+msgstr "{key} = {value}"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:192
+msgid "Saisissez une ancienneté en jours (entier)."
+msgstr "请输入天数（整数）。"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:205
+#, python-brace-format
+msgid "{count} exécution(s) seraient supprimée(s)."
+msgstr "将删除 {count} 条执行记录。"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:214
+msgid "PURGER L'HISTORIQUE ?"
+msgstr "清除历史？"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:215
+#, python-brace-format
+msgid "Supprime définitivement toutes les exécutions de plus de {days} jour(s)."
+msgstr "永久删除所有超过 {days} 天的执行记录。"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:231
+#, python-brace-format
+msgid "{count} exécution(s) supprimée(s)."
+msgstr "已删除 {count} 条执行记录。"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:236
+#, python-brace-format
+msgid "VIDER LES {upper} ?"
+msgstr "清空{upper}？"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:237
+#, python-brace-format
+msgid "Supprime définitivement tous les fichiers de {directory}."
+msgstr "永久删除 {directory} 中的所有文件。"
+
+#: src/omega_track/interfaces/tui/screens/settings_screen.py:246
+#, python-brace-format
+msgid "{deleted} fichier(s) {label} supprimé(s)."
+msgstr "已删除 {deleted} 个{label}文件。"
+
+#: src/omega_track/interfaces/tui/screens/source_configuration.py:41
+msgid "SOURCES À CLÉ"
+msgstr "密钥来源"
+
+#: src/omega_track/interfaces/tui/screens/source_configuration.py:48
+msgid "Clé API"
+msgstr "API 密钥"
+
+#: src/omega_track/interfaces/tui/screens/source_configuration.py:49
+msgid "clé API"
+msgstr "API 密钥"
+
+#: src/omega_track/interfaces/tui/screens/source_configuration.py:55
+msgid "Retirer la clé"
+msgstr "移除密钥"
+
+#: src/omega_track/interfaces/tui/screens/source_configuration.py:70
+msgid " -- SOURCE PAYANTE"
+msgstr " -- 付费来源"
+
+#: src/omega_track/interfaces/tui/screens/source_configuration.py:72
+#, python-brace-format
+msgid ""
+"[b]{source_name}{payant}[/b]\n"
+"Quota : {quota_notice}\n"
+"Données envoyées : {data_sent_notice}\n"
+"Confidentialité : {privacy_notice}"
+msgstr ""
+"[b]{source_name}{payant}[/b]\n"
+"配额：{quota_notice}\n"
+"发送的数据：{data_sent_notice}\n"
+"隐私：{privacy_notice}"
+
+#: src/omega_track/interfaces/tui/screens/source_configuration.py:83
+#, python-brace-format
+msgid " (en attente jusqu'à {isoformat})"
+msgstr "（暂停至 {isoformat}）"
+
+#: src/omega_track/interfaces/tui/screens/source_configuration.py:85
+#, python-brace-format
+msgid "clé {value}{backoff}"
+msgstr "密钥{value}{backoff}"
+
+#: src/omega_track/interfaces/tui/screens/source_configuration.py:85
+msgid "configurée"
+msgstr "已配置"
+
+#: src/omega_track/interfaces/tui/screens/source_configuration.py:108
+#, python-brace-format
+msgid "Clé enregistrée pour {source_name}."
+msgstr "已为 {source_name} 保存密钥。"
+
+#: src/omega_track/interfaces/tui/screens/source_configuration.py:113
+#, python-brace-format
+msgid "Clé retirée pour {source_name}."
+msgstr "已为 {source_name} 移除密钥。"
+
+#: src/omega_track/interfaces/tui/screens/targets.py:49
+msgid "Alias (optionnel)"
+msgstr "别名（可选）"
+
+#: src/omega_track/interfaces/tui/screens/targets.py:50
+msgid "Tags séparés par des virgules (optionnel)"
+msgstr "以逗号分隔的标签（可选）"
+
+#: src/omega_track/interfaces/tui/screens/targets.py:98
+msgid "Saisissez une valeur de cible."
+msgstr "请输入目标值。"
+
+#: src/omega_track/interfaces/tui/screens/targets.py:153
+msgid "Cette action est irréversible."
+msgstr "此操作不可撤销。"
+
+#: src/omega_track/interfaces/tui/screens/targets.py:153
+msgid "SUPPRIMER CETTE CIBLE ?"
+msgstr "删除此目标？"
+
+#: src/omega_track/interfaces/tui/screens/tracker.py:59
+msgid "LANCER UNE OBSERVATION"
+msgstr "启动观察"
+
+#: src/omega_track/interfaces/tui/screens/tracker.py:63
+msgid "Aucune cible enregistrée - ajoutez-en une dans l'écran Cibles."
+msgstr "没有已登记的目标——请在目标界面添加一个。"
+
+#: src/omega_track/interfaces/tui/screens/tracker.py:74
+msgid "Modules"
+msgstr "模块"
+
+#: src/omega_track/interfaces/tui/screens/tracker.py:80
+msgid "Tags (séparés par des virgules, optionnel)"
+msgstr "标签（以逗号分隔，可选）"
+
+#: src/omega_track/interfaces/tui/screens/tracker.py:81
+msgid "ex. campagne-2026"
+msgstr "例如 campaign-2026"
+
+#: src/omega_track/interfaces/tui/screens/tracker.py:84
+msgid "Autorisation explicite pour cette observation (cible non épinglée)"
+msgstr "为此次观察明确授权（目标未固定）"
+
+#: src/omega_track/interfaces/tui/screens/tracker.py:127
+msgid "Aucune cible enregistrée."
+msgstr "没有已登记的目标。"
+
+#: src/omega_track/interfaces/tui/screens/tracker.py:132
+msgid "Choisissez une cible."
+msgstr "请选择目标。"
+
+#: src/omega_track/interfaces/tui/screens/tracker.py:136
+msgid "Cible introuvable."
+msgstr "未找到目标。"
+
+#: src/omega_track/interfaces/tui/screens/tracker.py:143
+msgid "Activez au moins un module."
+msgstr "请至少启用一个模块。"
+
+#: src/omega_track/interfaces/tui/screens/tracker.py:172
+msgid "Observation en cours..."
+msgstr "正在观察..."
+
+#: src/omega_track/interfaces/tui/widgets/targets_table.py:17
+msgid "Alias"
+msgstr "别名"
+
+#: src/omega_track/interfaces/tui/widgets/targets_table.py:17
+msgid "Dernier statut"
+msgstr "最近状态"
+
+#: src/omega_track/interfaces/tui/widgets/targets_table.py:17
+msgid "Épinglée"
+msgstr "已固定"
+
+#: src/omega_track/infrastructure/exporters/graphviz_dot_exporter.py:22
+#, python-brace-format
+msgid "{value} ({value2})"
+msgstr "{value}（{value2}）"
+
+#: src/omega_track/infrastructure/exporters/markdown_file_exporter.py:23
+#, python-brace-format
+msgid "# Rapport OMEGA-TRACK - {target}"
+msgstr "# OMEGA-TRACK 报告 - {target}"
+
+#: src/omega_track/infrastructure/exporters/markdown_file_exporter.py:25
+#, python-brace-format
+msgid "- Généré le {generated_at}"
+msgstr "- 生成于 {generated_at}"
+
+#: src/omega_track/infrastructure/exporters/markdown_file_exporter.py:26
+#, python-brace-format
+msgid "- Profil : {profile} (modules : {value})"
+msgstr "- 配置文件：{profile}（模块：{value}）"
+
+#: src/omega_track/infrastructure/exporters/markdown_file_exporter.py:26 src/omega_track/infrastructure/exporters/templates/report.html.j2:173
+msgid "aucun"
+msgstr "无"
+
+#: src/omega_track/infrastructure/exporters/markdown_file_exporter.py:27
+#, python-brace-format
+msgid "- Sources consultées : {value}"
+msgstr "- 查询的来源：{value}"
+
+#: src/omega_track/infrastructure/exporters/markdown_file_exporter.py:28
+#, python-brace-format
+msgid "- Politique de rédaction : {redaction_policy}"
+msgstr "- 脱敏策略：{redaction_policy}"
+
+#: src/omega_track/infrastructure/exporters/markdown_file_exporter.py:30
+#, python-brace-format
+msgid "- Schéma d'export v{schema_version} - omega-track {app_version}"
+msgstr "- 导出架构 v{schema_version} - omega-track {app_version}"
+
+#: src/omega_track/infrastructure/exporters/markdown_file_exporter.py:35
+msgid "## Résumé"
+msgstr "## 摘要"
+
+#: src/omega_track/infrastructure/exporters/markdown_file_exporter.py:37
+msgid "| Niveau de confiance | Nombre |"
+msgstr "| 置信度级别 | 数量 |"
+
+#: src/omega_track/infrastructure/exporters/markdown_file_exporter.py:49
+#, python-brace-format
+msgid "## {capitalize}"
+msgstr "## {capitalize}"
+
+#: src/omega_track/infrastructure/exporters/markdown_file_exporter.py:51
+msgid "| Type | Données | Confiance | Source |"
+msgstr "| 类型 | 数据 | 置信度 | 来源 |"
+
+#: src/omega_track/infrastructure/exporters/markdown_file_exporter.py:60
+msgid "## Relations"
+msgstr "## 关系"
+
+#: src/omega_track/infrastructure/exporters/markdown_file_exporter.py:62
+msgid "| Source | Cible | Type | Confiance |"
+msgstr "| 来源 | 目标 | 类型 | 置信度 |"
+
+#: src/omega_track/infrastructure/exporters/markdown_file_exporter.py:72
+msgid "## Clusters"
+msgstr "## 聚类"
+
+#: src/omega_track/infrastructure/exporters/markdown_file_exporter.py:79
+msgid "## Chemin réseau (NeoTrace)"
+msgstr "## 网络路径（NeoTrace）"
+
+#: src/omega_track/infrastructure/exporters/markdown_file_exporter.py:84
+#, python-brace-format
+msgid "### Vers {target_ip} ({protocol}) - {value}"
+msgstr "### 到 {target_ip}（{protocol}）- {value}"
+
+#: src/omega_track/infrastructure/exporters/markdown_file_exporter.py:84 src/omega_track/infrastructure/exporters/templates/report.html.j2:220
+msgid "atteinte"
+msgstr "已到达"
+
+#: src/omega_track/infrastructure/exporters/markdown_file_exporter.py:84 src/omega_track/infrastructure/exporters/templates/report.html.j2:220
+msgid "non atteinte"
+msgstr "未到达"
+
+#: src/omega_track/infrastructure/exporters/markdown_file_exporter.py:87
+msgid "| # | IP | Hôte | RTT (ms) | ASN | Pays |"
+msgstr "| # | IP | 主机 | RTT（毫秒） | ASN | 国家 |"
+
+#: src/omega_track/infrastructure/exporters/templates/report.html.j2:6
+#, python-brace-format
+msgid "OMEGA-TRACK — Rapport {target}"
+msgstr "OMEGA-TRACK — 报告 {target}"
+
+#: src/omega_track/infrastructure/exporters/templates/report.html.j2:170
+#, python-brace-format
+msgid "Rapport OMEGA-TRACK — {target}"
+msgstr "OMEGA-TRACK 报告 — {target}"
+
+#: src/omega_track/infrastructure/exporters/templates/report.html.j2:172
+#, python-brace-format
+msgid "Généré le {generated_at}"
+msgstr "生成于 {generated_at}"
+
+#: src/omega_track/infrastructure/exporters/templates/report.html.j2:173
+#, python-brace-format
+msgid "Profil : {profile} (modules : {modules})"
+msgstr "配置文件：{profile}（模块：{modules}）"
+
+#: src/omega_track/infrastructure/exporters/templates/report.html.j2:174
+#, python-brace-format
+msgid "Sources consultées : {sources}"
+msgstr "查询的来源：{sources}"
+
+#: src/omega_track/infrastructure/exporters/templates/report.html.j2:175
+#, python-brace-format
+msgid "Politique de rédaction : {redaction_policy}"
+msgstr "脱敏策略：{redaction_policy}"
+
+#: src/omega_track/infrastructure/exporters/templates/report.html.j2:176
+#, python-brace-format
+msgid "Schéma d'export v{schema_version} — omega-track {app_version}"
+msgstr "导出架构 v{schema_version} — omega-track {app_version}"
+
+#: src/omega_track/infrastructure/exporters/templates/report.html.j2:191
+msgid "Données"
+msgstr "数据"
+
+#: src/omega_track/infrastructure/exporters/templates/report.html.j2:203
+#, python-brace-format
+msgid "Relations ({relations})"
+msgstr "关系（{relations}）"
+
+#: src/omega_track/infrastructure/exporters/templates/report.html.j2:220
+#, python-brace-format
+msgid "Chemin réseau vers {target_ip} ({protocol}) — {value}"
+msgstr "到 {target_ip}（{protocol}）的网络路径 — {value}"
+
+#: src/omega_track/infrastructure/exporters/templates/report.html.j2:234
+#, python-brace-format
+msgid "omega-track — généré sans serveur, thème d'export : {export_theme}"
+msgstr "omega-track — 无需服务器生成，导出主题：{export_theme}"

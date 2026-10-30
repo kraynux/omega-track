@@ -28,6 +28,7 @@ from omega_track.domain.value_objects.identifiers import ModuleRunId
 from omega_track.domain.value_objects.ip_address import IPAddress
 from omega_track.domain.value_objects.statuses import ModuleStatus
 from omega_track.ports.collectors.traceroute_collector import TracerouteCollector
+from omega_track.shared.i18n import _
 
 _NEOTRACE_MODULE = "neotrace"
 
@@ -53,13 +54,14 @@ def run_network_path_phase(
     module_run = module_runs[_NEOTRACE_MODULE]
 
     if not targets:
-        skip_module(module_run, context, reason="aucune IP disponible pour NeoTrace")
+        skip_module(module_run, context, reason=_("aucune IP disponible pour NeoTrace"))
         return NetworkPathPhaseResult(findings=[], paths=[], degraded=False)
     if context.cancellation_token.is_cancelled:
-        skip_module(module_run, context, reason="annule avant demarrage")
+        skip_module(module_run, context, reason=_("annulé avant démarrage"))
         return NetworkPathPhaseResult(findings=[], paths=[], degraded=False)
     if not traceroute_collector.is_available():
-        skip_module(module_run, context, reason="traceroute indisponible (binaire absent ou capacite insuffisante)")
+        skip_module(module_run, context, reason=_("traceroute indisponible (binaire absent ou "
+                                                  "capacité insuffisante)"))
         return NetworkPathPhaseResult(findings=[], paths=[], degraded=False)
 
     module_run.transition_to(ModuleStatus.RUNNING, now=context.now())
@@ -89,12 +91,12 @@ def run_network_path_phase(
         ok = True
     elif any_failure and any_success:
         module_run.transition_to(ModuleStatus.PARTIAL, now=context.now())
-        module_run.error_detail = "au moins une trace NeoTrace indisponible"
+        module_run.error_detail = _("au moins une trace NeoTrace indisponible")
         ok = False
     elif any_failure and not any_success:
         module_run.transition_to(ModuleStatus.FAILED, now=context.now())
         module_run.error_code = "collector_unavailable"
-        module_run.error_detail = "aucune trace NeoTrace disponible"
+        module_run.error_detail = _("aucune trace NeoTrace disponible")
         ok = False
     else:
         module_run.transition_to(ModuleStatus.COMPLETED, now=context.now())

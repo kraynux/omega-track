@@ -15,9 +15,11 @@ from __future__ import annotations
 
 from omega_track.domain.entities.target import Target
 from omega_track.domain.exceptions.track import TargetNotAuthorizedError
+from omega_track.shared.i18n import _
 
 
 def ensure_target_authorized(target: Target, *, explicit_authorization: bool) -> None:
     if target.is_authorized() or explicit_authorization:
         return
-    raise TargetNotAuthorizedError(f"cible non autorisee : {target.value} (epinglez-la ou passez --authorize)")
+    raise TargetNotAuthorizedError(_("cible non autorisée : {value} (épinglez-la ou passez "
+                                     "--authorize)").format(value=target.value))

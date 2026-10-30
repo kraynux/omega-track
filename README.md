@@ -1,7 +1,7 @@
 <!-- Copyright (c) 2026 kraynux - kraynux@proton.me - Licence MIT (voir fichier LICENSE) -->
 <div align="center">
   <img src="docs/assets/omega-track.png" alt="Omega-Track" width="386">
-</div>11111111111111111111111
+</div>
 
 # 🛰️ OMEGA-TRACK
 
@@ -17,12 +17,13 @@ Page officielle : [OMEGA-TRACK](https://kraynux.snake-mackarel.ts.net/omega-trac
 [![Platform](https://img.shields.io/badge/Platform-Linux-informational.svg)](https://www.linux.org/)
 [![Interface](https://img.shields.io/badge/Interface-TUI%20%2B%20Rich-cyan.svg)](https://github.com/Textualize/rich)
 
-**Langues:**  
-[Français](README.md) · [English](README.en.md) · [Español](README.es.md) · [Русский](README.ru.md) · [中文](README.zh-CN.md)
+🌐 Interface et rapports exportés disponibles en **17 langues** — voir [Langues de l'interface](#langues-de-linterface).  
+**Langues :**  
+<img src="https://flagcdn.com/w20/fr.png" alt="Français" style="height:14px;"> [Français](README.md) · <img src="https://flagcdn.com/w20/gb.png" alt="English" style="height:14px;"> [English](docs/translation/en/README.md) · <img src="https://flagcdn.com/w20/es.png" alt="Español" style="height:14px;"> [Español](docs/translation/es/README.md) · <img src="https://flagcdn.com/w20/br.png" alt="Português (Brasil)" style="height:14px;"> [Português (Brasil)](docs/translation/pt-BR/README.md) · <img src="https://flagcdn.com/w20/it.png" alt="Italiano" style="height:14px;"> [Italiano](docs/translation/it/README.md) · <img src="https://flagcdn.com/w20/de.png" alt="Deutsch" style="height:14px;"> [Deutsch](docs/translation/de/README.md) · <img src="https://flagcdn.com/w20/nl.png" alt="Nederlands" style="height:14px;"> [Nederlands](docs/translation/nl/README.md) · <img src="https://flagcdn.com/w20/pl.png" alt="Polski" style="height:14px;"> [Polski](docs/translation/pl/README.md) · <img src="https://flagcdn.com/w20/ru.png" alt="Русский" style="height:14px;"> [Русский](docs/translation/ru/README.md) · <img src="https://flagcdn.com/w20/cn.png" alt="中文" style="height:14px;"> [中文](docs/translation/zh-CN/README.md) · <img src="https://flagcdn.com/w20/vn.png" alt="Tiếng Việt" style="height:14px;"> [Tiếng Việt](docs/translation/vi/README.md) · <img src="https://flagcdn.com/w20/th.png" alt="ไทย" style="height:14px;"> [ไทย](docs/translation/th/README.md) · <img src="https://flagcdn.com/w20/id.png" alt="Bahasa Indonesia" style="height:14px;"> [Bahasa Indonesia](docs/translation/id/README.md) · <img src="https://flagcdn.com/w20/jp.png" alt="日本語" style="height:14px;"> [日本語](docs/translation/ja/README.md) · <img src="https://flagcdn.com/w20/kr.png" alt="한국어" style="height:14px;"> [한국어](docs/translation/ko/README.md) · <img src="https://flagcdn.com/w20/in.png" alt="हिन्दी" style="height:14px;"> [हिन्दी](docs/translation/hi/README.md) · <img src="https://flagcdn.com/w20/ae.png" alt="العربية" style="height:14px;"> [العربية](docs/translation/ar/README.md)
 
 ---
 
-**Omega-track** est un outil TUI + CLI qui construit, à partir d'une IP, IPv6 ou d'un domaine, l'identité numérique la plus complète possible : qui répond derrière cette cible, comment y arrive-t-on, et avec quel niveau de confiance chaque information peut être tenue pour acquise. Sixième outil de la suite `omega-` (après `omega-fire`, `omega-stress`, `omega-scan`, `omega-check` et `omega-deep`/`omega-fold`), structuré en Clean Architecture — voir `docs/PRODUCT_SCOPE.md` et `docs/DATA_SOURCES.md` pour le détail complet.
+**Omega-track** est un outil TUI + CLI qui construit, à partir d'une IP, IPv6 ou d'un domaine, l'identité numérique la plus complète possible : qui répond derrière cette cible, comment y arrive-t-on, et avec quel niveau de confiance chaque information peut être tenue pour acquise. Outil de la suite `omega-`, structuré en Clean Architecture — voir `docs/PRODUCT_SCOPE.md` et `docs/DATA_SOURCES.md` pour le détail complet.
 
 ## 1. Vision et périmètre
 
@@ -121,6 +122,10 @@ Parcours : écran de démarrage (se ferme sur une touche ou un clic) → menu pr
 | `r` | Rafraîchir la détection du terminal |
 | `a` | Afficher l'aide |
 | `q` | Quitter (avec confirmation) |
+
+### Langues de l'interface
+
+L'interface est disponible en 17 langues : français, anglais, espagnol, portugais (Brésil), italien, allemand, néerlandais, polonais, russe, chinois simplifié, vietnamien, thaï, indonésien, japonais, coréen, hindi et arabe. Le choix se fait dans les Réglages (« Langue / Language ») et s'applique après un redémarrage de l'interface ; la variable `OMEGA_TRACK_LANG` (par exemple `OMEGA_TRACK_LANG=en ./omega-track.sh`) force une langue le temps d'une session. Lancé depuis omega-suite, omega-track prend la langue de la suite. Sur une console texte Linux (TTY), les langues à écriture non latine s'affichent en anglais pour la session. La ligne de commande reste en français.
 
 ### Mode scriptable (CLI)
 
@@ -292,7 +297,7 @@ Le profil final retenu est **le plus restrictif des deux** (émulateur et taille
 
 ## 10. Exports
 
-Les rapports sont générés dans `var/exports/` par défaut (chemin runtime ancré sur le dossier du projet, `$OMEGA_TRACK_VAR_DIR` pour le surcharger), ou au chemin indiqué (`--output` en CLI, boîte de dialogue en TUI). Nom de fichier horodaté et unique : `{horodatage}_{cible}_{id_court}.{extension}`.
+Les rapports Markdown et HTML s'écrivent dans la langue choisie dans les Réglages (« Langue des exports », par défaut celle de l'interface) ; JSON, CSV, DOT et Mermaid restent des données, non traduites. Les rapports sont générés dans `var/exports/` par défaut (chemin runtime ancré sur le dossier du projet, `$OMEGA_TRACK_VAR_DIR` pour le surcharger), ou au chemin indiqué (`--output` en CLI, boîte de dialogue en TUI). Nom de fichier horodaté et unique : `{horodatage}_{cible}_{id_court}.{extension}`.
 
 | Format | Contenu |
 |---|---|
@@ -312,7 +317,7 @@ Chaque observation est persistée (SQLite, `var/db/omega-track.db`) : historique
 ```bash
 source .venv/bin/activate
 lint-imports        # verifie la Dependency Rule
-pytest -q           # 478 tests
+pytest -q           # 485 tests
 ruff check .
 mypy src
 ```
@@ -330,7 +335,7 @@ Structure : `tests/unit/` (domaine et application, sans I/O réelle), `tests/int
 - Carte TUI interactive (réservée au rapport HTML exporté)
 - MTR en continu, multi-sonde et multi-vantage-points
 - Mode batch/périodique/surveillance récurrente d'une cible — un `TrackRun` reste toujours une action manuelle explicite
-- Moteur de migration de schéma SQLite avant la v1.0 (schéma additif, même pratique que le reste de la suite)
+- Moteur de migration de schéma SQLite (schéma additif, même pratique que le reste de la suite)
 
 ---
 

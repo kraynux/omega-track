@@ -21,6 +21,7 @@ from omega_track.core.enums import ConfidenceLevel
 from omega_track.domain.entities.findings.history import HistoryFindingType
 from omega_track.domain.value_objects.collected_record import CollectedRecord
 from omega_track.domain.value_objects.domain_name import DomainName
+from omega_track.shared.i18n import _
 
 SOURCE_NAME = "wayback"
 _CDX_URL = "https://web.archive.org/cdx/search/cdx"
@@ -49,7 +50,7 @@ class WaybackCollector:
             original_index = header.index("original")
             status_index = header.index("statuscode")
         except ValueError as exc:
-            raise CollectorUnavailableError(SOURCE_NAME, "en-tete CDX inattendu") from exc
+            raise CollectorUnavailableError(SOURCE_NAME, _("en-tête CDX inattendu")) from exc
 
         now = self._now()
         records = []
@@ -83,8 +84,8 @@ class WaybackCollector:
         try:
             payload: Any = response.json()
         except ValueError as exc:
-            raise CollectorUnavailableError(SOURCE_NAME, "reponse JSON invalide") from exc
+            raise CollectorUnavailableError(SOURCE_NAME, _("réponse JSON invalide")) from exc
 
         if not isinstance(payload, list):
-            raise CollectorUnavailableError(SOURCE_NAME, "forme de reponse inattendue")
+            raise CollectorUnavailableError(SOURCE_NAME, _("forme de réponse inattendue"))
         return payload
