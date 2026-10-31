@@ -7,8 +7,7 @@
 
 **数字身份画像与网络路径观测**
 
-> 由 **kraynux** 为 **Omega-server** 开发 
-[https://kraynux.snake-mackarel.ts.net](https://kraynux.snake-mackarel.ts.net)
+> 由 [kraynux](https://github.com/kraynux) 为 [Omega-Server](https://kraynux.snake-mackarel.ts.net) 开发   
 
 官方页面：[OMEGA-TRACK](https://kraynux.snake-mackarel.ts.net/omega-track/) &nbsp; 预览：[Screenshots](https://kraynux.snake-mackarel.ts.net/omega-track/screenshots/)  
 

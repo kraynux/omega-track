@@ -7,8 +7,7 @@
 
 **Profiling digitaler Identitäten und Beobachtung von Netzwerkpfaden**
 
-> Entwickelt von **kraynux** für **Omega-server** 
-[https://kraynux.snake-mackarel.ts.net](https://kraynux.snake-mackarel.ts.net)
+> Entwickelt von [kraynux](https://github.com/kraynux) für [Omega-Server](https://kraynux.snake-mackarel.ts.net)   
 
 Offizielle Seite: [OMEGA-TRACK](https://kraynux.snake-mackarel.ts.net/omega-track/) &nbsp; Vorschau: [Screenshots](https://kraynux.snake-mackarel.ts.net/omega-track/screenshots/)  
 

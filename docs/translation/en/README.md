@@ -7,8 +7,7 @@
 
 **Digital identity profiling and network path observation**
 
-> Built by **kraynux** for **Omega-server** 
-[https://kraynux.snake-mackarel.ts.net](https://kraynux.snake-mackarel.ts.net)
+> Built by [kraynux](https://github.com/kraynux) for [Omega-Server](https://kraynux.snake-mackarel.ts.net)   
 
 Official page: [OMEGA-TRACK](https://kraynux.snake-mackarel.ts.net/omega-track/) &nbsp; Preview: [Screenshots](https://kraynux.snake-mackarel.ts.net/omega-track/screenshots/)  
 

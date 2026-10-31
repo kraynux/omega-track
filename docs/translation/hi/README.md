@@ -7,8 +7,7 @@
 
 **डिजिटल पहचान की प्रोफ़ाइलिंग और नेटवर्क पथ का अवलोकन**
 
-> **kraynux** द्वारा **Omega-server** के लिए विकसित 
-[https://kraynux.snake-mackarel.ts.net](https://kraynux.snake-mackarel.ts.net)
+> [kraynux](https://github.com/kraynux) द्वारा [Omega-Server](https://kraynux.snake-mackarel.ts.net) के लिए विकसित   
 
 आधिकारिक पेज: [OMEGA-TRACK](https://kraynux.snake-mackarel.ts.net/omega-track/) &nbsp; झलक: [Screenshots](https://kraynux.snake-mackarel.ts.net/omega-track/screenshots/)  
 

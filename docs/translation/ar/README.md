@@ -7,8 +7,7 @@
 
 **تنميط الهوية الرقمية ومراقبة مسار الشبكة**
 
-> طوّره **kraynux** من أجل **Omega-server** 
-[https://kraynux.snake-mackarel.ts.net](https://kraynux.snake-mackarel.ts.net)
+> طوّره [kraynux](https://github.com/kraynux) من أجل [Omega-Server](https://kraynux.snake-mackarel.ts.net)   
 
 الصفحة الرسمية: [OMEGA-TRACK](https://kraynux.snake-mackarel.ts.net/omega-track/) &nbsp; معاينة: [Screenshots](https://kraynux.snake-mackarel.ts.net/omega-track/screenshots/)  
 

@@ -7,8 +7,7 @@
 
 **デジタルアイデンティティのプロファイリングとネットワーク経路の観測**
 
-> **kraynux** が **Omega-server** のために開発 
-[https://kraynux.snake-mackarel.ts.net](https://kraynux.snake-mackarel.ts.net)
+> [kraynux](https://github.com/kraynux) が [Omega-Server](https://kraynux.snake-mackarel.ts.net) のために開発   
 
 公式ページ: [OMEGA-TRACK](https://kraynux.snake-mackarel.ts.net/omega-track/) &nbsp; プレビュー: [Screenshots](https://kraynux.snake-mackarel.ts.net/omega-track/screenshots/)  
 

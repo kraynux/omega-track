@@ -7,8 +7,7 @@
 
 **디지털 신원 프로파일링과 네트워크 경로 관측**
 
-> **kraynux**가 **Omega-server**를 위해 개발 
-[https://kraynux.snake-mackarel.ts.net](https://kraynux.snake-mackarel.ts.net)
+> [kraynux](https://github.com/kraynux)가 [Omega-Server](https://kraynux.snake-mackarel.ts.net)를 위해 개발   
 
 공식 페이지: [OMEGA-TRACK](https://kraynux.snake-mackarel.ts.net/omega-track/) &nbsp; 미리 보기: [Screenshots](https://kraynux.snake-mackarel.ts.net/omega-track/screenshots/)  
 

@@ -7,8 +7,7 @@
 
 **Профилирование цифровой идентичности и наблюдение сетевого маршрута**
 
-> Разработано **kraynux** для **Omega-server** 
-[https://kraynux.snake-mackarel.ts.net](https://kraynux.snake-mackarel.ts.net)
+> Разработано [kraynux](https://github.com/kraynux) для [Omega-Server](https://kraynux.snake-mackarel.ts.net)   
 
 Официальная страница: [OMEGA-TRACK](https://kraynux.snake-mackarel.ts.net/omega-track/) &nbsp; Обзор: [Screenshots](https://kraynux.snake-mackarel.ts.net/omega-track/screenshots/)  
 

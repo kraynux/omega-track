@@ -7,8 +7,7 @@
 
 **Lập hồ sơ danh tính số và quan sát đường đi mạng**
 
-> Được phát triển bởi **kraynux** cho **Omega-server** 
-[https://kraynux.snake-mackarel.ts.net](https://kraynux.snake-mackarel.ts.net)
+> Được phát triển bởi [kraynux](https://github.com/kraynux) cho [Omega-Server](https://kraynux.snake-mackarel.ts.net)   
 
 Trang chính thức: [OMEGA-TRACK](https://kraynux.snake-mackarel.ts.net/omega-track/) &nbsp; Xem trước: [Screenshots](https://kraynux.snake-mackarel.ts.net/omega-track/screenshots/)  
 

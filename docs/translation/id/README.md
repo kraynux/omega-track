@@ -7,8 +7,7 @@
 
 **Pemrofilan identitas digital dan pengamatan jalur jaringan**
 
-> Dibuat oleh **kraynux** untuk **Omega-server** 
-[https://kraynux.snake-mackarel.ts.net](https://kraynux.snake-mackarel.ts.net)
+> Dibuat oleh [kraynux](https://github.com/kraynux) untuk [Omega-Server](https://kraynux.snake-mackarel.ts.net)   
 
 Halaman resmi: [OMEGA-TRACK](https://kraynux.snake-mackarel.ts.net/omega-track/) &nbsp; Pratinjau: [Screenshots](https://kraynux.snake-mackarel.ts.net/omega-track/screenshots/)  
 

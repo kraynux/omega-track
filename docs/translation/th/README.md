@@ -7,8 +7,7 @@
 
 **การทำโปรไฟล์อัตลักษณ์ดิจิทัลและการสังเกตเส้นทางเครือข่าย**
 
-> พัฒนาโดย **kraynux** สำหรับ **Omega-server** 
-[https://kraynux.snake-mackarel.ts.net](https://kraynux.snake-mackarel.ts.net)
+> พัฒนาโดย [kraynux](https://github.com/kraynux) สำหรับ [Omega-Server](https://kraynux.snake-mackarel.ts.net)   
 
 หน้าทางการ: [OMEGA-TRACK](https://kraynux.snake-mackarel.ts.net/omega-track/) &nbsp; ภาพหน้าจอ: [Screenshots](https://kraynux.snake-mackarel.ts.net/omega-track/screenshots/)  
 
