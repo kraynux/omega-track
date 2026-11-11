@@ -7,7 +7,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Omega-Status: testing\n"
+"X-Omega-Status: validated\n"
 
 #: src/omega_track/application/commands/targets/create_target.py:31
 #, python-brace-format
@@ -517,31 +517,31 @@ msgstr "ไม่มีคีย์ใบอนุญาต MaxMind — กร�
 msgid "Base GeoIP mise à jour."
 msgstr "อัปเดตฐานข้อมูล GeoIP แล้ว"
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:32
+#: src/omega_track/interfaces/tui/screens/help_screen.py:33
 msgid "Enregistrer une IP ou un domaine, avec alias et tags. Épingler une cible l'autorise durablement (plus besoin de confirmation explicite sur ses futures observations)."
 msgstr "ลงทะเบียน IP หรือโดเมน พร้อมชื่อแทนและแท็ก การปักหมุดเป้าหมายคือการอนุญาตอย่างถาวร (ไม่ต้องยืนยันอย่างชัดเจนสำหรับการสังเกตครั้งต่อไป)"
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:38 src/omega_track/interfaces/tui/screens/home.py:33
+#: src/omega_track/interfaces/tui/screens/help_screen.py:39 src/omega_track/interfaces/tui/screens/home.py:33
 msgid "Tracker"
 msgstr "Tracker"
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:40
+#: src/omega_track/interfaces/tui/screens/help_screen.py:41
 msgid "Choisir une cible enregistrée, les modules de collecte à activer et lancer une observation (TrackRun). Une observation contre une cible non épinglée exige une confirmation explicite."
 msgstr "เลือกเป้าหมายที่ลงทะเบียน โมดูลเก็บข้อมูลที่จะเปิด แล้วเริ่มการสังเกต (TrackRun) การสังเกตเป้าหมายที่ไม่ได้ปักหมุดต้องมีการยืนยันอย่างชัดเจน"
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:46
+#: src/omega_track/interfaces/tui/screens/help_screen.py:47
 msgid "Résultats"
 msgstr "ผลลัพธ์"
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:48
+#: src/omega_track/interfaces/tui/screens/help_screen.py:49
 msgid "Rapport d'identité complet d'une observation terminée : DNS/RDAP, chemin réseau (NeoTrace), certificats (Certificate Transparency), archives, ASN/BGP, relations corrélées entre entités."
 msgstr "รายงานตัวตนฉบับเต็มของการสังเกตที่เสร็จแล้ว: DNS/RDAP, เส้นทางเครือข่าย (NeoTrace), ใบรับรอง (Certificate Transparency), คลังข้อมูล, ASN/BGP, ความสัมพันธ์ระหว่างเอนทิตี"
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:54
+#: src/omega_track/interfaces/tui/screens/help_screen.py:55
 msgid "Statuts d'un module (onglet Résultats)"
 msgstr "สถานะของโมดูล (แท็บผลลัพธ์)"
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:56
+#: src/omega_track/interfaces/tui/screens/help_screen.py:57
 msgid ""
 "Terminé : la source a répondu, données exploitables présentes.\n"
 "Partiel : au moins une réponse obtenue, mais pas toutes (ex. certains sauts NeoTrace sans réponse).\n"
@@ -555,15 +555,15 @@ msgstr ""
 "ไม่ได้ทำงาน: ถูกปิดด้วยเงื่อนไข (เช่น เป้าหมาย IP สำหรับโมดูลที่มีความหมายเฉพาะกับโดเมน ไม่มีคีย์ API รอโควตา)\n"
 "ล้มเหลว: สอบถามแหล่งข้อมูลแล้วแต่ไม่ได้การตอบกลับที่ใช้ได้เลย (หมดเวลา ข้อผิดพลาดของเซิร์ฟเวอร์ระยะไกล เครือข่ายเข้าถึงไม่ได้) — ไม่ได้หมายความว่าแอปค้างหรือยังโหลดอยู่: การสังเกตทั้งหมดเสร็จสิ้นตามปกติแล้ว เพียงแต่โมดูลนี้ไม่ได้ผลลัพธ์ใด พบบ่อยและเป็นเรื่องปกติสำหรับ RDAP ในบางผู้ให้บริการจดทะเบียน/TLD (ไม่ตอบกลับ บริการไม่พร้อมชั่วคราว เป้าหมายไม่มีรายการที่รู้จัก)"
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:73
+#: src/omega_track/interfaces/tui/screens/help_screen.py:74
 msgid "Liste toutes les observations passées : filtrage par cible/statut/tag, rejeu contre la résolution actuelle, export du rapport."
 msgstr "แสดงการสังเกตที่ผ่านมาทั้งหมด: กรองตามเป้าหมาย/สถานะ/แท็ก เรียกใช้ซ้ำกับผลการแปลงปัจจุบัน ส่งออกรายงาน"
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:78
+#: src/omega_track/interfaces/tui/screens/help_screen.py:79
 msgid "GeoIP - comment l'obtenir"
 msgstr "GeoIP — วิธีรับ"
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:80
+#: src/omega_track/interfaces/tui/screens/help_screen.py:81
 msgid ""
 "DB-IP (fournisseur par défaut) : gratuit, sans inscription - 'Mettre à jour la base' dans l'écran GeoIP suffit, rien à configurer.\n"
 "MaxMind (alternatif, optionnel) : créer un compte gratuit sur maxmind.com, puis dans 'Mon compte' -> 'Gérer les clés de licence' -> 'Générer une nouvelle clé de licence'. Coller cette clé dans l'écran GeoIP, choisir 'maxmind' comme fournisseur, puis 'Mettre à jour la base'."
@@ -571,11 +571,11 @@ msgstr ""
 "DB-IP (ผู้ให้บริการเริ่มต้น): ฟรี ไม่ต้องสมัคร — แค่กด 'อัปเดตฐานข้อมูล' ในหน้าจอ GeoIP ไม่ต้องตั้งค่าอะไร\n"
 "MaxMind (ทางเลือก ไม่บังคับ): สร้างบัญชีฟรีที่ maxmind.com แล้วไปที่ 'My Account' -> 'Manage License Keys' -> 'Generate new license key' วางคีย์นี้ในหน้าจอ GeoIP เลือก 'maxmind' เป็นผู้ให้บริการ แล้วกด 'อัปเดตฐานข้อมูล'"
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:89
+#: src/omega_track/interfaces/tui/screens/help_screen.py:90
 msgid "Sources à clé - comment les obtenir"
 msgstr "แหล่งข้อมูลที่ใช้คีย์ — วิธีรับ"
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:91
+#: src/omega_track/interfaces/tui/screens/help_screen.py:92
 msgid ""
 "VirusTotal (gratuit avec compte) : créer un compte sur virustotal.com, puis dans son profil -> 'API key', copier la clé affichée. La coller dans l'écran 'Sources à clé' (choisir 'virustotal', champ Clé API). Quota limité pour une clé gratuite (quelques requêtes/minute).\n"
 "HIBP - Have I Been Pwned (PAYANT depuis 2022, plus d'offre gratuite) : nécessite un abonnement sur haveibeenpwned.com/API/Key avant de pouvoir obtenir une clé - jamais présenté comme gratuite dans cette application.\n"
@@ -585,11 +585,11 @@ msgstr ""
 "HIBP - Have I Been Pwned (เสียเงินตั้งแต่ปี 2022 ไม่มีแบบฟรีแล้ว): ต้องสมัครสมาชิกที่ haveibeenpwned.com/API/Key ก่อนจึงจะได้คีย์ — แอปนี้ไม่เคยนำเสนอว่าฟรี\n"
 "ทั้งสองกรณี: หน้าจอจะแสดงรายละเอียด (โควตา ข้อมูลที่ส่งให้ผู้ให้บริการ ความเป็นส่วนตัว) ก่อนบันทึกคีย์เสมอ หากไม่ได้กำหนดคีย์ โมดูลที่เกี่ยวข้องจะถูกข้ามไป (ไม่เคยเป็นข้อผิดพลาดที่ขัดขวางการสังเกตส่วนที่เหลือ)"
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:106
+#: src/omega_track/interfaces/tui/screens/help_screen.py:107
 msgid "Omega-track observe des cibles explicitement enregistrées et autorisées (épinglées ou confirmation explicite) : aucune découverte ni dérive automatique vers d'autres cibles. Le score de confiance n'est jamais un verdict de sécurité."
 msgstr "Omega-track สังเกตเป้าหมายที่ลงทะเบียนและได้รับอนุญาตอย่างชัดเจน (ปักหมุดหรือยืนยันอย่างชัดเจน): ไม่มีการค้นหาหรือขยายไปยังเป้าหมายอื่นโดยอัตโนมัติ คะแนนความเชื่อมั่นไม่ใช่คำตัดสินด้านความปลอดภัย"
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:127
+#: src/omega_track/interfaces/tui/screens/help_screen.py:134
 msgid "Modules de collecte connus"
 msgstr "โมดูลเก็บข้อมูลที่รู้จัก"
 

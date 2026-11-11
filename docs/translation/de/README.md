@@ -24,6 +24,13 @@ Offizielle Seite: [OMEGA-TRACK](https://kraynux.snake-mackarel.ts.net/omega-trac
 
 **Omega-track** ist ein TUI- + CLI-Werkzeug, das aus einer IP, einer IPv6-Adresse oder einer Domain die vollständigste mögliche digitale Identität aufbaut: wer hinter diesem Ziel antwortet, wie man dorthin gelangt und mit welchem Vertrauensniveau jede Information als gesichert gelten kann. Es ist ein Werkzeug der `omega-`-Suite, aufgebaut nach Clean Architecture — siehe `docs/PRODUCT_SCOPE.md` und `docs/DATA_SOURCES.md` für alle Einzelheiten.
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/kraynux/kraynux/refs/heads/main/docs/translation/de/omega-track/A.png" width="24%" />
+  <img src="https://raw.githubusercontent.com/kraynux/kraynux/refs/heads/main/docs/translation/de/omega-track/B.png" width="24%" />
+  <img src="https://raw.githubusercontent.com/kraynux/kraynux/refs/heads/main/docs/translation/de/omega-track/C.png" width="24%" />
+  <img src="https://raw.githubusercontent.com/kraynux/kraynux/refs/heads/main/docs/translation/de/omega-track/D.png" width="24%" />
+</p>
+
 ## 1. Vision und Umfang
 
 Omega-track beantwortet zwei Fragen: „Wer ist dieses Ziel?“ (Identität über RDAP/DNS/Zertifikate/Reputation) und „Wie gelangt man dorthin?“ (Netzwerkpfad NeoTrace, GeoIP, ASN). Es ergänzt `omega-check` (Netzwerkexposition), `omega-scan` (HTTP/HTTPS-Hygiene) und `omega-deep` (begrenzte Architekturanalyse), ohne sie zu duplizieren.
@@ -125,6 +132,10 @@ Ablauf: Startbildschirm (schließt sich bei einem Tastendruck oder Klick) → Ha
 ### Sprachen der Oberfläche
 
 Die Oberfläche ist in 17 Sprachen verfügbar: Französisch, Englisch, Spanisch, Portugiesisch (Brasilien), Italienisch, Deutsch, Niederländisch, Polnisch, Russisch, vereinfachtes Chinesisch, Vietnamesisch, Thailändisch, Indonesisch, Japanisch, Koreanisch, Hindi und Arabisch. Die Auswahl erfolgt in den Einstellungen („Langue / Language“) und gilt nach einem Neustart der Oberfläche; die Variable `OMEGA_TRACK_LANG` (zum Beispiel `OMEGA_TRACK_LANG=de ./omega-track.sh`) erzwingt eine Sprache für eine Sitzung. Aus omega-suite gestartet, übernimmt omega-track die Sprache der Suite. Auf einer Linux-Textkonsole (TTY) werden Sprachen mit nicht-lateinischer Schrift für die Dauer der Sitzung auf Englisch angezeigt. Die Befehlszeile bleibt auf Französisch.
+
+### Kontakt und Support
+
+Die Hilfe (Taste `a`) bietet einen Bildschirm **Kontakt und Support**: *Einen Kaffee spendieren* (PayPal-Seite des Entwicklers), *Support kontaktieren* (E-Mail-Adresse und Kontaktformular der Website, im Klartext angezeigt), *Mich als Nutzer melden (anonym)* und *Updates prüfen*. Die Meldung ist freiwillig, standardmäßig deaktiviert und wird nur ein einziges Mal gesendet: Sie dient nur dazu, die Nutzer zu zählen und, wenn gewünscht, ihren Kontinent oder ihr Land (geschlossene Listen, nie Freitext). Gesendet werden ein zufällig gezogener Schlüssel, der Name der Software (`omega-track`) und ihre Version; nie ein Name, ein Rechnername, eine Einstellung, ein Ziel oder ein Ergebnis. Die IP-Adresse wird in den Meldungen nicht gespeichert, durchläuft aber wie jeder Besuch die Sicherheitsprüfungen und das Protokoll des Empfangsservers. Rückzug jederzeit über denselben Bildschirm (*Mich nicht mehr melden*). Die Update-Prüfung liest nur die Liste der auf der Website veröffentlichten Versionen, und nie ohne Klick.
 
 ### Skriptfähiger Modus (CLI)
 

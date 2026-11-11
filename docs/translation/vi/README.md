@@ -24,6 +24,13 @@ Trang chính thức: [OMEGA-TRACK](https://kraynux.snake-mackarel.ts.net/omega-t
 
 **Omega-track** là công cụ TUI + CLI xây dựng, từ một IP, một địa chỉ IPv6 hoặc một tên miền, danh tính số đầy đủ nhất có thể: ai trả lời phía sau mục tiêu này, đường đi đến đó ra sao, và mỗi thông tin đáng tin cậy đến mức nào. Đây là một công cụ của bộ `omega-`, được tổ chức theo Clean Architecture — xem `docs/PRODUCT_SCOPE.md` và `docs/DATA_SOURCES.md` để biết đầy đủ chi tiết.
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/kraynux/kraynux/refs/heads/main/docs/translation/vi/omega-track/A.png" width="24%" />
+  <img src="https://raw.githubusercontent.com/kraynux/kraynux/refs/heads/main/docs/translation/vi/omega-track/B.png" width="24%" />
+  <img src="https://raw.githubusercontent.com/kraynux/kraynux/refs/heads/main/docs/translation/vi/omega-track/C.png" width="24%" />
+  <img src="https://raw.githubusercontent.com/kraynux/kraynux/refs/heads/main/docs/translation/vi/omega-track/D.png" width="24%" />
+</p>
+
 ## 1. Tầm nhìn và phạm vi
 
 Omega-track trả lời hai câu hỏi: “mục tiêu này là ai?” (danh tính RDAP/DNS/chứng chỉ/danh tiếng) và “làm sao để đến được đó?” (đường đi mạng NeoTrace, GeoIP, ASN). Nó bổ sung cho `omega-check` (mức độ phơi bày mạng), `omega-scan` (vệ sinh HTTP/HTTPS) và `omega-deep` (phân tích kiến trúc có giới hạn), mà không trùng lặp với chúng.
@@ -125,6 +132,10 @@ Luồng sử dụng: màn hình khởi động (đóng khi nhấn phím hoặc n
 ### Ngôn ngữ giao diện
 
 Giao diện có sẵn bằng 17 ngôn ngữ: tiếng Pháp, tiếng Anh, tiếng Tây Ban Nha, tiếng Bồ Đào Nha (Brazil), tiếng Ý, tiếng Đức, tiếng Hà Lan, tiếng Ba Lan, tiếng Nga, tiếng Trung giản thể, tiếng Việt, tiếng Thái, tiếng Indonesia, tiếng Nhật, tiếng Hàn, tiếng Hindi và tiếng Ả Rập. Lựa chọn được thực hiện trong Thiết lập (“Langue / Language”) và có hiệu lực sau khi khởi động lại giao diện; biến `OMEGA_TRACK_LANG` (ví dụ `OMEGA_TRACK_LANG=vi ./omega-track.sh`) buộc dùng một ngôn ngữ trong một phiên. Khi khởi chạy từ omega-suite, omega-track dùng ngôn ngữ của bộ công cụ. Trên console văn bản Linux (TTY), tiếng Việt và các ngôn ngữ không dùng chữ Latinh được hiển thị bằng tiếng Anh trong suốt phiên đó. Dòng lệnh vẫn bằng tiếng Pháp.
+
+### Liên hệ và hỗ trợ
+
+Phần trợ giúp (phím `a`) có màn hình **Liên hệ và hỗ trợ**: *Mời một ly cà phê* (trang PayPal của nhà phát triển), *Liên hệ hỗ trợ* (địa chỉ email và biểu mẫu liên hệ của trang web, hiển thị rõ ràng), *Khai báo là người dùng (ẩn danh)* và *Kiểm tra cập nhật*. Việc khai báo là tự nguyện, tắt theo mặc định và chỉ gửi một lần: nó chỉ dùng để đếm số người dùng và, nếu bạn muốn, châu lục hoặc quốc gia của họ (danh sách đóng, không bao giờ là văn bản tự do). Nó gửi một khóa được tạo ngẫu nhiên, tên phần mềm (`omega-track`) và phiên bản của nó; không bao giờ gửi tên, tên máy, thiết lập, mục tiêu hay kết quả. Địa chỉ IP không được lưu trong các khai báo, nhưng, như mọi lượt truy cập, nó đi qua các kiểm tra bảo mật và nhật ký của máy chủ nhận. Có thể rút lại bất cứ lúc nào từ cùng màn hình (*Không khai báo tôi nữa*). Việc kiểm tra cập nhật chỉ đọc danh sách các phiên bản đã phát hành trên trang web, và không bao giờ khi chưa nhấp.
 
 ### Chế độ viết script (CLI)
 

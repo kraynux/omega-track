@@ -24,6 +24,13 @@ Oficjalna strona: [OMEGA-TRACK](https://kraynux.snake-mackarel.ts.net/omega-trac
 
 **Omega-track** to narzędzie TUI + CLI, które na podstawie adresu IP, adresu IPv6 lub domeny buduje możliwie najpełniejszą tożsamość cyfrową: kto odpowiada za tym celem, jak do niego dotrzeć i z jakim poziomem zaufania każdą informację można uznać za pewną. To narzędzie pakietu `omega-`, zbudowane zgodnie z Clean Architecture — szczegóły w `docs/PRODUCT_SCOPE.md` i `docs/DATA_SOURCES.md`.
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/kraynux/kraynux/refs/heads/main/docs/translation/pl/omega-track/A.png" width="24%" />
+  <img src="https://raw.githubusercontent.com/kraynux/kraynux/refs/heads/main/docs/translation/pl/omega-track/B.png" width="24%" />
+  <img src="https://raw.githubusercontent.com/kraynux/kraynux/refs/heads/main/docs/translation/pl/omega-track/C.png" width="24%" />
+  <img src="https://raw.githubusercontent.com/kraynux/kraynux/refs/heads/main/docs/translation/pl/omega-track/D.png" width="24%" />
+</p>
+
 ## 1. Wizja i zakres
 
 Omega-track odpowiada na dwa pytania: „kim jest ten cel?” (tożsamość RDAP/DNS/certyfikaty/reputacja) i „jak do niego dotrzeć?” (ścieżka sieciowa NeoTrace, GeoIP, ASN). Uzupełnia `omega-check` (ekspozycja sieciowa), `omega-scan` (higiena HTTP/HTTPS) i `omega-deep` (ograniczona analiza architektury), nie powielając ich.
@@ -125,6 +132,10 @@ Przebieg: ekran startowy (zamyka się po naciśnięciu klawisza lub kliknięciu)
 ### Języki interfejsu
 
 Interfejs jest dostępny w 17 językach: francuskim, angielskim, hiszpańskim, portugalskim (Brazylia), włoskim, niemieckim, niderlandzkim, polskim, rosyjskim, chińskim uproszczonym, wietnamskim, tajskim, indonezyjskim, japońskim, koreańskim, hindi i arabskim. Wybór odbywa się w Ustawieniach („Langue / Language”) i obowiązuje po ponownym uruchomieniu interfejsu; zmienna `OMEGA_TRACK_LANG` (na przykład `OMEGA_TRACK_LANG=pl ./omega-track.sh`) wymusza język na czas jednej sesji. Uruchomiony z omega-suite, omega-track przejmuje język pakietu. Na tekstowej konsoli Linuksa (TTY) języki o piśmie innym niż łacińskie są wyświetlane po angielsku przez całą sesję. Wiersz poleceń pozostaje po francusku.
+
+### Kontakt i wsparcie
+
+Pomoc (klawisz `a`) oferuje ekran **Kontakt i wsparcie**: *Postaw kawę* (strona PayPal dewelopera), *Skontaktuj się ze wsparciem* (adres e-mail i formularz kontaktowy strony, wyświetlane jawnie), *Zgłoś mnie jako użytkownika (anonimowo)* oraz *Sprawdź aktualizacje*. Zgłoszenie jest dobrowolne, domyślnie wyłączone i wysyłane tylko raz: służy wyłącznie do liczenia użytkowników oraz, jeśli tego chcesz, ich kontynentu lub kraju (zamknięte listy, nigdy dowolny tekst). Wysyła losowo wygenerowany klucz, nazwę programu (`omega-track`) i jego wersję; nigdy imienia i nazwiska, nazwy maszyny, ustawienia, celu ani wyniku. Adres IP nie jest zapisywany w zgłoszeniach, ale — jak przy każdej wizycie — przechodzi przez kontrole bezpieczeństwa i dziennik serwera odbiorczego. Wycofanie w dowolnym momencie z tego samego ekranu (*Nie zgłaszaj mnie więcej*). Sprawdzanie aktualizacji odczytuje jedynie listę wersji opublikowanych na stronie, i nigdy bez kliknięcia.
 
 ### Tryb skryptowy (CLI)
 

@@ -24,6 +24,13 @@ Official page: [OMEGA-TRACK](https://kraynux.snake-mackarel.ts.net/omega-track/)
 
 **Omega-track** is a TUI + CLI tool that builds, from an IP, an IPv6 address or a domain, the most complete digital identity possible: who answers behind this target, how traffic gets there, and how much confidence each piece of information deserves. It is a tool of the `omega-` suite, built on Clean Architecture — see `docs/PRODUCT_SCOPE.md` and `docs/DATA_SOURCES.md` for the full details.
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/kraynux/kraynux/refs/heads/main/docs/translation/en/omega-track/A.png" width="24%" />
+  <img src="https://raw.githubusercontent.com/kraynux/kraynux/refs/heads/main/docs/translation/en/omega-track/B.png" width="24%" />
+  <img src="https://raw.githubusercontent.com/kraynux/kraynux/refs/heads/main/docs/translation/en/omega-track/C.png" width="24%" />
+  <img src="https://raw.githubusercontent.com/kraynux/kraynux/refs/heads/main/docs/translation/en/omega-track/D.png" width="24%" />
+</p>
+
 ## 1. Vision and scope
 
 Omega-track answers two questions: "who is this target?" (RDAP/DNS/certificate/reputation identity) and "how do we get there?" (NeoTrace network path, GeoIP, ASN). It complements `omega-check` (network exposure), `omega-scan` (HTTP/HTTPS hygiene) and `omega-deep` (bounded architecture analysis), without duplicating them.
@@ -125,6 +132,10 @@ Flow: splash screen (closes on a key press or a click) → main menu (Targets / 
 ### Interface languages
 
 The interface is available in 17 languages: French, English, Spanish, Portuguese (Brazil), Italian, German, Dutch, Polish, Russian, Simplified Chinese, Vietnamese, Thai, Indonesian, Japanese, Korean, Hindi and Arabic. The choice is made in Settings ("Langue / Language") and applies after the interface restarts; the `OMEGA_TRACK_LANG` variable (for example `OMEGA_TRACK_LANG=en ./omega-track.sh`) forces a language for one session. When launched from omega-suite, omega-track uses the suite's language. On a Linux text console (TTY), languages written in non-Latin scripts are shown in English for that session. The command line stays in French.
+
+### Contact and support
+
+Help (`a` key) offers a **Contact and support** screen: *Buy me a coffee* (the developer's PayPal page), *Contact support* (email address and the site's contact form, shown in plain text), *Declare myself as a user (anonymous)* and *Check for updates*. The declaration is voluntary, off by default and sent only once: it is used only to count users and, if you wish, their continent or country (closed lists, never free text). It sends a randomly drawn key, the software name (`omega-track`) and its version; never a name, a machine name, a setting, a target or a result. The IP address is not stored in the declarations, but, like any visit, it goes through the security checks and the log of the receiving server. You can withdraw at any time from the same screen (*Stop declaring me*). The update check only reads the list of versions published on the site, and never without a click.
 
 ### Scriptable mode (CLI)
 

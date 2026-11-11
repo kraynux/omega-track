@@ -24,6 +24,13 @@
 
 **Omega-track**은 IP, IPv6 주소 또는 도메인에서 출발해 가능한 한 완전한 디지털 신원을 구성하는 TUI + CLI 도구입니다: 이 대상 뒤에서 누가 응답하는지, 그곳까지 어떻게 도달하는지, 그리고 각 정보를 어느 정도의 신뢰도로 확실하다고 볼 수 있는지. `omega-` 스위트의 도구이며, Clean Architecture로 구성되어 있습니다 — 자세한 내용은 `docs/PRODUCT_SCOPE.md`와 `docs/DATA_SOURCES.md`를 참조하세요.
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/kraynux/kraynux/refs/heads/main/docs/translation/ko/omega-track/A.png" width="24%" />
+  <img src="https://raw.githubusercontent.com/kraynux/kraynux/refs/heads/main/docs/translation/ko/omega-track/B.png" width="24%" />
+  <img src="https://raw.githubusercontent.com/kraynux/kraynux/refs/heads/main/docs/translation/ko/omega-track/C.png" width="24%" />
+  <img src="https://raw.githubusercontent.com/kraynux/kraynux/refs/heads/main/docs/translation/ko/omega-track/D.png" width="24%" />
+</p>
+
 ## 1. 비전과 범위
 
 Omega-track은 두 가지 질문에 답합니다: "이 대상은 누구인가?"(RDAP/DNS/인증서/평판 기반 신원)와 "어떻게 그곳에 도달하는가?"(NeoTrace 네트워크 경로, GeoIP, ASN). `omega-check`(네트워크 노출), `omega-scan`(HTTP/HTTPS 위생), `omega-deep`(범위가 제한된 아키텍처 분석)을 보완하며, 이들과 중복되지 않습니다.
@@ -125,6 +132,10 @@ track
 ### 인터페이스 언어
 
 인터페이스는 17개 언어로 제공됩니다: 프랑스어, 영어, 스페인어, 포르투갈어(브라질), 이탈리아어, 독일어, 네덜란드어, 폴란드어, 러시아어, 중국어 간체, 베트남어, 태국어, 인도네시아어, 일본어, 한국어, 힌디어, 아랍어. 설정("Langue / Language")에서 선택하며 인터페이스를 다시 시작한 뒤 적용됩니다. 변수 `OMEGA_TRACK_LANG`(예: `OMEGA_TRACK_LANG=ko ./omega-track.sh`)으로 한 세션 동안 언어를 강제할 수 있습니다. omega-suite에서 실행하면 omega-track은 스위트의 언어를 따릅니다. Linux 텍스트 콘솔(TTY)에서는 라틴 문자가 아닌 언어가 그 세션 동안 영어로 표시됩니다. 명령줄은 프랑스어로 유지됩니다.
+
+### 문의 및 지원
+
+도움말(`a` 키)에는 **문의 및 지원** 화면이 있습니다: *커피 한 잔 사기*(개발자의 PayPal 페이지), *지원팀에 문의*(이메일 주소와 사이트의 문의 양식을 그대로 표시), *사용자로 등록(익명)*, *업데이트 확인*. 등록은 자발적이며 기본적으로 꺼져 있고 한 번만 전송됩니다. 사용자 수와, 원하면 사용자의 대륙 또는 국가(닫힌 목록, 자유 입력 없음)를 세는 데에만 쓰입니다. 무작위로 생성한 키, 소프트웨어 이름(`omega-track`)과 버전만 보내며, 이름, 컴퓨터 이름, 설정, 대상, 결과는 절대 보내지 않습니다. IP 주소는 등록 정보에 저장되지 않지만, 모든 방문과 마찬가지로 수신 서버의 보안 검사와 로그를 거칩니다. 같은 화면에서 언제든지 철회할 수 있습니다(*등록 취소*). 업데이트 확인은 사이트에 게시된 버전 목록만 읽으며, 클릭하지 않으면 절대 실행되지 않습니다.
 
 ### 스크립트 모드(CLI)
 

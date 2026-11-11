@@ -43,7 +43,7 @@ rsync -a \
     --exclude='docs/assets/' \
     --exclude='var/db/*' --exclude='var/exports/*' --exclude='var/screenshots/*' \
     --exclude='var/geoip/*' --exclude='var/cache/*' \
-    --exclude='var/settings.json' --exclude='var/secrets.json' \
+    --exclude='var/settings.json' --exclude='var/declaration.json' --exclude='var/secrets.json' \
     --exclude='var/*.log' --exclude='var/*.jsonl' \
     --exclude='*~' --exclude='*.bak' --exclude='*.swp' \
     --exclude='.coverage' --exclude='htmlcov/' \

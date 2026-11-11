@@ -24,6 +24,13 @@
 
 **Omega-track** は TUI + CLI のツールで、IP、IPv6 アドレス、またはドメインから、できる限り完全なデジタルアイデンティティを組み立てます: このターゲットの背後で誰が応答しているのか、そこへどう到達するのか、そして各情報をどの程度の信頼度で確かなものとみなせるのか。`omega-` スイートのツールで、Clean Architecture で構成されています — 詳細は `docs/PRODUCT_SCOPE.md` と `docs/DATA_SOURCES.md` を参照してください。
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/kraynux/kraynux/refs/heads/main/docs/translation/ja/omega-track/A.png" width="24%" />
+  <img src="https://raw.githubusercontent.com/kraynux/kraynux/refs/heads/main/docs/translation/ja/omega-track/B.png" width="24%" />
+  <img src="https://raw.githubusercontent.com/kraynux/kraynux/refs/heads/main/docs/translation/ja/omega-track/C.png" width="24%" />
+  <img src="https://raw.githubusercontent.com/kraynux/kraynux/refs/heads/main/docs/translation/ja/omega-track/D.png" width="24%" />
+</p>
+
 ## 1. ビジョンと範囲
 
 Omega-track は 2 つの問いに答えます: 「このターゲットは誰か？」（RDAP/DNS/証明書/評判によるアイデンティティ）と「どうやってそこへ到達するか？」（NeoTrace のネットワーク経路、GeoIP、ASN）。`omega-check`（ネットワークの露出）、`omega-scan`（HTTP/HTTPS の衛生）、`omega-deep`（範囲を限定したアーキテクチャ分析）を補完し、それらと重複しません。
@@ -125,6 +132,10 @@ track
 ### インターフェースの言語
 
 インターフェースは 17 言語で利用できます: フランス語、英語、スペイン語、ポルトガル語（ブラジル）、イタリア語、ドイツ語、オランダ語、ポーランド語、ロシア語、簡体字中国語、ベトナム語、タイ語、インドネシア語、日本語、韓国語、ヒンディー語、アラビア語。設定（「Langue / Language」）で選択し、インターフェースの再起動後に反映されます。変数 `OMEGA_TRACK_LANG`（例: `OMEGA_TRACK_LANG=ja ./omega-track.sh`）で 1 セッションだけ言語を指定できます。omega-suite から起動した場合、omega-track はスイートの言語を使います。Linux のテキストコンソール（TTY）では、ラテン文字以外の言語はそのセッションの間、英語で表示されます。コマンドラインはフランス語のままです。
+
+### お問い合わせとサポート
+
+ヘルプ（`a` キー）には **お問い合わせとサポート** 画面があります：*コーヒーをおごる*（開発者の PayPal ページ）、*サポートに連絡*（メールアドレスとサイトのお問い合わせフォームをそのまま表示）、*ユーザーとして登録（匿名）*、*更新を確認*。 登録は任意で、既定では無効、送信は一度だけです。利用者の数と、希望すればその大陸または国（選択式のリストのみ、自由入力なし）を数えるためだけに使われます。送信されるのは、ランダムに生成したキー、ソフトウェア名（`omega-track`）とそのバージョンだけで、名前、マシン名、設定、対象、結果は決して送信されません。IP アドレスは登録データには保存されませんが、通常のアクセスと同様に、受信サーバーのセキュリティチェックとログを通過します。 同じ画面からいつでも取り消せます（*登録を取り消す*）。 更新の確認は、サイトで公開されているバージョンの一覧を読むだけで、クリックしない限り行われません。
 
 ### スクリプトモード（CLI）
 

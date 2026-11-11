@@ -24,6 +24,13 @@ Page officielle : [OMEGA-TRACK](https://kraynux.snake-mackarel.ts.net/omega-trac
 
 **Omega-track** est un outil TUI + CLI qui construit, à partir d'une IP, IPv6 ou d'un domaine, l'identité numérique la plus complète possible : qui répond derrière cette cible, comment y arrive-t-on, et avec quel niveau de confiance chaque information peut être tenue pour acquise. Outil de la suite `omega-`, structuré en Clean Architecture — voir `docs/PRODUCT_SCOPE.md` et `docs/DATA_SOURCES.md` pour le détail complet.
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/kraynux/kraynux/refs/heads/main/docs/assets/omega-track/A.png" width="24%" />
+  <img src="https://raw.githubusercontent.com/kraynux/kraynux/refs/heads/main/docs/assets/omega-track/B.png" width="24%" />
+  <img src="https://raw.githubusercontent.com/kraynux/kraynux/refs/heads/main/docs/assets/omega-track/C.png" width="24%" />
+  <img src="https://raw.githubusercontent.com/kraynux/kraynux/refs/heads/main/docs/assets/omega-track/D.png" width="24%" />
+</p>
+
 ## 1. Vision et périmètre
 
 Omega-track répond à deux questions : « qui est cette cible ? » (identité RDAP/DNS/certificats/réputation) et « comment y arrive-t-on ? » (chemin réseau NeoTrace, GeoIP, ASN). Il complète `omega-check` (exposition réseau), `omega-scan` (hygiène HTTP/HTTPS) et `omega-deep` (analyse d'architecture bornée), sans les dupliquer.
@@ -125,6 +132,10 @@ Parcours : écran de démarrage (se ferme sur une touche ou un clic) → menu pr
 ### Langues de l'interface
 
 L'interface est disponible en 17 langues : français, anglais, espagnol, portugais (Brésil), italien, allemand, néerlandais, polonais, russe, chinois simplifié, vietnamien, thaï, indonésien, japonais, coréen, hindi et arabe. Le choix se fait dans les Réglages (« Langue / Language ») et s'applique après un redémarrage de l'interface ; la variable `OMEGA_TRACK_LANG` (par exemple `OMEGA_TRACK_LANG=en ./omega-track.sh`) force une langue le temps d'une session. Lancé depuis omega-suite, omega-track prend la langue de la suite. Sur une console texte Linux (TTY), les langues à écriture non latine s'affichent en anglais pour la session. La ligne de commande reste en français.
+
+### Contact et support
+
+L'aide (touche `a`) propose un écran **Contact et support** : *Payer un café* (page PayPal du développeur), *Contacter le support* (adresse mail et formulaire de contact du site, affichés en clair), *Se déclarer utilisateur (anonyme)* et *Vérifier les mises à jour*. La déclaration est volontaire, désactivée par défaut et envoyée une seule fois : elle sert seulement à compter les utilisateurs et, si on le souhaite, leur continent ou leur pays (listes fermées, jamais de texte libre). Elle envoie une clé tirée au hasard, le nom du logiciel (`omega-track`) et sa version ; jamais de nom, de nom de machine, de réglage, de cible ni de résultat. L'adresse IP n'est pas enregistrée dans les déclarations, mais passe, comme toute visite, par les contrôles de sécurité et le journal du serveur de réception. Retrait à tout moment depuis le même écran (*Ne plus me déclarer*). La vérification des mises à jour lit seulement la liste des versions publiées sur le site, et jamais sans clic.
 
 ### Mode scriptable (CLI)
 

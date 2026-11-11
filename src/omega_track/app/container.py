@@ -20,6 +20,7 @@ from datetime import datetime
 from pathlib import Path
 
 import httpx
+from omega_lib.ports.declaration import ContactSupportServices
 
 from omega_track.application.orchestrators.export_orchestrator import ExportOrchestrator
 from omega_track.application.orchestrators.track_orchestrator import TrackOrchestrator
@@ -95,6 +96,9 @@ class DependencyContainer:
 
     connection: sqlite3.Connection
     http_client: httpx.Client
+    contact_support: ContactSupportServices | None = None
+    """Aide -> Contact et support (omega-lib, D-016, 2026-11-09) : declaration anonyme une seule
+    fois, mises a jour, navigateur. None : bouton masque (conteneur partiel des tests)."""
 
     def close(self) -> None:
         self.connection.close()

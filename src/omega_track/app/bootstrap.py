@@ -8,6 +8,8 @@ from __future__ import annotations
 from pathlib import Path
 
 import httpx
+from omega_lib.infrastructure.declaration import build_contact_support
+from omega_lib.infrastructure.declaration.app_version import project_version
 from omega_lib.infrastructure.terminal.detector import SystemTerminalDetector
 from omega_lib.shared.clock import utc_now
 from omega_lib.shared.ids import new_id
@@ -69,6 +71,12 @@ from omega_track.plugins.reputation.hibp_plugin import HibpPlugin
 from omega_track.plugins.reputation.virustotal_plugin import VirusTotalPlugin
 
 _GEOIP_PROVIDER_SETTING_KEY = "geoip_provider"
+
+
+SOFTWARE = "omega-track"
+"""Nom du logiciel pour la reception des declarations et le site (download/)."""
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
+"""Racine du projet : pyproject.toml, seule source de la version."""
 
 
 def bootstrap(*, var_dir: Path | None = None, console_logging: bool = True) -> DependencyContainer:
@@ -159,6 +167,7 @@ def bootstrap(*, var_dir: Path | None = None, console_logging: bool = True) -> D
     )
 
     return DependencyContainer(
+        contact_support=build_contact_support(SOFTWARE, project_version(PROJECT_ROOT, SOFTWARE), base),
         clock=now,
         id_factory=new_id,
         terminal_detector=SystemTerminalDetector(),

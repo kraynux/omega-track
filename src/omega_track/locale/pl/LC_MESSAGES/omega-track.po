@@ -7,7 +7,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Omega-Status: testing\n"
+"X-Omega-Status: validated\n"
 
 #: src/omega_track/application/commands/targets/create_target.py:31
 #, python-brace-format
@@ -517,31 +517,31 @@ msgstr "Brak klucza licencji MaxMind - wpisz go powyżej przed aktualizacją."
 msgid "Base GeoIP mise à jour."
 msgstr "Baza GeoIP zaktualizowana."
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:32
+#: src/omega_track/interfaces/tui/screens/help_screen.py:33
 msgid "Enregistrer une IP ou un domaine, avec alias et tags. Épingler une cible l'autorise durablement (plus besoin de confirmation explicite sur ses futures observations)."
 msgstr "Zapisz adres IP lub domenę, z aliasem i tagami. Przypięcie celu autoryzuje go trwale (bez potrzeby wyraźnego potwierdzania przyszłych obserwacji)."
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:38 src/omega_track/interfaces/tui/screens/home.py:33
+#: src/omega_track/interfaces/tui/screens/help_screen.py:39 src/omega_track/interfaces/tui/screens/home.py:33
 msgid "Tracker"
 msgstr "Tracker"
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:40
+#: src/omega_track/interfaces/tui/screens/help_screen.py:41
 msgid "Choisir une cible enregistrée, les modules de collecte à activer et lancer une observation (TrackRun). Une observation contre une cible non épinglée exige une confirmation explicite."
 msgstr "Wybierz zapisany cel, moduły zbierania do włączenia i uruchom obserwację (TrackRun). Obserwacja nieprzypiętego celu wymaga wyraźnego potwierdzenia."
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:46
+#: src/omega_track/interfaces/tui/screens/help_screen.py:47
 msgid "Résultats"
 msgstr "Wyniki"
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:48
+#: src/omega_track/interfaces/tui/screens/help_screen.py:49
 msgid "Rapport d'identité complet d'une observation terminée : DNS/RDAP, chemin réseau (NeoTrace), certificats (Certificate Transparency), archives, ASN/BGP, relations corrélées entre entités."
 msgstr "Pełny raport tożsamości zakończonej obserwacji: DNS/RDAP, ścieżka sieciowa (NeoTrace), certyfikaty (Certificate Transparency), archiwa, ASN/BGP, skorelowane powiązania między encjami."
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:54
+#: src/omega_track/interfaces/tui/screens/help_screen.py:55
 msgid "Statuts d'un module (onglet Résultats)"
 msgstr "Statusy modułu (karta Wyniki)"
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:56
+#: src/omega_track/interfaces/tui/screens/help_screen.py:57
 msgid ""
 "Terminé : la source a répondu, données exploitables présentes.\n"
 "Partiel : au moins une réponse obtenue, mais pas toutes (ex. certains sauts NeoTrace sans réponse).\n"
@@ -555,15 +555,15 @@ msgstr ""
 "Niewykonany: wyłączony przez warunek (np. cel IP dla modułu, który ma sens tylko dla domeny, brak klucza API, oczekiwanie na limit).\n"
 "Nieudany: źródło zostało odpytane, ale nie dało ŻADNEJ użytecznej odpowiedzi (timeout, błąd zdalnego serwera, sieć nieosiągalna) - nigdy nie oznacza, że aplikacja jest zablokowana lub wciąż się ładuje: obserwacja jako całość już zakończyła się normalnie, tylko ten konkretny moduł nic nie wytworzył. Częste i normalne dla RDAP w niektórych rejestrach/TLD (brak odpowiedzi, usługa chwilowo niedostępna, cel bez znanego wpisu)."
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:73
+#: src/omega_track/interfaces/tui/screens/help_screen.py:74
 msgid "Liste toutes les observations passées : filtrage par cible/statut/tag, rejeu contre la résolution actuelle, export du rapport."
 msgstr "Lista wszystkich wcześniejszych obserwacji: filtrowanie według celu/statusu/tagu, ponowne odtworzenie względem bieżącego rozwiązania, eksport raportu."
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:78
+#: src/omega_track/interfaces/tui/screens/help_screen.py:79
 msgid "GeoIP - comment l'obtenir"
 msgstr "GeoIP - jak ją uzyskać"
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:80
+#: src/omega_track/interfaces/tui/screens/help_screen.py:81
 msgid ""
 "DB-IP (fournisseur par défaut) : gratuit, sans inscription - 'Mettre à jour la base' dans l'écran GeoIP suffit, rien à configurer.\n"
 "MaxMind (alternatif, optionnel) : créer un compte gratuit sur maxmind.com, puis dans 'Mon compte' -> 'Gérer les clés de licence' -> 'Générer une nouvelle clé de licence'. Coller cette clé dans l'écran GeoIP, choisir 'maxmind' comme fournisseur, puis 'Mettre à jour la base'."
@@ -571,11 +571,11 @@ msgstr ""
 "DB-IP (domyślny dostawca): darmowy, bez rejestracji - wystarczy 'Zaktualizuj bazę' na ekranie GeoIP, nic nie trzeba konfigurować.\n"
 "MaxMind (alternatywny, opcjonalny): załóż darmowe konto na maxmind.com, a następnie w 'My Account' -> 'Manage License Keys' -> 'Generate new license key'. Wklej ten klucz na ekranie GeoIP, wybierz 'maxmind' jako dostawcę, a potem 'Zaktualizuj bazę'."
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:89
+#: src/omega_track/interfaces/tui/screens/help_screen.py:90
 msgid "Sources à clé - comment les obtenir"
 msgstr "Źródła z kluczem - jak je uzyskać"
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:91
+#: src/omega_track/interfaces/tui/screens/help_screen.py:92
 msgid ""
 "VirusTotal (gratuit avec compte) : créer un compte sur virustotal.com, puis dans son profil -> 'API key', copier la clé affichée. La coller dans l'écran 'Sources à clé' (choisir 'virustotal', champ Clé API). Quota limité pour une clé gratuite (quelques requêtes/minute).\n"
 "HIBP - Have I Been Pwned (PAYANT depuis 2022, plus d'offre gratuite) : nécessite un abonnement sur haveibeenpwned.com/API/Key avant de pouvoir obtenir une clé - jamais présenté comme gratuite dans cette application.\n"
@@ -585,11 +585,11 @@ msgstr ""
 "HIBP - Have I Been Pwned (PŁATNY od 2022 r., brak darmowej oferty): wymaga subskrypcji na haveibeenpwned.com/API/Key przed uzyskaniem klucza - nigdy nie jest przedstawiany jako darmowy w tej aplikacji.\n"
 "W obu przypadkach: ekran zawsze pokazuje szczegóły (limit, dane wysyłane do dostawcy, prywatność) przed zapisaniem klucza. Bez skonfigurowanego klucza odpowiedni moduł jest po prostu pomijany (nigdy nie jest to błąd blokujący resztę obserwacji)."
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:106
+#: src/omega_track/interfaces/tui/screens/help_screen.py:107
 msgid "Omega-track observe des cibles explicitement enregistrées et autorisées (épinglées ou confirmation explicite) : aucune découverte ni dérive automatique vers d'autres cibles. Le score de confiance n'est jamais un verdict de sécurité."
 msgstr "Omega-track obserwuje cele wyraźnie zapisane i autoryzowane (przypięte lub z wyraźnym potwierdzeniem): żadnego automatycznego wykrywania ani przechodzenia na inne cele. Wskaźnik pewności nigdy nie jest werdyktem bezpieczeństwa."
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:127
+#: src/omega_track/interfaces/tui/screens/help_screen.py:134
 msgid "Modules de collecte connus"
 msgstr "Znane moduły zbierania"
 

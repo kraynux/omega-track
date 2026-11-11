@@ -149,6 +149,9 @@ class SettingsScreen(OmegaScreen):
             return
         if event.select.id == "render-profile-select":
             raw = str(event.value)
+            # Valeur initiale signalee a l'ouverture : ne rien enregistrer ni notifier (retour 2026-11-10).
+            if raw == str(self._container.settings_repository.get(_RENDER_PROFILE_OVERRIDE_KEY, "") or ""):
+                return
             select_render_profile(
                 settings_repository=self._container.settings_repository,
                 render_profile=RenderProfile(raw) if raw else None,

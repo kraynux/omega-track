@@ -7,7 +7,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Omega-Status: testing\n"
+"X-Omega-Status: validated\n"
 
 #: src/omega_track/application/commands/targets/create_target.py:31
 #, python-brace-format
@@ -517,31 +517,31 @@ msgstr "缺少 MaxMind 许可证密钥——请先在上方填写再更新。"
 msgid "Base GeoIP mise à jour."
 msgstr "GeoIP 数据库已更新。"
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:32
+#: src/omega_track/interfaces/tui/screens/help_screen.py:33
 msgid "Enregistrer une IP ou un domaine, avec alias et tags. Épingler une cible l'autorise durablement (plus besoin de confirmation explicite sur ses futures observations)."
 msgstr "登记一个 IP 或域名，可附带别名和标签。固定目标即对其长期授权（以后观察时无需再明确确认）。"
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:38 src/omega_track/interfaces/tui/screens/home.py:33
+#: src/omega_track/interfaces/tui/screens/help_screen.py:39 src/omega_track/interfaces/tui/screens/home.py:33
 msgid "Tracker"
 msgstr "Tracker"
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:40
+#: src/omega_track/interfaces/tui/screens/help_screen.py:41
 msgid "Choisir une cible enregistrée, les modules de collecte à activer et lancer une observation (TrackRun). Une observation contre une cible non épinglée exige une confirmation explicite."
 msgstr "选择一个已登记的目标、要启用的收集模块，然后启动观察（TrackRun）。观察未固定的目标需要明确确认。"
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:46
+#: src/omega_track/interfaces/tui/screens/help_screen.py:47
 msgid "Résultats"
 msgstr "结果"
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:48
+#: src/omega_track/interfaces/tui/screens/help_screen.py:49
 msgid "Rapport d'identité complet d'une observation terminée : DNS/RDAP, chemin réseau (NeoTrace), certificats (Certificate Transparency), archives, ASN/BGP, relations corrélées entre entités."
 msgstr "已完成观察的完整身份报告：DNS/RDAP、网络路径（NeoTrace）、证书（Certificate Transparency）、存档、ASN/BGP、实体之间的关联关系。"
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:54
+#: src/omega_track/interfaces/tui/screens/help_screen.py:55
 msgid "Statuts d'un module (onglet Résultats)"
 msgstr "模块状态（结果选项卡）"
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:56
+#: src/omega_track/interfaces/tui/screens/help_screen.py:57
 msgid ""
 "Terminé : la source a répondu, données exploitables présentes.\n"
 "Partiel : au moins une réponse obtenue, mais pas toutes (ex. certains sauts NeoTrace sans réponse).\n"
@@ -555,15 +555,15 @@ msgstr ""
 "未执行：因某个条件而停用（例如只对域名有意义的模块却遇到 IP 目标、缺少 API 密钥、等待配额）。\n"
 "失败：已查询来源，但没有得到任何可用响应（超时、远程服务器错误、网络不可达）——这绝不意味着应用卡住或仍在加载：整个观察已经正常结束，只是这个特定模块没有产出。对于某些注册机构/TLD 的 RDAP 来说，这很常见也很正常（无响应、服务暂时不可用、目标没有已知记录）。"
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:73
+#: src/omega_track/interfaces/tui/screens/help_screen.py:74
 msgid "Liste toutes les observations passées : filtrage par cible/statut/tag, rejeu contre la résolution actuelle, export du rapport."
 msgstr "列出所有历史观察：按目标/状态/标签筛选、按当前解析结果重放、导出报告。"
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:78
+#: src/omega_track/interfaces/tui/screens/help_screen.py:79
 msgid "GeoIP - comment l'obtenir"
 msgstr "GeoIP——如何获取"
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:80
+#: src/omega_track/interfaces/tui/screens/help_screen.py:81
 msgid ""
 "DB-IP (fournisseur par défaut) : gratuit, sans inscription - 'Mettre à jour la base' dans l'écran GeoIP suffit, rien à configurer.\n"
 "MaxMind (alternatif, optionnel) : créer un compte gratuit sur maxmind.com, puis dans 'Mon compte' -> 'Gérer les clés de licence' -> 'Générer une nouvelle clé de licence'. Coller cette clé dans l'écran GeoIP, choisir 'maxmind' comme fournisseur, puis 'Mettre à jour la base'."
@@ -571,11 +571,11 @@ msgstr ""
 "DB-IP（默认提供商）：免费，无需注册——在 GeoIP 界面点击“更新数据库”即可，无需任何配置。\n"
 "MaxMind（备选，可选）：在 maxmind.com 创建免费账户，然后进入 'My Account' -> 'Manage License Keys' -> 'Generate new license key'。将该密钥粘贴到 GeoIP 界面，选择 'maxmind' 作为提供商，然后点击“更新数据库”。"
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:89
+#: src/omega_track/interfaces/tui/screens/help_screen.py:90
 msgid "Sources à clé - comment les obtenir"
 msgstr "密钥来源——如何获取"
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:91
+#: src/omega_track/interfaces/tui/screens/help_screen.py:92
 msgid ""
 "VirusTotal (gratuit avec compte) : créer un compte sur virustotal.com, puis dans son profil -> 'API key', copier la clé affichée. La coller dans l'écran 'Sources à clé' (choisir 'virustotal', champ Clé API). Quota limité pour une clé gratuite (quelques requêtes/minute).\n"
 "HIBP - Have I Been Pwned (PAYANT depuis 2022, plus d'offre gratuite) : nécessite un abonnement sur haveibeenpwned.com/API/Key avant de pouvoir obtenir une clé - jamais présenté comme gratuite dans cette application.\n"
@@ -585,11 +585,11 @@ msgstr ""
 "HIBP - Have I Been Pwned（自 2022 年起付费，不再有免费方案）：需要先在 haveibeenpwned.com/API/Key 订阅才能获得密钥——本应用从不将其描述为免费。\n"
 "两种情况下：保存密钥前，界面始终会显示详细信息（配额、发送给提供商的数据、隐私）。未配置密钥时，对应模块会被直接跳过（绝不会成为阻止其余观察的错误）。"
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:106
+#: src/omega_track/interfaces/tui/screens/help_screen.py:107
 msgid "Omega-track observe des cibles explicitement enregistrées et autorisées (épinglées ou confirmation explicite) : aucune découverte ni dérive automatique vers d'autres cibles. Le score de confiance n'est jamais un verdict de sécurité."
 msgstr "Omega-track 观察已明确登记并授权的目标（已固定或经明确确认）：不进行任何自动发现或扩展到其他目标。置信度分数绝不是安全结论。"
 
-#: src/omega_track/interfaces/tui/screens/help_screen.py:127
+#: src/omega_track/interfaces/tui/screens/help_screen.py:134
 msgid "Modules de collecte connus"
 msgstr "已知的收集模块"
 
