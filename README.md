@@ -1,6 +1,6 @@
 <!-- Copyright (c) 2026 kraynux - kraynux@proton.me - Licence MIT (voir fichier LICENSE) -->
 <div align="center">
-  <img src="docs/assets/omega-track.png" alt="Omega-Track" width="386">
+  <img src="https://raw.githubusercontent.com/kraynux/kraynux/refs/heads/main/docs/assets/omega-track.png" alt="Omega-Track" width="512">
 </div>
 
 # 🛰️ OMEGA-TRACK
