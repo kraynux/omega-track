@@ -33,6 +33,27 @@ from importlib import resources
 
 from textual.widgets import Static
 
+_DRAWN_VERSION = "V1.5"
+"""Version qui etait dessinee a la main dans le logo : remplacee a l'affichage par celle de pyproject.toml."""
+
+
+def app_version() -> str:
+    """Version de pyproject.toml, seule source (procedure de verification de l'auteur, etape B, 2026-11-22) :
+    splash, barre de titre et « Contact et support » affichent le meme numero."""
+    from pathlib import Path
+
+    from omega_lib.infrastructure.declaration.app_version import project_version
+
+    return project_version(Path(__file__).resolve().parents[5], "omega-track")
+
+
+def drawn_version(version: str) -> str:
+    """Meme forme et meme largeur que la version dessinee (« V1.5 ») : « V1.6 » pour 1.6.0."""
+    parts = version.split(".")
+    if len(parts) >= 2 and all(part.isdigit() for part in parts[:3]):
+        return f"V{parts[0]}.{parts[1]}"
+    return "V" + version
+
 _TAB_SIZE = 4
 """Verifie empiriquement contre resources/ascii/splash.txt : les lignes 0-2
 (bordure/texte/bordure de la boite LINUX WEB-TRACKER) ne s'alignent sur la
@@ -85,4 +106,5 @@ class SplashHero(Static):
     """Bloc decoratif de l'ecran de demarrage (screens/splash.py)."""
 
     def __init__(self) -> None:
-        super().__init__(_load_markup(), classes="omega-splash-hero")
+        super().__init__(_load_markup().replace(_DRAWN_VERSION, drawn_version(app_version())),
+                         classes="omega-splash-hero")

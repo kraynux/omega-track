@@ -34,6 +34,7 @@ from omega_track.interfaces.tui.screens.splash import SplashScreen
 from omega_track.interfaces.tui.screens.targets import TargetsScreen
 from omega_track.interfaces.tui.screens.terminal_warning import TerminalWarningScreen
 from omega_track.interfaces.tui.screens.tracker import TrackerScreen
+from omega_track.interfaces.tui.widgets.splash_hero import app_version
 from omega_track.shared.i18n import N_, _
 
 if TYPE_CHECKING:
@@ -48,7 +49,7 @@ class OmegaTrackApp(App[None]):
     """Application TUI d'omega-track : resout theme/profil de rendu au
     demarrage, puis enchaine splash -> (avertissement terminal) -> accueil."""
 
-    TITLE = TITLE
+    TITLE = f"{TITLE} {app_version()}"  # version de pyproject.toml (etape B, 2026-11-22)
     BINDINGS: ClassVar[list[BindingType]] = [
         Binding("q", "quit", _("Quitter"), show=True),
         Binding("ctrl+q", "quit", _("Quitter"), show=False),
